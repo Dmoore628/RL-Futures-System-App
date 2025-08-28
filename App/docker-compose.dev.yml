@@ -11,10 +11,13 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - CHOKIDAR_USEPOLING=true
+      - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
+      - NODE_ENV=development
     depends_on:
       - backend
+    networks:
+      - app-network
   backend:
     build:
       context: ./backend
@@ -25,3 +28,9 @@ services:
     volumes:
       - ./backend:/app
     restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './WelcomePage.module.css'
-import welcomeContent from '../../content/welcomeContent.json'
+import { useContent } from '../hooks/useContent'
 
 interface Section {
   heading: string
@@ -9,10 +9,19 @@ interface Section {
 }
 
 const WelcomePage: React.FC = () => {
-  const sections = (welcomeContent?.sections ?? []) as Section[]
+  const { content, loading } = useContent()
+  
+  if (loading) {
+    return <div className={styles.container}>Loading...</div>
+  }
+
+  if (!content) {
+    return <div className={styles.container}>Failed to load content</div>
+  }
+
+  const sections = content.sections as Section[]
   
   const renderContent = (content: string) => {
-    // Handle markdown-like formatting for bold text
     return content.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
   }
 
@@ -22,7 +31,7 @@ const WelcomePage: React.FC = () => {
         {paragraphs.map((paragraph, index) => (
           <p 
             key={index} 
-            dangerouslySetInnerHTML={{ __html: renderContent(paragraph) }}
+            dangerouslySetInnerHTML={{ __html: renderContent(paragraph) }} 
           />
         ))}
       </div>
@@ -33,17 +42,17 @@ const WelcomePage: React.FC = () => {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.brand}>
-          {welcomeContent?.brand ?? 'RL Futures Trading System'}
+          {content.brand}
         </div>
       </header>
       
       <main className={styles.main}>
         <h1 className={styles.title}>
-          {welcomeContent?.title ?? 'Welcome to RL Futures Trading System'}
+          {content.title}
         </h1>
         
         <p className={styles.subtitle}>
-          {welcomeContent?.subtitle ?? 'Advanced AI-powered trading system that trains PPO models for profitable futures trading strategies'}
+          {content.subtitle}
         </p>
         
         {sections.map((section, idx) => (
