@@ -1,7 +1,7 @@
 {
-  "brand": "Moore Tech",
+  "brand": "Bureau of Magic",
   "title": "Welcome to the Reinforcement Learning System for Futures Trading",
-  "subtitle": "An Advanced System that allows PPO models to train for profitable futures trading.",
+  "subtitle": "An Advanced System that allows PPO models to train for profitable futures trading",
   "sections": [
     {
       "heading": "What This Application Does",
