@@ -53,6 +53,82 @@
   line-height: 1.6;
 }
 
+.errorContainer {
+  background: var(--error-bg);
+  border: 1px solid var(--error-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.errorContainer h3 {
+  color: var(--error-color);
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.errorContainer ul {
+  margin: 0 0 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.errorItem {
+  color: var(--error-color);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.retryButton {
+  background: var(--error-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: var(--error-color-dark);
+  transform: translateY(-1px);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.backButton {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main {
@@ -69,5 +145,14 @@
   
   .placeholder {
     padding: 2rem 1rem;
+  }
+  
+  .errorContainer {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+  
+  .navigationButtons {
+    margin-top: 1.5rem;
   }
 }
