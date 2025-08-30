@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { Step, FileData, FileValidationResult } from '../types'
+import { Step, FileData, FileValidationResult, ConfigurationForm as ConfigurationFormType } from '../types'
 import StepIndicator from '../components/StepIndicator'
 import FileUpload from '../components/FileUpload'
 import DataPreview from '../components/DataPreview'
+import ConfigurationForm from '../components/ConfigurationForm'
+import ConfigurationSummary from '../components/ConfigurationSummary'
 import styles from './UploadAndSettingsPage.module.css'
 
 const UploadAndSettingsPage: React.FC = () => {
@@ -10,18 +12,21 @@ const UploadAndSettingsPage: React.FC = () => {
   const [uploadedData, setUploadedData] = useState<FileData[]>([])
   const [validation, setValidation] = useState<FileValidationResult | null>(null)
   const [errors, setErrors] = useState<string[]>([])
+  const [configuration, setConfiguration] = useState<ConfigurationFormType | null>(null)
+  const [showSummary, setShowSummary] = useState(false)
+  const [showConfigurationForm, setShowConfigurationForm] = useState(false)
 
   const steps: Step[] = [
     {
       id: 1,
       label: 'Upload Data',
-      isCompleted: uploadedData.length > 0 && validation?.isValid,
+      isCompleted: !!(uploadedData.length > 0 && validation?.isValid),
       isActive: currentStep === 1
     },
     {
       id: 2,
       label: 'Configure System',
-      isCompleted: false,
+      isCompleted: !!configuration,
       isActive: currentStep === 2
     }
   ]
@@ -40,8 +45,14 @@ const UploadAndSettingsPage: React.FC = () => {
   }
 
   const handleContinueToConfig = () => {
-    // This will be implemented in Phase 3
-    console.log('Moving to configuration step...')
+    // This will show the configuration form
+    setShowSummary(false)
+    setShowConfigurationForm(true)
+  }
+
+  const handleConfigurationSubmit = (configData: ConfigurationFormType) => {
+    setConfiguration(configData)
+    setShowSummary(true)
   }
 
   const handleBackToUpload = () => {
@@ -49,6 +60,22 @@ const UploadAndSettingsPage: React.FC = () => {
     setUploadedData([])
     setValidation(null)
     setErrors([])
+    setConfiguration(null)
+    setShowSummary(false)
+    setShowConfigurationForm(false)
+  }
+
+  const handleBackToConfig = () => {
+    setShowSummary(false)
+  }
+
+  const handleConfirmConfiguration = () => {
+    // Here you would typically send the configuration to the backend
+    console.log('Configuration confirmed:', configuration)
+    console.log('Uploaded data:', uploadedData)
+    
+    // For now, just show a success message
+    alert('Configuration saved successfully! Your futures trading system is ready to start training.')
   }
 
   return (
@@ -88,7 +115,7 @@ const UploadAndSettingsPage: React.FC = () => {
             />
           )}
 
-          {currentStep === 2 && validation && (
+          {currentStep === 2 && validation && !showSummary && !showConfigurationForm && (
             <>
               <DataPreview
                 data={uploadedData}
@@ -107,11 +134,19 @@ const UploadAndSettingsPage: React.FC = () => {
             </>
           )}
 
-          {currentStep === 2 && !validation && (
-            <div className={styles.placeholder}>
-              <h2>Configuration Coming Soon</h2>
-              <p>System configuration form will be implemented in the next phase.</p>
-            </div>
+          {currentStep === 2 && !showSummary && showConfigurationForm && (
+            <ConfigurationForm
+              onSubmit={handleConfigurationSubmit}
+              onBack={handleBackToUpload}
+            />
+          )}
+
+          {currentStep === 2 && showSummary && configuration && (
+            <ConfigurationSummary
+              configuration={configuration}
+              onEdit={handleBackToConfig}
+              onConfirm={handleConfirmConfiguration}
+            />
           )}
         </div>
       </main>
