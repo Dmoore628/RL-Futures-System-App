@@ -8,16 +8,22 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      # Bind mount the entire frontend directory for development
+      # This ensures all dependencies and source code are properly accessible
       - ./frontend:/app
+      # Exclude node_modules from the mount to use container's version
       - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true
       - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8000
     depends_on:
       - backend
     networks:
       - app-network
+    restart: unless-stopped
+
   backend:
     build:
       context: ./backend
@@ -28,6 +34,9 @@ services:
     volumes:
       - ./backend:/app
     restart: unless-stopped
+    environment:
+      - FLASK_ENV=development
+      - FLASK_DEBUG=true
     networks:
       - app-network
 

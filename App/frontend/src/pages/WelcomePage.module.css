@@ -139,6 +139,34 @@
   font-weight: 600;
 }
 
+.ctaSection {
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem;
+}
+
+.ctaButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
 .footer {
   padding: 1.5rem 2rem;
   text-align: center;

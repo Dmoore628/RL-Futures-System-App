@@ -1,0 +1,307 @@
+.configurationForm {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-light);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.header p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.sectionNavigation {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.sectionTab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.sectionTab:hover {
+  background: var(--bg-primary);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.sectionTab.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+  color: white;
+}
+
+.sectionIcon {
+  font-size: 1rem;
+}
+
+.sectionTitle {
+  font-weight: 500;
+}
+
+.section {
+  margin-bottom: 2rem;
+}
+
+.section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: 500;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+}
+
+.formGroup input,
+.formGroup select {
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.1);
+}
+
+.formGroup input::placeholder {
+  color: var(--text-muted);
+}
+
+.formGroup small {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.formActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.backButton {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.navigationButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.prevButton,
+.nextButton,
+.submitButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.prevButton {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.prevButton:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.nextButton {
+  background: var(--accent-secondary);
+  color: white;
+}
+
+.nextButton:hover {
+  background: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.submitButton {
+  background: var(--success-color);
+  color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: var(--success-color-dark);
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  background: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .configurationForm {
+    padding: 1.5rem;
+  }
+  
+  .header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .sectionNavigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sectionTab {
+    justify-content: center;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .navigationButtons {
+    justify-content: center;
+  }
+  
+  .backButton {
+    order: 2;
+  }
+}
+
+/* Animation for section transitions */
+.section {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Enhanced form styling */
+.formGroup input[type="number"]::-webkit-inner-spin-button,
+.formGroup input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+.formGroup input[type="time"] {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* Focus states for accessibility */
+.formGroup input:focus-visible,
+.formGroup select:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* Section tab scrollbar styling */
+.sectionNavigation::-webkit-scrollbar {
+  height: 6px;
+}
+
+.sectionNavigation::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 3px;
+}
+
+.sectionNavigation::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+.sectionNavigation::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}

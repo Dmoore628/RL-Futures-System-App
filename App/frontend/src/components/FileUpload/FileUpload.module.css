@@ -1,0 +1,234 @@
+.fileUpload {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-light);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.header p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.dropzone {
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.dropzone:hover {
+  border-color: var(--accent-primary);
+  background: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.dragActive {
+  border-color: var(--accent-primary);
+  background: var(--bg-primary);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-medium);
+}
+
+.dragReject {
+  border-color: var(--error-color);
+  background: var(--error-bg);
+}
+
+.processing {
+  cursor: not-allowed;
+  border-color: var(--accent-primary);
+  background: var(--bg-primary);
+}
+
+.dropContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uploadIcon {
+  font-size: 3rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.dropzone:hover .uploadIcon {
+  opacity: 1;
+}
+
+.dropText {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.fileTypes {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.fileSize {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.processingContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+}
+
+.fileInfo {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.fileInfo h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.fileDetails {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.fileDetails p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.fileDetails strong {
+  color: var(--text-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .fileUpload {
+    padding: 1.5rem;
+  }
+  
+  .dropzone {
+    padding: 2rem 1rem;
+  }
+  
+  .header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .dropText {
+    font-size: 1rem;
+  }
+  
+  .fileDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Animation for file upload success */
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.success {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+/* Error state styling */
+.error {
+  border-color: var(--error-color);
+  background: var(--error-bg);
+}
+
+.error .uploadIcon {
+  color: var(--error-color);
+}
+
+/* Loading state enhancements */
+.processing .dropzone {
+  pointer-events: none;
+}
+
+.processing .uploadIcon {
+  opacity: 0.5;
+}
+
+/* Accessibility improvements */
+.dropzone:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.dropzone:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}

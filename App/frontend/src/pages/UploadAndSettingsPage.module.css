@@ -1,0 +1,158 @@
+.container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.main {
+  flex: 1;
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 3rem auto;
+  line-height: 1.6;
+}
+
+.placeholder {
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  border-radius: 12px;
+  padding: 4rem 2rem;
+  margin: 2rem 0;
+}
+
+.placeholder h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin: 0 0 1rem 0;
+}
+
+.placeholder p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.errorContainer {
+  background: var(--error-bg);
+  border: 1px solid var(--error-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.errorContainer h3 {
+  color: var(--error-color);
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.errorContainer ul {
+  margin: 0 0 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.errorItem {
+  color: var(--error-color);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.retryButton {
+  background: var(--error-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.retryButton:hover {
+  background: var(--error-color-dark);
+  transform: translateY(-1px);
+}
+
+.retryButton:active {
+  transform: translateY(0);
+}
+
+.navigationButtons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.backButton {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main {
+    padding: 2rem 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .placeholder {
+    padding: 2rem 1rem;
+  }
+  
+  .errorContainer {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+  
+  .navigationButtons {
+    margin-top: 1.5rem;
+  }
+}
