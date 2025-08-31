@@ -1,20 +1,31 @@
+# Development Dockerfile with security enhancements
 FROM node:20-alpine
+
+# Install security updates and remove unnecessary packages
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache curl && \
+    rm -rf /var/cache/apk/*
+
+# Create non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nodejs -u 1001
 
 WORKDIR /app
 
 # Copy package files first for better caching
 COPY package*.json ./
 
-# Install dependencies with clean npm cache
+# Install dependencies with clean npm cache and security
 RUN npm cache clean --force && \
-    npm install
+    npm install && \
+    npm audit fix --force
 
-# Copy source code and configuration files
-COPY tsconfig.json vite.config.ts index.html ./
-COPY src ./src
-COPY content ./content
-COPY jest.config.js ./
-COPY .eslintrc.js ./
+# Set proper permissions
+RUN chown -R nodejs:nodejs /app
+
+# Switch to non-root user
+USER nodejs
 
 # Expose port
 EXPOSE 3000

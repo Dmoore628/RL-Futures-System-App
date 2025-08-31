@@ -42,3 +42,10 @@ export function capitalize(str: string): string {
 export function generateId(): string {
   return Math.random().toString(36).substr(2, 9)
 }
+
+// Comprehensive testing utilities
+export * from './accessibility'
+export * from './performance'
+export * from './security'
+export * from './crossBrowser'
+export * from './e2e'

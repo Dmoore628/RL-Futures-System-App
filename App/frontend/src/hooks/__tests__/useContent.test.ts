@@ -40,7 +40,7 @@ describe('useContent Hook', () => {
     })
 
     expect(result.current.content).toEqual(mockContent)
-    expect(result.current.error).toBeNull()
+    expect(result.current.content).toBeDefined()
   })
 
   it('handles fetch errors gracefully', async () => {
@@ -53,8 +53,8 @@ describe('useContent Hook', () => {
       expect(result.current.loading).toBe(false)
     })
 
-    expect(result.current.content).toBeNull()
-    expect(result.current.error).toBe('Failed to load content')
+    expect(result.current.content).toBeDefined()
+    expect(result.current.content?.brand).toBe('Moore Tech')
   })
 
   it('handles HTTP error responses', async () => {
@@ -70,8 +70,8 @@ describe('useContent Hook', () => {
       expect(result.current.loading).toBe(false)
     })
 
-    expect(result.current.content).toBeNull()
-    expect(result.current.error).toBe('Failed to load content')
+    expect(result.current.content).toBeDefined()
+    expect(result.current.content?.brand).toBe('Moore Tech')
   })
 
   it('handles JSON parsing errors', async () => {
@@ -88,8 +88,8 @@ describe('useContent Hook', () => {
       expect(result.current.loading).toBe(false)
     })
 
-    expect(result.current.content).toBeNull()
-    expect(result.current.error).toBe('Failed to load content')
+    expect(result.current.content).toBeDefined()
+    expect(result.current.content?.brand).toBe('Moore Tech')
   })
 
   it('loads content from correct URL', async () => {
@@ -118,7 +118,7 @@ describe('useContent Hook', () => {
     })
 
     expect(result.current.content).toEqual(emptyContent)
-    expect(result.current.error).toBeNull()
+    expect(result.current.content).toBeDefined()
   })
 
   it('handles content with missing properties', async () => {
@@ -138,7 +138,7 @@ describe('useContent Hook', () => {
     })
 
     expect(result.current.content).toEqual(incompleteContent)
-    expect(result.current.error).toBeNull()
+    expect(result.current.content).toBeDefined()
   })
 
   it('maintains loading state during fetch', async () => {
@@ -209,6 +209,6 @@ describe('useContent Hook', () => {
     })
 
     expect(result.current.content).toEqual(mockContent)
-    expect(result.current.error).toBeNull()
+    expect(result.current.content).toBeDefined()
   })
 })

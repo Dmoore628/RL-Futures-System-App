@@ -64,7 +64,8 @@ const mockOnConfirm = jest.fn()
 const defaultProps = {
   configuration: mockConfiguration,
   onBack: mockOnBack,
-  onConfirm: mockOnConfirm
+  onConfirm: mockOnConfirm,
+  onEdit: jest.fn()
 }
 
 describe('ConfigurationSummary Component', () => {

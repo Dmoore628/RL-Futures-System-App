@@ -1,3 +1,28 @@
+# Core Flask framework
 Flask==2.3.2
+
+# Security and validation
+Flask-Limiter==3.5.0
+Flask-Talisman==1.1.0
+Flask-SeaSurf==1.1.1
+
+# Production dependencies
+gunicorn==21.2.0
+python-dotenv==1.0.0
+
+# Development and testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Logging and monitoring
+structlog==23.2.0
+
+# Security scanning
+bandit==1.7.5
+safety==2.3.5
+
+# Monitoring and system information
+psutil==5.9.6
 
 

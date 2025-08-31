@@ -16,8 +16,8 @@ export default defineConfig({
       port: 3000,
     },
   },
-  // Serve the content directory as static assets
-  publicDir: 'content',
+  // Serve the public directory as static assets (standard React practice)
+  publicDir: 'public',
   // Optimize dependencies
   optimizeDeps: {
     exclude: ['@vite/client', '@vite/env'],
@@ -29,7 +29,13 @@ export default defineConfig({
       input: {
         main: './index.html',
       },
+      // Force inclusion of BrokerLogosBanner component
+      output: {
+        manualChunks: undefined,
+      },
     },
+    // Disable tree-shaking for our components
+    minify: false,
   },
 })
 

@@ -1,0 +1,243 @@
+# Azure DevOps Pipeline with Security Scanning and Comprehensive Testing
+trigger:
+  branches:
+    include:
+      - main
+      - develop
+      - feature/*
+  paths:
+    include:
+      - 'App/**'
+
+pr:
+  branches:
+    include:
+      - main
+      - develop
+
+variables:
+  # Build variables
+  buildConfiguration: 'Release'
+  buildPlatform: 'Any CPU'
+  
+  # Docker variables
+  dockerRegistryServiceConnection: 'azure-container-registry'
+  imageRepository: 'rl-futures-trading-system'
+  containerRegistry: 'your-registry.azurecr.io'
+  dockerfilePath: 'App/**/Dockerfile'
+  tag: '$(Build.BuildId)'
+  
+  # Security variables
+  securityScanEnabled: true
+  vulnerabilityThreshold: 'HIGH'
+  
+  # Testing variables
+  testCoverageThreshold: 80
+  testResultsFormat: 'JUnit'
+
+stages:
+- stage: Security
+  displayName: 'Security Scanning & Analysis'
+  jobs:
+  - job: SecurityScan
+    displayName: 'Security Vulnerability Scan'
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.11'
+        addToPath: true
+    
+    - script: |
+        pip install bandit safety trivy-cli
+      displayName: 'Install Security Tools'
+    
+    - script: |
+        # Python security scan with Bandit
+        bandit -r App/backend/ -f json -o bandit-report.json || true
+        
+        # Dependency vulnerability scan with Safety
+        safety check --json --output safety-report.json || true
+        
+        # Container vulnerability scan with Trivy
+        trivy image --format json --output trivy-report.json $(containerRegistry)/$(imageRepository):$(tag) || true
+      displayName: 'Run Security Scans'
+    
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/bandit-report.json'
+        testRunTitle: 'Security Scan Results'
+      condition: succeededOrFailed()
+    
+    - script: |
+        # Analyze security reports and fail if critical vulnerabilities found
+        python -c "
+        import json
+        import sys
+        
+        # Check Bandit results
+        try:
+            with open('bandit-report.json', 'r') as f:
+                bandit_data = json.load(f)
+                high_issues = [i for i in bandit_data.get('results', []) if i.get('issue_severity') == 'HIGH']
+                if high_issues:
+                    print(f'Found {len(high_issues)} HIGH severity security issues')
+                    sys.exit(1)
+        except:
+            pass
+        
+        # Check Safety results
+        try:
+            with open('safety-report.json', 'r') as f:
+                safety_data = json.load(f)
+                if safety_data:
+                    print(f'Found {len(safety_data)} dependency vulnerabilities')
+                    sys.exit(1)
+        except:
+            pass
+        
+        print('Security scan passed - no critical vulnerabilities found')
+        "
+      displayName: 'Analyze Security Results'
+      condition: succeeded()
+
+- stage: Build
+  displayName: 'Build & Containerize'
+  dependsOn: Security
+  condition: succeeded()
+  jobs:
+  - job: Build
+    displayName: 'Build Application'
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    steps:
+    - task: UseNodeVersion@0
+      inputs:
+        versionSpec: '20.x'
+        addToPath: true
+    
+    - script: |
+        cd App/frontend
+        npm ci
+        npm run build
+        npm run test:coverage
+      displayName: 'Build Frontend'
+    
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '3.11'
+        addToPath: true
+    
+    - script: |
+        cd App/backend
+        pip install -r requirements.txt
+        python -m pytest --cov=. --cov-report=xml --cov-report=html
+      displayName: 'Test Backend'
+    
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/test-results.xml'
+        testRunTitle: 'Test Results'
+    
+    - task: PublishCodeCoverageResults@1
+      inputs:
+        codeCoverageTool: 'Cobertura'
+        summaryFileLocation: '**/coverage.xml'
+        reportDirectory: '**/htmlcov'
+    
+    - script: |
+        # Build Docker images
+        docker build -t $(containerRegistry)/$(imageRepository)-frontend:$(tag) -f App/frontend/Dockerfile App/frontend
+        docker build -t $(containerRegistry)/$(imageRepository)-backend:$(tag) -f App/backend/Dockerfile App/backend
+        
+        # Push to registry
+        docker push $(containerRegistry)/$(imageRepository)-frontend:$(tag)
+        docker push $(containerRegistry)/$(imageRepository)-backend:$(tag)
+      displayName: 'Build & Push Docker Images'
+
+- stage: Test
+  displayName: 'Integration & E2E Testing'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - job: IntegrationTest
+    displayName: 'Integration Tests'
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    steps:
+    - script: |
+        # Start services for integration testing
+        docker-compose -f App/docker-compose.yml up -d
+        
+        # Wait for services to be healthy
+        timeout 300 bash -c 'until docker-compose -f App/docker-compose.yml ps | grep -q "healthy"; do sleep 5; done'
+        
+        # Run integration tests
+        cd App/frontend
+        npm run test:integration
+        
+        # Run backend integration tests
+        cd ../backend
+        python -m pytest tests/integration/ -v
+        
+        # Stop services
+        cd ..
+        docker-compose -f docker-compose.yml down
+      displayName: 'Run Integration Tests'
+    
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/test-results.xml'
+        testRunTitle: 'Integration Test Results'
+
+- stage: Deploy
+  displayName: 'Deploy to Staging'
+  dependsOn: Test
+  condition: succeeded()
+  jobs:
+  - deployment: Deploy
+    displayName: 'Deploy to Staging Environment'
+    environment: 'staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - script: |
+              # Deploy to staging environment
+              kubectl set image deployment/rl-futures-frontend frontend=$(containerRegistry)/$(imageRepository)-frontend:$(tag)
+              kubectl set image deployment/rl-futures-backend backend=$(containerRegistry)/$(imageRepository)-backend:$(tag)
+              
+              # Wait for rollout
+              kubectl rollout status deployment/rl-futures-frontend
+              kubectl rollout status deployment/rl-futures-backend
+            displayName: 'Deploy to Staging'
+
+- stage: SecurityPostDeploy
+  displayName: 'Post-Deployment Security'
+  dependsOn: Deploy
+  condition: succeeded()
+  jobs:
+  - job: PostDeploySecurity
+    displayName: 'Post-Deployment Security Checks'
+    pool:
+      vmImage: 'ubuntu-latest'
+    
+    steps:
+    - script: |
+        # Run security tests against deployed application
+        curl -f http://staging-app-url/health || exit 1
+        
+        # Check security headers
+        headers=$(curl -I http://staging-app-url/ | grep -E "(X-Frame-Options|X-Content-Type-Options|X-XSS-Protection)")
+        echo "Security headers: $headers"
+        
+        # Run OWASP ZAP scan (if available)
+        # zap-baseline.py -t http://staging-app-url/ -J zap-report.json
+      displayName: 'Post-Deployment Security Validation'

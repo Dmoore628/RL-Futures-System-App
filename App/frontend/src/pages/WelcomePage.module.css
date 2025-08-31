@@ -8,29 +8,20 @@
 }
 
 .header {
-  padding: 1.5rem 2rem;
+  padding: 0;
   border-bottom: 1px solid #e2e8f0;
   background: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .brand {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: #2d3748;
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
 }
 
-.brand::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #48bb78;
-  border-radius: 50%;
-  display: inline-block;
-}
+/* Removed brand pseudo-element to accommodate BrokerLogosBanner */
 
 .main {
   flex: 1;
