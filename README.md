@@ -55,7 +55,7 @@ The **RL Futures Trading System** is a modern, containerized web application des
 - **Testing**: Comprehensive test coverage (25+ tests)
 - **Performance**: Optimized builds and asset delivery
 
-## 🏗Architecture
+## Architecture
 
 ### **System Overview**
 ```
@@ -475,3 +475,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by the RL Futures Trading Team**
 
 **Last Updated**: August 30th, 2025 
+
