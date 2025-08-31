@@ -1,0 +1,109 @@
+/* BrokerLogosBanner Component Styles */
+
+.bannerContainer {
+  width: 100%;
+  height: 180px; /* Significantly increased height for spacious, minimal design */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bannerTitle {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px; /* Increased margin for better spacing */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5px;
+  /* Position title evenly between banner top and logo backgrounds */
+  margin-top: 15px; /* Reduced top margin to move title up slightly */
+}
+
+.logosWrapper {
+  display: flex;
+  align-items: center;
+  height: 80px; /* Increased height for larger logos */
+  gap: 80px; /* Increased gap for better logo separation */
+  padding: 0 80px; /* Increased padding to match gap */
+  /* JavaScript-controlled infinite scrolling - no CSS animation */
+  will-change: transform;
+  white-space: nowrap;
+  /* Smooth transitions for drag interactions */
+  transition: none; /* No CSS transitions - handled by JavaScript */
+}
+
+.logosWrapper:hover {
+  /* Hover effect handled by JavaScript */
+}
+
+.logoItem {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px; /* Increased width for modern design standards */
+  /* Add background for better logo visibility */
+  background: white;
+  border-radius: 12px;
+  padding: 16px; /* Increased padding for better proportions */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.logoItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  height: 60px; /* Increased height for modern design standards */
+  width: auto;
+  max-width: 200px; /* Increased max-width for better proportions */
+  object-fit: contain;
+  /* Remove grayscale filter - logos stay in full color */
+  filter: none;
+  opacity: 1; /* Full opacity by default */
+  transition: all 0.3s ease;
+  /* Add subtle shadow for depth */
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo:hover {
+  /* Pulse/pop effect on hover - no color change */
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  /* Add subtle glow effect */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* TOS logo specific styling - double size for prominence */
+.tosLogo {
+  height: 120px; /* Doubled from 60px to 120px */
+  max-width: 400px; /* Doubled from 200px to 400px */
+}
+
+/* Responsive design for desktop */
+@media (min-width: 1024px) {
+  .bannerContainer {
+    height: 180px;
+  }
+  
+  .logo {
+    height: 60px;
+  }
+  
+  .logosWrapper {
+    gap: 80px;
+  }
+}
+
+/* Ensure logos maintain aspect ratio */
+.logo img {
+  max-width: none;
+  max-height: none;
+}

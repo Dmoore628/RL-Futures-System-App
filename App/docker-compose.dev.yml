@@ -9,7 +9,6 @@ services:
       - "3000:3000"
     volumes:
       # Bind mount the entire frontend directory for development
-      # This ensures all dependencies and source code are properly accessible
       - ./frontend:/app
       # Exclude node_modules from the mount to use container's version
       - /app/node_modules
@@ -19,10 +18,23 @@ services:
       - NODE_ENV=development
       - VITE_API_URL=http://localhost:8000
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     networks:
       - app-network
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
 
   backend:
     build:
@@ -37,9 +49,24 @@ services:
     environment:
       - FLASK_ENV=development
       - FLASK_DEBUG=true
+      - SECRET_KEY=dev-secret-key
     networks:
       - app-network
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '1.0'
+        reservations:
+          memory: 512M
+          cpus: '0.5'
 
 networks:
   app-network:
     driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: app-dev-bridge

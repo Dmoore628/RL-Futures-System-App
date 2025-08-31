@@ -67,6 +67,7 @@ const UploadAndSettingsPage: React.FC = () => {
 
   const handleBackToConfig = () => {
     setShowSummary(false)
+    setShowConfigurationForm(true)
   }
 
   const handleConfirmConfiguration = () => {

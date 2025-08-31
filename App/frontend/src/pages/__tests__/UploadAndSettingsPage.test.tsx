@@ -34,11 +34,11 @@ jest.mock('../../components/ConfigurationForm', () => {
 })
 
 jest.mock('../../components/ConfigurationSummary', () => {
-  return function MockConfigurationSummary({ configuration, onBack, onConfirm }: any) {
+  return function MockConfigurationSummary({ configuration, onEdit, onConfirm }: any) {
     return (
       <div data-testid="configuration-summary">
         <h3>Configuration Summary</h3>
-        <button onClick={onBack}>Back to Config</button>
+        <button onClick={onEdit}>Back to Config</button>
         <button onClick={onConfirm}>Confirm Configuration</button>
       </div>
     )
@@ -156,6 +156,11 @@ describe('UploadAndSettingsPage Component', () => {
     // Simulate successful file upload
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
     
+    // Continue to configuration
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Continue to Configuration'))
+    })
+    
     await waitFor(() => {
       expect(screen.getByTestId('configuration-form')).toBeInTheDocument()
     })
@@ -166,6 +171,11 @@ describe('UploadAndSettingsPage Component', () => {
     
     // Upload file first
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
+    
+    // Continue to configuration (this shows the DataPreview step)
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Continue to Configuration'))
+    })
     
     // Submit configuration
     await waitFor(() => {
@@ -183,6 +193,12 @@ describe('UploadAndSettingsPage Component', () => {
     
     // Go through the full flow
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
+    
+    // Continue to configuration
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Continue to Configuration'))
+    })
+    
     await waitFor(() => {
       fireEvent.click(screen.getByText('Submit Configuration'))
     })
@@ -192,7 +208,10 @@ describe('UploadAndSettingsPage Component', () => {
       fireEvent.click(screen.getByText('Back to Config'))
     })
     
-    expect(screen.getByTestId('configuration-form')).toBeInTheDocument()
+    // Should show configuration form
+    await waitFor(() => {
+      expect(screen.getByTestId('configuration-form')).toBeInTheDocument()
+    })
   })
 
   it('handles upload errors correctly', async () => {
@@ -213,9 +232,9 @@ describe('UploadAndSettingsPage Component', () => {
     // Upload file
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
     
-    // Go back to upload
+    // Go back to upload using the back button
     await waitFor(() => {
-      fireEvent.click(screen.getByText('Back to Upload'))
+      fireEvent.click(screen.getByText('← Back to Upload'))
     })
     
     expect(screen.getByTestId('file-upload')).toBeInTheDocument()
@@ -229,6 +248,12 @@ describe('UploadAndSettingsPage Component', () => {
     
     // Complete the full flow
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
+    
+    // Continue to configuration
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Continue to Configuration'))
+    })
+    
     await waitFor(() => {
       fireEvent.click(screen.getByText('Submit Configuration'))
     })
@@ -249,13 +274,18 @@ describe('UploadAndSettingsPage Component', () => {
     // Upload file
     fireEvent.click(screen.getByText('Simulate Successful Upload'))
     
+    // Continue to configuration
+    await waitFor(() => {
+      fireEvent.click(screen.getByText('Continue to Configuration'))
+    })
+    
     // Navigate to configuration
     await waitFor(() => {
       expect(screen.getByTestId('configuration-form')).toBeInTheDocument()
     })
     
-    // Go back to upload
-    fireEvent.click(screen.getByText('Back to Upload'))
+    // Go back to upload using the back button in configuration form
+    fireEvent.click(screen.getByText('Back'))
     
     // Should be back at step 1
     expect(screen.getByTestId('file-upload')).toBeInTheDocument()

@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './WelcomePage.module.css'
 import { useContent } from '../hooks/useContent'
+import BrokerLogosBanner from '../components/BrokerLogosBanner'
 
 interface Section {
   heading: string
@@ -48,7 +49,7 @@ const WelcomePage: React.FC = () => {
     <div className={styles.container} data-testid="welcome-page">
       <header className={styles.header}>
         <div className={styles.brand}>
-          {content.brand}
+          <BrokerLogosBanner />
         </div>
       </header>
       
