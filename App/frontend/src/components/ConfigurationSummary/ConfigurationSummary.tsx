@@ -31,7 +31,7 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
   }
 
   return (
-    <div className={styles.configurationSummary}>
+    <div className={styles.configurationSummary} data-testid="configuration-summary">
       <div className={styles.header}>
         <h2>Configuration Summary</h2>
         <p>Review your system configuration before proceeding</p>

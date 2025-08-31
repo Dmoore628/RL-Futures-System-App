@@ -254,8 +254,9 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileProcessed, onValidationEr
         } ${isDragReject ? styles.dragReject : ''} ${
           isProcessing ? styles.processing : ''
         }`}
+        data-testid="dropzone"
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} data-testid="file-input" />
         
         {isProcessing ? (
           <div className={styles.processingContent}>

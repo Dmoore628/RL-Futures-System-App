@@ -28,7 +28,7 @@ const DataPreview: React.FC<DataPreviewProps> = ({ validation, onContinue }) => 
   }
 
   return (
-    <div className={styles.dataPreview}>
+    <div className={styles.dataPreview} data-testid="data-preview">
       <div className={styles.header}>
         <h3>Data Preview</h3>
         <div className={styles.summary}>

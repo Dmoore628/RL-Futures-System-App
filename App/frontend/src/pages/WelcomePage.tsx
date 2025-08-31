@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import styles from './WelcomePage.module.css'
 import { useContent } from '../hooks/useContent'
 
@@ -10,6 +11,7 @@ interface Section {
 
 const WelcomePage: React.FC = () => {
   const { content, loading } = useContent()
+  const navigate = useNavigate()
   
   if (loading) {
     return <div className={styles.container}>Loading...</div>
@@ -38,8 +40,12 @@ const WelcomePage: React.FC = () => {
     )
   }
 
+  const handleGetStarted = () => {
+    navigate('/upload-and-settings')
+  }
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="welcome-page">
       <header className={styles.header}>
         <div className={styles.brand}>
           {content.brand}
@@ -66,6 +72,15 @@ const WelcomePage: React.FC = () => {
             {section.paragraphs && renderParagraphs(section.paragraphs)}
           </section>
         ))}
+        
+        <div className={styles.ctaSection}>
+          <button 
+            className={styles.ctaButton}
+            onClick={handleGetStarted}
+          >
+            Get Started
+          </button>
+        </div>
       </main>
       
       <footer className={styles.footer}>
