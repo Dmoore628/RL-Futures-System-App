@@ -1,4 +1,4 @@
-# 🚀 RL Futures Trading System
+# RL Futures Trading System
 
 > **Advanced AI-powered trading system that trains PPO models for profitable futures trading strategies**
 
@@ -8,7 +8,7 @@
 [![Docker](https://img.shields.io/badge/Docker-20.10-blue.svg)](https://www.docker.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-## 📖 Table of Contents
+## Table of Contents
 
 - [Overview](#overview)
 - [Features](#features)
@@ -21,41 +21,42 @@
 - [Contributing](#contributing)
 - [Troubleshooting](#troubleshooting)
 
-## 🎯 Overview
+## Overview
 
 The **RL Futures Trading System** is a modern, containerized web application designed to train and deploy reinforcement learning models for futures trading. Built with React 18, TypeScript, and Python Flask, it provides a comprehensive platform for developing, testing, and deploying PPO-based trading strategies.
 
-### 🎯 **Key Objectives**
+### **Key Objectives**
 - **Train PPO Models**: Develop profitable futures trading strategies
 - **High-Fidelity Simulation**: Realistic market conditions for robust training
 - **Live Trading Integration**: Seamless deployment to futures brokers
 - **Transfer Learning**: Knowledge retention between trading sessions
 - **Professional UI/UX**: Enterprise-grade user interface
 
-## ✨ Features
+## Features
 
-### 🧠 **Core Capabilities**
+### **Core Capabilities**
 - **PPO Algorithm**: State-of-the-art reinforcement learning for trading
 - **Multi-Format Support**: CSV and Excel file processing
 - **Data Validation**: Comprehensive OHLC data validation
 - **Configuration Management**: Trading parameters and risk management
 - **Real-time Preview**: Live data visualization and validation
 
-### 🎨 **User Experience**
+### **User Experience**
 - **Responsive Design**: Mobile-first, professional interface
 - **Theme System**: Light/dark mode with persistence
 - **Step-by-Step Workflow**: Guided configuration process
 - **Error Handling**: Comprehensive validation and user feedback
 - **Accessibility**: ARIA compliance and keyboard navigation
+- **Interactive Carousel**: Professional broker logos banner with drag-and-drop momentum
 
-### 🚀 **Technical Features**
+### **Technical Features**
 - **Hot Reloading**: Instant development feedback
 - **Containerized**: Docker development and production
 - **Type Safety**: Full TypeScript implementation
 - **Testing**: Comprehensive test coverage (25+ tests)
 - **Performance**: Optimized builds and asset delivery
 
-## 🏗️ Architecture
+## Architecture
 
 ### **System Overview**
 ```
@@ -88,7 +89,7 @@ The **RL Futures Trading System** is a modern, containerized web application des
 - **Development**: Hot reloading with volume mounts
 - **Health Checks**: Container monitoring and restart policies
 
-## 🚀 Quick Start
+## Quick Start
 
 ### **Prerequisites**
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) (v20.10+)
@@ -119,20 +120,25 @@ docker-compose up --build
 open http://localhost:3000
 ```
 
-## 🔧 Development
+## Development
 
 ### **Development Environment**
 The development environment provides hot reloading, live code changes, and optimized debugging capabilities.
 
 #### **Features**
-- ✅ **Hot Reloading**: Instant frontend updates
-- ✅ **Volume Mounting**: Live code changes
-- ✅ **Dependency Resolution**: Optimized container setup
-- ✅ **Port Mapping**: Frontend (3000), Backend (8000)
+- **Hot Reloading**: Instant frontend updates
+- **Volume Mounting**: Live code changes
+- **Dependency Resolution**: Optimized container setup
+- **Port Mapping**: Frontend (3000), Backend (8000)
+- **Automated Workflow**: Seamless dev-to-prod configuration sync
 
 #### **Commands**
 ```bash
-# Start development
+# Start development (automated workflow)
+cd frontend
+npm run update-dev
+
+# Manual development commands
 docker-compose -f docker-compose.dev.yml up --build
 
 # View logs
@@ -143,6 +149,15 @@ docker-compose -f docker-compose.dev.yml down
 
 # Rebuild development
 docker-compose -f docker-compose.dev.yml up --build --force-recreate
+```
+
+#### **Automated Development Workflow**
+For the complete development experience with automatic Docker configuration sync:
+```bash
+# See DEVELOPMENT_WORKFLOW.md for detailed instructions
+npm run update-dev      # Update and restart development
+npm run update-prod     # Update and test production
+npm run sync-docker     # Just sync configurations
 ```
 
 ### **Local Development**
@@ -174,21 +189,26 @@ flake8 .              # Python linting
 black .               # Code formatting
 ```
 
-## 🏭 Production
+## Production
 
 ### **Production Environment**
 The production environment is optimized for performance, security, and reliability.
 
 #### **Features**
-- ✅ **Multi-stage Builds**: Optimized Docker images
-- ✅ **Nginx Server**: High-performance web server
-- ✅ **Asset Optimization**: Minified CSS/JS
-- ✅ **Health Checks**: Container monitoring
-- ✅ **Restart Policies**: Automatic recovery
+- **Multi-stage Builds**: Optimized Docker images
+- **Nginx Server**: High-performance web server
+- **Asset Optimization**: Minified CSS/JS
+- **Health Checks**: Container monitoring
+- **Restart Policies**: Automatic recovery
+- **Automated Build Verification**: Component inclusion checks
 
 #### **Commands**
 ```bash
-# Build and start production
+# Automated production workflow (recommended)
+cd frontend
+npm run update-prod
+
+# Manual production commands
 docker-compose up --build
 
 # Start in background
@@ -204,12 +224,22 @@ docker-compose down
 docker-compose up --build --force-recreate
 ```
 
+#### **Production Testing**
+```bash
+# Test production build locally
+docker run --rm -p 8080:80 rl-futures-frontend:latest
+# Visit: http://localhost:8080/welcome
+
+# Verify component inclusion
+docker run --rm rl-futures-frontend:latest grep "BrokerLogosBanner" /usr/share/nginx/html/assets/*.js
+```
+
 ### **Production Access Points**
 - **Frontend**: `http://localhost:3000`
 - **Backend**: `http://localhost:8000`
 - **Health Check**: `http://localhost:8000/health`
 
-## 🧪 Testing
+## Testing
 
 ### **Test Infrastructure**
 Comprehensive testing suite covering all components and functionality.
@@ -263,7 +293,7 @@ frontend/
 │   └── pages/          # Page tests
 ```
 
-## 📚 API Reference
+## API Reference
 
 ### **Backend Endpoints**
 
@@ -298,7 +328,7 @@ const health = await apiClient.getHealth();
 const response = await apiClient.post('/upload', formData);
 ```
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 App/
@@ -306,6 +336,7 @@ App/
 │   ├── src/
 │   │   ├── components/         # Reusable UI components
 │   │   │   ├── Button/        # Button component
+│   │   │   ├── BrokerLogosBanner/ # Interactive broker logos carousel
 │   │   │   ├── FileUpload/    # File upload component
 │   │   │   ├── Navigation/    # Navigation component
 │   │   │   └── ...            # Other components
@@ -332,7 +363,7 @@ App/
 └── README.md                   # This file
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### **Common Issues**
 
@@ -341,9 +372,25 @@ App/
 # Clear Docker cache
 docker system prune -a
 
-# Rebuild development environment
+# Rebuild development environment (automated)
+cd frontend
+npm run update-dev
+
+# Manual rebuild
 docker-compose -f docker-compose.dev.yml down
 docker-compose -f docker-compose.dev.yml up --build --force-recreate
+```
+
+#### **Production Build Issues**
+```bash
+# Verify component inclusion
+grep -r "BrokerLogosBanner" frontend/src/
+
+# Test production build
+npm run update-prod
+
+# Check Docker build output
+docker run --rm rl-futures-frontend:latest ls -la /usr/share/nginx/html/assets/
 ```
 
 #### **Port Conflicts**
@@ -386,7 +433,7 @@ docker stats
 docker-compose ps
 ```
 
-## 🤝 Contributing
+## Contributing
 
 ### **Development Workflow**
 1. **Fork** the repository
@@ -395,12 +442,22 @@ docker-compose ps
 4. **Push** to the branch (`git push origin feature/amazing-feature`)
 5. **Open** a Pull Request
 
+### **Automated Development Workflow**
+For seamless development experience:
+```bash
+# See DEVELOPMENT_WORKFLOW.md for complete details
+npm run update-dev      # Update and restart development
+npm run update-prod     # Update and test production
+npm run sync-docker     # Sync Docker configurations
+```
+
 ### **Code Standards**
 - **TypeScript**: Strict mode, no `any` types
 - **React**: Functional components with hooks
 - **Testing**: Minimum 80% test coverage
 - **Documentation**: JSDoc comments for functions
 - **Formatting**: Prettier + ESLint configuration
+- **Docker**: Automated configuration sync between environments
 
 ### **Testing Requirements**
 - All new features must include tests
@@ -422,7 +479,7 @@ docker-compose ps
 - **Startup Time**: <10 seconds
 - **Response Time**: <100ms for static assets
 
-## 🔒 Security
+## Security
 
 ### **Security Features**
 - **Container Isolation**: Docker containerization
@@ -436,30 +493,10 @@ docker-compose ps
 - Input sanitization
 - Secure error handling
 
-## 📈 Roadmap
-
-### **Phase 4: Frontend Enhancement**
-- [ ] Training dashboard implementation
-- [ ] Data visualization components
-- [ ] Advanced configuration options
-- [ ] User preferences and settings
-
-### **Phase 5: Backend Development**
-- [ ] PPO algorithm implementation
-- [ ] Trading logic and strategy execution
-- [ ] Database integration
-- [ ] API endpoint expansion
-
-### **Phase 6: Integration & Deployment**
-- [ ] Live trading broker integration
-- [ ] Real-time performance monitoring
-- [ ] Cloud infrastructure deployment
-- [ ] CI/CD pipeline optimization
-
-## 📞 Support
+## Support
 
 ### **Getting Help**
-- **Documentation**: Check this README and PROJECT_STATUS.md
+- **Documentation**: Check this README, DEVELOPMENT_WORKFLOW.md, and PROJECT_STATUS.md
 - **Issues**: Create GitHub issues for bugs or feature requests
 - **Development**: Check Docker logs and container status
 - **Testing**: Run test suites to validate functionality
@@ -469,17 +506,22 @@ docker-compose ps
 # Check project status
 cat PROJECT_STATUS.md
 
-# View running containers
+# View development workflow
+cat DEVELOPMENT_WORKFLOW.md
+
+# Automated workflow commands
+cd frontend
+npm run update-dev      # Update development
+npm run update-prod     # Update production
+npm run sync-docker     # Sync configurations
+
+# Manual Docker commands
 docker ps
-
-# Check container health
 docker-compose ps
-
-# View application logs
 docker-compose logs -f
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
@@ -492,8 +534,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by the RL Futures Trading Team**
+**Built with ❤️ by the Moore Tech Team**
 
-**Last Updated**: December 19, 2024  
-**Version**: v1.0.0  
-**Status**: ✅ Production Ready
+**Last Updated**: August 31st, 2025 
+**Version**: v1.2.0  
+**Status**: Production build issues resolved, automated Docker workflow established, ready for production deployment
