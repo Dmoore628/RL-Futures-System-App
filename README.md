@@ -174,7 +174,7 @@ flake8 .              # Python linting
 black .               # Code formatting
 ```
 
-## 🏭 Production
+## Production
 
 ### **Production Environment**
 The production environment is optimized for performance, security, and reliability.
@@ -475,6 +475,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by the Moore Tech Team**
 
 **Last Updated**: August 30th, 2025 
+
 
 
 
