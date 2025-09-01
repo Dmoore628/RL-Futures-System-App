@@ -439,8 +439,8 @@ docker-compose ps
 ## Support
 
 ### **Getting Help**
-- **Documentation**: Check this README and PROJECT_STATUS.md
-- **Issues**: Create GitHub issues for bugs or feature requests
+- **Documentation**: Check this README or supporting documents in the /app/docs directory
+- **Issues**: Create Azure DevOps PR to have bugs or feature requests reviewed 
 - **Development**: Check Docker logs and container status
 - **Testing**: Run test suites to validate functionality
 
@@ -475,6 +475,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by the Moore Tech Team**
 
 **Last Updated**: August 30th, 2025 
+
 
 
 
