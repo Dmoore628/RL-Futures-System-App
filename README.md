@@ -42,7 +42,7 @@ The **RL Futures Trading System** is a modern, containerized web application des
 - **Real-time Preview**: Live data visualization and validation
 
 ### **User Experience**
-- **Responsive Design**: Mobile-first, professional interface
+- **Responsive Design**: Desktop ONLY, professional interface
 - **Theme System**: Light/dark mode with persistence
 - **Step-by-Step Workflow**: Guided configuration process
 - **Error Handling**: Comprehensive validation and user feedback
@@ -475,6 +475,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by the Moore Tech Team**
 
 **Last Updated**: August 30th, 2025 
+
 
 
 
