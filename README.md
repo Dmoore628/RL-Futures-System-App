@@ -1,4 +1,4 @@
-# RL Futures Trading System
+# RL Futures Trading System (Still at early stages of development)
 
 > **Advanced AI-powered trading system that trains PPO models for profitable futures trading strategies**
 
@@ -475,5 +475,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built with ❤️ by the Moore Tech Team**
 
 **Last Updated**: August 30th, 2025 
+
 
 
