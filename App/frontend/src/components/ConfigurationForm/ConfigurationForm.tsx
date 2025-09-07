@@ -1,45 +1,26 @@
 import React, { useState } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-import { 
-  TradingMechanics, 
-  RewardFunctionSettings, 
-  PPOHyperParameters,
-  LoggingCheckpointing,
-  DayMasteryMechanism,
-  DataIndicatorCalculations,
-  Visualization
-} from '../../types'
+import { useForm, Controller, useWatch } from 'react-hook-form'
+import { ConfigurationForm as ConfigurationFormType } from '../../types'
 import styles from './ConfigurationForm.module.css'
 
 interface ConfigurationFormProps {
-  onSubmit: (data: FormData) => void
+  onSubmit: (data: ConfigurationFormType) => void
   onBack: () => void
-}
-
-interface FormData {
-  tradingMechanics: TradingMechanics
-  rewardFunction: RewardFunctionSettings
-  ppoHyperParams: PPOHyperParameters
-  loggingCheckpointing: LoggingCheckpointing
-  dayMastery: DayMasteryMechanism
-  dataIndicators: DataIndicatorCalculations
-  visualization: Visualization
 }
 
 const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack }) => {
   const [activeSection, setActiveSection] = useState(0)
-  const { control, handleSubmit, formState: { errors, isValid } } = useForm<FormData>({
+  const { control, handleSubmit, formState: { errors, isValid }, reset } = useForm<ConfigurationFormType>({
     mode: 'onChange',
     defaultValues: {
       tradingMechanics: {
-        initialBalance: 100000,
-        dailyProfitTarget: 5000,
-        dailyMaxLossLimit: 10000,
-        commissions: 2.5,
+        initialBalance: 1000,
+        dailyProfitTarget: 500,
+        dailyMaxLossLimit: 500,
+        commissions: 3,
         marginRequiredPerContract: 1000,
-        slippage: 0.5,
-        contractValue: 5,
-        equityReserve: 5000
+        slippage: 1,
+        contractValue: 5
       },
       rewardFunction: {
         profitTargetBonus: 2.0,
@@ -57,34 +38,93 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         vfCoef: 0.5
       },
       loggingCheckpointing: {
-        experimentName: 'futures_trading_experiment',
+        experimentName: '',
         checkpointFrequency: 10000,
         evaluationFrequency: 5000
       },
       dayMastery: {
         minEpisodesToRun: 100,
-        requiredSuccessRate: 0.7,
+        requiredSuccessRate: 0.95,
         performancePlateauEpisodes: 50,
-        startTime: '09:30',
+        startTime: '17:00',
         endTime: '16:00'
       },
       dataIndicators: {
-        observationHistoryLength: 100,
-        ema1Period: 20,
-        ema2Period: 50,
+        observationHistoryLength: 1440,
+        ema1Period: 13,
+        ema2Period: 55,
         bollingerBandsPeriod: 20,
         atrPeriod: 14,
         macdPeriod: 26
       },
       visualization: {
         renderingMode: 'human' as const,
-        rateOfSpeed: 1,
         fixedWindow: 100,
         candleWidthFactor: 1,
         trainingSpeed: 1
       }
     }
   })
+
+  // Watch the rendering mode for conditional rendering
+  const renderingMode = useWatch({ control, name: 'visualization.renderingMode' })
+  const isFastMode = renderingMode === 'fast'
+
+  // Force form reset to fix state corruption
+  React.useEffect(() => {
+    reset({
+      tradingMechanics: {
+        initialBalance: 1000,
+        dailyProfitTarget: 500,
+        dailyMaxLossLimit: 500,
+        commissions: 3,
+        marginRequiredPerContract: 1000,
+        slippage: 1,
+        contractValue: 5
+      },
+      rewardFunction: {
+        profitTargetBonus: 2.0,
+        bankruptcyPenalty: -1.5,
+        consecutiveWinningTradesBonus: 0.1
+      },
+      ppoHyperParams: {
+        learningRate: 0.0003,
+        nSteps: 2048,
+        batchSize: 64,
+        gamma: 0.99,
+        gaeLambda: 0.95,
+        clipRange: 0.2,
+        entCoef: 0.01,
+        vfCoef: 0.5
+      },
+      loggingCheckpointing: {
+        experimentName: '',
+        checkpointFrequency: 10000,
+        evaluationFrequency: 5000
+      },
+      dayMastery: {
+        minEpisodesToRun: 100,
+        requiredSuccessRate: 0.95,
+        performancePlateauEpisodes: 50,
+        startTime: '17:00',
+        endTime: '16:00'
+      },
+      dataIndicators: {
+        observationHistoryLength: 1440,
+        ema1Period: 13,
+        ema2Period: 55,
+        bollingerBandsPeriod: 20,
+        atrPeriod: 14,
+        macdPeriod: 26
+      },
+      visualization: {
+        renderingMode: 'human' as const,
+        fixedWindow: 100,
+        candleWidthFactor: 1,
+        trainingSpeed: 1
+      }
+    })
+  }, [reset])
 
   const sections = [
     { id: 0, title: 'Trading & Market Mechanics', icon: '💰' },
@@ -96,7 +136,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
     { id: 6, title: 'Visualization', icon: '🎨' }
   ]
 
-  const handleFormSubmit = (data: FormData) => {
+  const handleFormSubmit = (data: ConfigurationFormType) => {
     onSubmit(data)
   }
 
@@ -117,7 +157,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
       <h3>💰 Trading & Market Mechanics</h3>
       <div className={styles.formGrid}>
         <div className={styles.formGroup}>
-          <label>Initial Balance ($)</label>
+          <label title="Starting capital for the trading system">Initial Balance ($)</label>
           <Controller
             name="tradingMechanics.initialBalance"
             control={control}
@@ -128,6 +168,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="100000"
+                title="Starting capital for the trading system"
               />
             )}
           />
@@ -137,7 +178,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Daily Profit Target ($)</label>
+          <label title="Target profit amount per trading day">Daily Profit Target ($)</label>
           <Controller
             name="tradingMechanics.dailyProfitTarget"
             control={control}
@@ -148,6 +189,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="5000"
+                title="Target profit amount per trading day"
               />
             )}
           />
@@ -157,7 +199,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Daily Max Loss Limit ($)</label>
+          <label title="Maximum loss allowed per trading day before stopping">Daily Max Loss Limit ($)</label>
           <Controller
             name="tradingMechanics.dailyMaxLossLimit"
             control={control}
@@ -168,6 +210,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="10000"
+                title="Maximum loss allowed per trading day before stopping"
               />
             )}
           />
@@ -177,7 +220,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Commissions ($)</label>
+          <label title="Trading commission cost per trade">Commissions ($)</label>
           <Controller
             name="tradingMechanics.commissions"
             control={control}
@@ -189,6 +232,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="2.5"
+                title="Trading commission cost per trade"
               />
             )}
           />
@@ -198,22 +242,22 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Margin Required Per Contract ($)</label>
+          <label title="Margin requirement per futures contract (Minis vs Micros)">Margin Required Per Contract ($)</label>
           <Controller
             name="tradingMechanics.marginRequiredPerContract"
             control={control}
             rules={{ required: 'Margin required is required', min: { value: 100, message: 'Minimum $100' } }}
             render={({ field }) => (
-              <select {...field} onChange={(e) => field.onChange(parseFloat(e.target.value))}>
-                <option value={1000}>Mini&apos;s = $1,000</option>
-                <option value={100}>Micro&apos;s = $100</option>
+              <select {...field} onChange={(e) => field.onChange(parseFloat(e.target.value))} title="Margin requirement per futures contract (Minis vs Micros)">
+                <option value={1000}>1000 (Mini's)</option>
+                <option value={100}>100 (Micro's)</option>
               </select>
             )}
           />
         </div>
 
         <div className={styles.formGroup}>
-          <label>Slippage ($)</label>
+          <label title="Expected price slippage per trade">Slippage ($)</label>
           <Controller
             name="tradingMechanics.slippage"
             control={control}
@@ -225,6 +269,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="0.5"
+                title="Expected price slippage per trade"
               />
             )}
           />
@@ -234,39 +279,20 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Contract Value ($/tick)</label>
+          <label title="Dollar value per price tick movement (Minis vs Micros)">Contract Value ($/tick)</label>
           <Controller
             name="tradingMechanics.contractValue"
             control={control}
             rules={{ required: 'Contract value is required', min: { value: 0.01, message: 'Minimum $0.01' } }}
             render={({ field }) => (
-              <select {...field} onChange={(e) => field.onChange(parseFloat(e.target.value))}>
-                <option value={5}>Mini&apos;s = $5/tick</option>
-                <option value={0.5}>Micro&apos;s = $0.50/tick</option>
+              <select {...field} onChange={(e) => field.onChange(parseFloat(e.target.value))} title="Dollar value per price tick movement (Minis vs Micros)">
+                <option value={5}>5 (Mini's)</option>
+                <option value={0.5}>0.5 (Micro's)</option>
               </select>
             )}
           />
         </div>
 
-        <div className={styles.formGroup}>
-          <label>Equity Reserve ($)</label>
-          <Controller
-            name="tradingMechanics.equityReserve"
-            control={control}
-            rules={{ required: 'Equity reserve is required', min: { value: 100, message: 'Minimum $100' } }}
-            render={({ field }) => (
-              <input
-                type="number"
-                {...field}
-                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                placeholder="5000"
-              />
-            )}
-          />
-          {errors.tradingMechanics?.equityReserve && (
-            <span className={styles.error}>{errors.tradingMechanics.equityReserve.message}</span>
-          )}
-        </div>
       </div>
     </div>
   )
@@ -276,7 +302,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
       <h3>🎯 Reward Function Settings</h3>
       <div className={styles.formGrid}>
         <div className={styles.formGroup}>
-          <label>Profit Target Bonus (multiplier)</label>
+          <label title="Multiplier bonus when profit target is reached">Profit Target Bonus (multiplier)</label>
           <Controller
             name="rewardFunction.profitTargetBonus"
             control={control}
@@ -288,6 +314,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="2.0"
+                title="Multiplier bonus when profit target is reached"
               />
             )}
           />
@@ -297,7 +324,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Bankruptcy Penalty (multiplier)</label>
+          <label title="Penalty multiplier when account goes bankrupt">Bankruptcy Penalty (multiplier)</label>
           <Controller
             name="rewardFunction.bankruptcyPenalty"
             control={control}
@@ -309,6 +336,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="-1.5"
+                title="Penalty multiplier when account goes bankrupt"
               />
             )}
           />
@@ -318,7 +346,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Consecutive Winning Trades Bonus</label>
+          <label title="Bonus multiplier for consecutive winning trades">Consecutive Winning Trades Bonus</label>
           <Controller
             name="rewardFunction.consecutiveWinningTradesBonus"
             control={control}
@@ -330,6 +358,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="0.1"
+                title="Bonus multiplier for consecutive winning trades"
               />
             )}
           />
@@ -346,7 +375,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
       <h3>🧠 PPO Hyper Parameters</h3>
       <div className={styles.formGrid}>
         <div className={styles.formGroup}>
-          <label>Learning Rate</label>
+          <label title="Learning rate for the PPO algorithm (how fast the model learns)">Learning Rate</label>
           <Controller
             name="ppoHyperParams.learningRate"
             control={control}
@@ -358,6 +387,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseFloat(e.target.value))}
                 placeholder="0.0003"
+                title="Learning rate for the PPO algorithm (how fast the model learns)"
               />
             )}
           />
@@ -367,7 +397,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>n_steps (rollout collection steps)</label>
+          <label title="Number of steps to collect before updating the policy">n_steps (rollout collection steps)</label>
           <Controller
             name="ppoHyperParams.nSteps"
             control={control}
@@ -378,6 +408,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseInt(e.target.value))}
                 placeholder="2048"
+                title="Number of steps to collect before updating the policy"
               />
             )}
           />
@@ -585,7 +616,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
       <h3>⏰ Day Mastery Mechanism</h3>
       <div className={styles.formGrid}>
         <div className={styles.formGroup}>
-          <label>Minimum Episodes to Run</label>
+          <label title="Minimum number of training episodes before evaluation">Minimum Episodes to Run</label>
           <Controller
             name="dayMastery.minEpisodesToRun"
             control={control}
@@ -593,9 +624,18 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
             render={({ field }) => (
               <input
                 type="number"
-                {...field}
-                onChange={(e) => field.onChange(parseInt(e.target.value))}
+                value={field.value || ''}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value);
+                  if (!isNaN(value)) {
+                    field.onChange(value);
+                  }
+                }}
+                onBlur={field.onBlur}
+                name={field.name}
+                ref={field.ref}
                 placeholder="100"
+                title="Minimum number of training episodes before evaluation"
               />
             )}
           />
@@ -609,14 +649,21 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
           <Controller
             name="dayMastery.requiredSuccessRate"
             control={control}
-            rules={{ required: 'Success rate is required', min: { value: 0.1, message: 'Minimum 10%' }, max: { value: 1, message: 'Maximum 100%' } }}
+            rules={{ required: 'Success rate is required', min: { value: 10, message: 'Minimum 10%' }, max: { value: 100, message: 'Maximum 100%' } }}
             render={({ field }) => (
               <input
                 type="number"
-                step="0.01"
+                min="10"
+                max="100"
                 {...field}
-                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                placeholder="0.7"
+                value={Math.round(field.value * 100)}
+                onChange={(e) => {
+                  const wholeNumber = parseInt(e.target.value)
+                  if (!isNaN(wholeNumber)) {
+                    field.onChange(wholeNumber / 100)
+                  }
+                }}
+                placeholder="95"
               />
             )}
           />
@@ -646,7 +693,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         </div>
 
         <div className={styles.formGroup}>
-          <label>Start Time</label>
+          <label title="Trading day start time (e.g., 17:00 for 5:00 PM)">Start Time</label>
           <Controller
             name="dayMastery.startTime"
             control={control}
@@ -656,13 +703,14 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 type="time"
                 {...field}
                 placeholder="09:30"
+                title="Trading day start time (e.g., 17:00 for 5:00 PM)"
               />
             )}
           />
         </div>
 
         <div className={styles.formGroup}>
-          <label>End Time</label>
+          <label title="Trading day end time (if before start time, will be next day with +1 notation)">End Time</label>
           <Controller
             name="dayMastery.endTime"
             control={control}
@@ -672,6 +720,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 type="time"
                 {...field}
                 placeholder="16:00"
+                title="Trading day end time (if before start time, will be next day with +1 notation)"
               />
             )}
           />
@@ -685,7 +734,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
       <h3>📈 Data & Indicator Calculation</h3>
       <div className={styles.formGrid}>
         <div className={styles.formGroup}>
-          <label>Observation History Length</label>
+          <label title="Number of historical data points to use for indicators (default: 1440 = 1 day of minute data)">Observation History Length</label>
           <Controller
             name="dataIndicators.observationHistoryLength"
             control={control}
@@ -696,6 +745,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
                 {...field}
                 onChange={(e) => field.onChange(parseInt(e.target.value))}
                 placeholder="100"
+                title="Number of historical data points to use for indicators (default: 1440 = 1 day of minute data)"
               />
             )}
           />
@@ -807,110 +857,106 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
     </div>
   )
 
-  const renderVisualization = () => (
-    <div className={styles.section}>
-      <h3>🎨 Visualization</h3>
-      <div className={styles.formGrid}>
-        <div className={styles.formGroup}>
-          <label>Rendering Mode</label>
-          <Controller
-            name="visualization.renderingMode"
-            control={control}
-            rules={{ required: 'Rendering mode is required' }}
-            render={({ field }) => (
-              <select {...field}>
-                <option value="human">Human (Detailed)</option>
-                <option value="fast">Fast (Minimal)</option>
-              </select>
-            )}
-          />
-        </div>
+  const renderVisualization = () => {
+    return (
+      <div className={styles.section}>
+        <h3>🎨 Visualization</h3>
+        <div className={styles.formGrid}>
+          <div className={styles.formGroup}>
+            <label>Rendering Mode</label>
+            <Controller
+              name="visualization.renderingMode"
+              control={control}
+              rules={{ required: 'Rendering mode is required' }}
+              render={({ field }) => (
+                <select {...field}>
+                  <option value="human">Human (Detailed)</option>
+                  <option value="fast">Fast (Minimal)</option>
+                </select>
+              )}
+            />
+          </div>
 
-        <div className={styles.formGroup}>
-          <label>Rate of Speed</label>
-          <Controller
-            name="visualization.rateOfSpeed"
-            control={control}
-            rules={{ required: 'Rate of speed is required', min: { value: 0.1, message: 'Minimum 0.1' } }}
-            render={({ field }) => (
-              <input
-                type="number"
-                step="0.1"
-                {...field}
-                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                placeholder="1"
-              />
+          <div className={styles.formGroup}>
+            <label className={isFastMode ? styles.disabled : ''}>Fixed Window</label>
+            <Controller
+              name="visualization.fixedWindow"
+              control={control}
+              rules={{ required: 'Fixed window is required', min: { value: 10, message: 'Minimum 10' } }}
+              render={({ field }) => (
+                <input
+                  type="number"
+                  {...field}
+                  disabled={isFastMode}
+                  className={isFastMode ? styles.disabled : ''}
+                  onChange={(e) => field.onChange(parseInt(e.target.value))}
+                  placeholder="100"
+                />
+              )}
+            />
+            {errors.visualization?.fixedWindow && !isFastMode && (
+              <span className={styles.error}>{errors.visualization.fixedWindow.message}</span>
             )}
-          />
-          {errors.visualization?.rateOfSpeed && (
-            <span className={styles.error}>{errors.visualization.rateOfSpeed.message}</span>
-          )}
-        </div>
+            {isFastMode && (
+              <small className={styles.disabled}>Disabled in fast mode</small>
+            )}
+          </div>
 
-        <div className={styles.formGroup}>
-          <label>Fixed Window</label>
-          <Controller
-            name="visualization.fixedWindow"
-            control={control}
-            rules={{ required: 'Fixed window is required', min: { value: 10, message: 'Minimum 10' } }}
-            render={({ field }) => (
-              <input
-                type="number"
-                {...field}
-                onChange={(e) => field.onChange(parseInt(e.target.value))}
-                placeholder="100"
-              />
+          <div className={styles.formGroup}>
+            <label className={isFastMode ? styles.disabled : ''}>Candle Width Factor</label>
+            <Controller
+              name="visualization.candleWidthFactor"
+              control={control}
+              rules={{ required: 'Candle width factor is required', min: { value: 0.1, message: 'Minimum 0.1' } }}
+              render={({ field }) => (
+                <input
+                  type="number"
+                  step="0.1"
+                  {...field}
+                  disabled={isFastMode}
+                  className={isFastMode ? styles.disabled : ''}
+                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                  placeholder="1"
+                />
+              )}
+            />
+            {errors.visualization?.candleWidthFactor && !isFastMode && (
+              <span className={styles.error}>{errors.visualization.candleWidthFactor.message}</span>
             )}
-          />
-          {errors.visualization?.fixedWindow && (
-            <span className={styles.error}>{errors.visualization.fixedWindow.message}</span>
-          )}
-        </div>
+            {isFastMode && (
+              <small className={styles.disabled}>Disabled in fast mode</small>
+            )}
+          </div>
 
-        <div className={styles.formGroup}>
-          <label>Candle Width Factor</label>
-          <Controller
-            name="visualization.candleWidthFactor"
-            control={control}
-            rules={{ required: 'Candle width factor is required', min: { value: 0.1, message: 'Minimum 0.1' } }}
-            render={({ field }) => (
-              <input
-                type="number"
-                step="0.1"
-                {...field}
-                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                placeholder="1"
-              />
+          <div className={styles.formGroup}>
+            <label className={isFastMode ? styles.disabled : ''}>Training Speed</label>
+            <Controller
+              name="visualization.trainingSpeed"
+              control={control}
+              rules={{ required: 'Training speed is required', min: { value: 0.1, message: 'Minimum 0.1' } }}
+              render={({ field }) => (
+                <input
+                  type="number"
+                  step="0.1"
+                  {...field}
+                  disabled={isFastMode}
+                  className={isFastMode ? styles.disabled : ''}
+                  onChange={(e) => field.onChange(parseFloat(e.target.value))}
+                  placeholder="1"
+                />
+              )}
+            />
+            {errors.visualization?.trainingSpeed && !isFastMode && (
+              <span className={styles.error}>{errors.visualization.trainingSpeed.message}</span>
             )}
-          />
-          {errors.visualization?.candleWidthFactor && (
-            <span className={styles.error}>{errors.visualization.candleWidthFactor.message}</span>
-          )}
-        </div>
-
-        <div className={styles.formGroup}>
-          <label>Training Speed</label>
-          <Controller
-            name="visualization.trainingSpeed"
-            control={control}
-            rules={{ required: 'Training speed is required', min: { value: 0.1, message: 'Minimum 0.1' } }}
-            render={({ field }) => (
-              <input
-                type="number"
-                step="0.1"
-                {...field}
-                onChange={(e) => field.onChange(parseFloat(e.target.value))}
-                placeholder="1"
-              />
+            {isFastMode && (
+              <small className={styles.disabled}>Disabled in fast mode</small>
             )}
-          />
-          {errors.visualization?.trainingSpeed && (
-            <span className={styles.error}>{errors.visualization.trainingSpeed.message}</span>
-          )}
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 
   const renderSection = () => {
     switch (activeSection) {
@@ -953,7 +999,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
         ))}
       </div>
 
-      <form onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
+      <form key={`form-section-${activeSection}`} onSubmit={handleSubmit(handleFormSubmit)} className={styles.form}>
         {renderSection()}
 
         <div className={styles.formActions}>
@@ -962,7 +1008,7 @@ const ConfigurationForm: React.FC<ConfigurationFormProps> = ({ onSubmit, onBack 
             className={styles.backButton}
             onClick={onBack}
           >
-            ← Back to Data Preview
+            ← Back to Welcome Page
           </button>
 
           <div className={styles.navigationButtons}>

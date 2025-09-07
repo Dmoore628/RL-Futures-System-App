@@ -20,20 +20,22 @@ const mockValidation = {
 }
 
 describe('DataPreview Component', () => {
+  const mockOnContinue = jest.fn()
+
   it('renders data preview title', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('Data Preview')).toBeInTheDocument()
   })
 
   it('shows total row count', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText(/Total Rows: 5/)).toBeInTheDocument()
   })
 
   it('displays data table with headers', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('Time')).toBeInTheDocument()
     expect(screen.getByText('Open')).toBeInTheDocument()
@@ -43,7 +45,7 @@ describe('DataPreview Component', () => {
   })
 
   it('shows preview data rows', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('09:30')).toBeInTheDocument()
     expect(screen.getByText('100.50')).toBeInTheDocument()
@@ -53,13 +55,13 @@ describe('DataPreview Component', () => {
   })
 
   it('displays validation status', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('✅ Data is valid')).toBeInTheDocument()
   })
 
   it('shows warnings when present', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('⚠️ Warnings')).toBeInTheDocument()
     expect(screen.getByText(/Row 3: High value \(108.00\) is close to low value \(104.50\)/)).toBeInTheDocument()
@@ -75,7 +77,7 @@ describe('DataPreview Component', () => {
       preview: []
     }
     
-    render(<DataPreview data={emptyData} validation={emptyValidation} />)
+    render(<DataPreview data={emptyData} validation={emptyValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('❌ Data validation failed')).toBeInTheDocument()
     expect(screen.getByText('No data provided')).toBeInTheDocument()
@@ -90,14 +92,14 @@ describe('DataPreview Component', () => {
       preview: []
     }
     
-    render(<DataPreview data={mockData} validation={invalidValidation} />)
+    render(<DataPreview data={mockData} validation={invalidValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText('❌ Data validation failed')).toBeInTheDocument()
     expect(screen.getByText('Missing required columns: time, open, high, low, close')).toBeInTheDocument()
   })
 
   it('formats numbers correctly', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     // Check that decimal numbers are displayed properly
     expect(screen.getByText('100.50')).toBeInTheDocument()
@@ -121,7 +123,7 @@ describe('DataPreview Component', () => {
       preview: largeData.slice(0, 10)
     }
     
-    render(<DataPreview data={largeData} validation={largeValidation} />)
+    render(<DataPreview data={largeData} validation={largeValidation} onContinue={mockOnContinue} />)
     
     expect(screen.getByText(/Total Rows: 15/)).toBeInTheDocument()
     expect(screen.getByText('09:39')).toBeInTheDocument() // 10th row
@@ -129,7 +131,7 @@ describe('DataPreview Component', () => {
   })
 
   it('applies proper CSS classes for validation states', () => {
-    render(<DataPreview data={mockData} validation={mockValidation} />)
+    render(<DataPreview data={mockData} validation={mockValidation} onContinue={mockOnContinue} />)
     
     const container = screen.getByTestId('data-preview')
     expect(container).toHaveClass('dataPreview')

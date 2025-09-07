@@ -41,6 +41,30 @@ const DataPreview: React.FC<DataPreviewProps> = ({ validation, onContinue }) => 
             </span>
           )}
         </div>
+        
+        {validation.insights && (
+          <div className={styles.insights}>
+            <h4>📈 Trading Days Analysis</h4>
+            <div className={styles.insightsGrid}>
+              <div className={styles.insightItem}>
+                <span className={styles.insightLabel}>Total Trading Days:</span>
+                <span className={styles.insightValue}>{validation.insights.totalDays}</span>
+              </div>
+              <div className={styles.insightItem}>
+                <span className={styles.insightLabel}>Partial Days Deleted:</span>
+                <span className={styles.insightValue}>{validation.insights.partialDaysDeleted}</span>
+              </div>
+              <div className={styles.insightItem}>
+                <span className={styles.insightLabel}>Trading Hours:</span>
+                <span className={styles.insightValue}>{validation.insights.tradingHours}</span>
+              </div>
+              <div className={styles.insightItem}>
+                <span className={styles.insightLabel}>Total Data Points:</span>
+                <span className={styles.insightValue}>{validation.insights.totalRows.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {validation.warnings.length > 0 && (
@@ -91,7 +115,7 @@ const DataPreview: React.FC<DataPreviewProps> = ({ validation, onContinue }) => 
           className={styles.continueButton}
           onClick={onContinue}
         >
-          Continue to Configuration
+          Start Training
         </button>
       </div>
     </div>

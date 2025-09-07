@@ -1,3 +1,9 @@
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value2) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value: value2 }) : obj[key] = value2;
+var __publicField = (obj, key, value2) => {
+  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value2);
+  return value2;
+};
 function _mergeNamespaces(n2, m2) {
   for (var i = 0; i < m2.length; i++) {
     const e = m2[i];
@@ -10132,31 +10138,31 @@ function getInternalRouterError(status, _temp5) {
     type
   } = _temp5 === void 0 ? {} : _temp5;
   let statusText2 = "Unknown Server Error";
-  let errorMessage = "Unknown @remix-run/router error";
+  let errorMessage2 = "Unknown @remix-run/router error";
   if (status === 400) {
     statusText2 = "Bad Request";
     if (method && pathname && routeId) {
-      errorMessage = "You made a " + method + ' request to "' + pathname + '" but ' + ('did not provide a `loader` for route "' + routeId + '", ') + "so there is no way to handle the request.";
+      errorMessage2 = "You made a " + method + ' request to "' + pathname + '" but ' + ('did not provide a `loader` for route "' + routeId + '", ') + "so there is no way to handle the request.";
     } else if (type === "defer-action") {
-      errorMessage = "defer() is not supported in actions";
+      errorMessage2 = "defer() is not supported in actions";
     } else if (type === "invalid-body") {
-      errorMessage = "Unable to encode submission body";
+      errorMessage2 = "Unable to encode submission body";
     }
   } else if (status === 403) {
     statusText2 = "Forbidden";
-    errorMessage = 'Route "' + routeId + '" does not match URL "' + pathname + '"';
+    errorMessage2 = 'Route "' + routeId + '" does not match URL "' + pathname + '"';
   } else if (status === 404) {
     statusText2 = "Not Found";
-    errorMessage = 'No route matches URL "' + pathname + '"';
+    errorMessage2 = 'No route matches URL "' + pathname + '"';
   } else if (status === 405) {
     statusText2 = "Method Not Allowed";
     if (method && pathname && routeId) {
-      errorMessage = "You made a " + method.toUpperCase() + ' request to "' + pathname + '" but ' + ('did not provide an `action` for route "' + routeId + '", ') + "so there is no way to handle the request.";
+      errorMessage2 = "You made a " + method.toUpperCase() + ' request to "' + pathname + '" but ' + ('did not provide an `action` for route "' + routeId + '", ') + "so there is no way to handle the request.";
     } else if (method) {
-      errorMessage = 'Invalid request method "' + method.toUpperCase() + '"';
+      errorMessage2 = 'Invalid request method "' + method.toUpperCase() + '"';
     }
   }
-  return new ErrorResponseImpl(status || 500, statusText2, new Error(errorMessage), true);
+  return new ErrorResponseImpl(status || 500, statusText2, new Error(errorMessage2), true);
 }
 function findRedirect(results) {
   for (let i = results.length - 1; i >= 0; i--) {
@@ -11362,6 +11368,81 @@ const ThemeProvider = ({ children }) => {
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeContext.Provider, { value: { theme, toggleTheme }, children });
 };
+const errorBoundary = "_errorBoundary_1tsfb_1";
+const errorContainer$1 = "_errorContainer_1tsfb_21";
+const errorIcon = "_errorIcon_1tsfb_41";
+const bounce = "_bounce_1tsfb_1";
+const errorTitle = "_errorTitle_1tsfb_77";
+const errorMessage = "_errorMessage_1tsfb_93";
+const errorDetails = "_errorDetails_1tsfb_107";
+const errorStack = "_errorStack_1tsfb_139";
+const errorActions = "_errorActions_1tsfb_165";
+const retryButton$1 = "_retryButton_1tsfb_179";
+const refreshButton = "_refreshButton_1tsfb_181";
+const styles$a = {
+  errorBoundary,
+  errorContainer: errorContainer$1,
+  errorIcon,
+  bounce,
+  errorTitle,
+  errorMessage,
+  errorDetails,
+  errorStack,
+  errorActions,
+  retryButton: retryButton$1,
+  refreshButton
+};
+class ErrorBoundary extends reactExports.Component {
+  constructor(props) {
+    super(props);
+    __publicField(this, "handleRetry", () => {
+      this.setState({ hasError: false, error: void 0, errorInfo: void 0 });
+    });
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(error2) {
+    return { hasError: true, error: error2 };
+  }
+  componentDidCatch(error2, errorInfo) {
+    console.error("ErrorBoundary caught an error:", error2, errorInfo);
+    this.setState({
+      error: error2,
+      errorInfo
+    });
+  }
+  render() {
+    if (this.state.hasError) {
+      if (this.props.fallback) {
+        return this.props.fallback;
+      }
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$a.errorBoundary, "data-testid": "error-boundary", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$a.errorContainer, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$a.errorIcon, children: "⚠️" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$a.errorTitle, children: "Something went wrong" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$a.errorMessage, children: "We're sorry, but something unexpected happened. Please try refreshing the page or contact support if the problem persists." }),
+        false,
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$a.errorActions, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              className: styles$a.retryButton,
+              onClick: this.handleRetry,
+              children: "Try Again"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              className: styles$a.refreshButton,
+              onClick: () => window.location.reload(),
+              children: "Refresh Page"
+            }
+          )
+        ] })
+      ] }) });
+    }
+    return this.props.children;
+  }
+}
 const navigation = "_navigation_1lcqo_1";
 const container$3 = "_container_1lcqo_19";
 const brand$1 = "_brand_1lcqo_39";
@@ -11375,7 +11456,7 @@ const systemStatus = "_systemStatus_1lcqo_167";
 const statusIndicator = "_statusIndicator_1lcqo_183";
 const pulse = "_pulse_1lcqo_1";
 const statusText = "_statusText_1lcqo_199";
-const styles$8 = {
+const styles$9 = {
   navigation,
   container: container$3,
   brand: brand$1,
@@ -11396,23 +11477,23 @@ const Navigation = () => {
     { path: "/welcome", label: "Welcome" },
     { path: "/upload-and-settings", label: "Upload & Settings" }
   ];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: styles$8.navigation, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.container, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.brand, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.rocket, children: "🚀" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.companyName, children: "Moore Tech" })
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: styles$9.navigation, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.container, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.brand, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.rocket, children: "🚀" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.companyName, children: "Moore Tech" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.navLinks, children: navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$9.navLinks, children: navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       Link,
       {
         to: item.path,
-        className: `${styles$8.navLink} ${location.pathname === item.path ? styles$8.active : ""}`,
+        className: `${styles$9.navLink} ${location.pathname === item.path ? styles$9.active : ""}`,
         children: item.label
       },
       item.path
     )) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.systemStatus, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.statusIndicator }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.statusText, children: "System Online" })
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.systemStatus, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.statusIndicator }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.statusText, children: "System Online" })
     ] })
   ] }) });
 };
@@ -11427,7 +11508,7 @@ const paragraphs = "_paragraphs_tvhgy_217";
 const ctaSection = "_ctaSection_tvhgy_265";
 const ctaButton = "_ctaButton_tvhgy_277";
 const footer$1 = "_footer_tvhgy_321";
-const styles$7 = {
+const styles$8 = {
   container: container$2,
   header: header$4,
   brand,
@@ -11473,13 +11554,13 @@ const useContent = () => {
   }, []);
   return { content: content2, loading };
 };
-const bannerContainer = "_bannerContainer_wng89_3";
-const bannerTitle = "_bannerTitle_wng89_16";
-const logosWrapper = "_logosWrapper_wng89_27";
-const logoItem = "_logoItem_wng89_44";
-const logo = "_logo_wng89_27";
-const tosLogo = "_tosLogo_wng89_85";
-const styles$6 = {
+const bannerContainer = "_bannerContainer_8g3kj_5";
+const bannerTitle = "_bannerTitle_8g3kj_31";
+const logosWrapper = "_logosWrapper_8g3kj_53";
+const logoItem = "_logoItem_8g3kj_87";
+const logo = "_logo_8g3kj_53";
+const tosLogo = "_tosLogo_8g3kj_169";
+const styles$7 = {
   bannerContainer,
   bannerTitle,
   logosWrapper,
@@ -11511,7 +11592,12 @@ const BrokerLogosBanner = () => {
     { src: "/optimusfutureslogo.png", alt: "Optimus Futures" }
   ];
   const animateScroll = reactExports.useCallback((timestamp) => {
-    if (!logosWrapperRef.current || isDragging || isMomentumActive) {
+    if (!logosWrapperRef.current || isDragging) {
+      const nextFrameId2 = requestAnimationFrame(animateScroll);
+      setAnimationId(nextFrameId2);
+      return;
+    }
+    if (isMomentumActive) {
       const nextFrameId2 = requestAnimationFrame(animateScroll);
       setAnimationId(nextFrameId2);
       return;
@@ -11690,13 +11776,13 @@ const BrokerLogosBanner = () => {
       document.removeEventListener("mousemove", handleGlobalMouseMove);
     };
   }, [isDragging, handleMouseMove, handleMouseUp]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.bannerContainer, "data-testid": "broker-logos-banner", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.bannerTitle, children: "Supported Broker Connections" }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.bannerContainer, "data-testid": "broker-logos-banner", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.bannerTitle, children: "Supported Broker Connections" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         ref: logosWrapperRef,
-        className: styles$6.logosWrapper,
+        className: styles$7.logosWrapper,
         onMouseDown: handleMouseDown,
         onMouseMove: handleMouseMove,
         onMouseUp: handleMouseUp,
@@ -11705,28 +11791,28 @@ const BrokerLogosBanner = () => {
           transform: `translateX(${currentScrollX}px)`
         },
         children: [
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
               src: logo2.src,
               alt: logo2.alt,
-              className: `${styles$6.logo} ${logo2.alt === "ThinkOrSwim" ? styles$6.tosLogo : ""}`
+              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
             }
           ) }, `set1-${index2}`)),
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
               src: logo2.src,
               alt: logo2.alt,
-              className: `${styles$6.logo} ${logo2.alt === "ThinkOrSwim" ? styles$6.tosLogo : ""}`
+              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
             }
           ) }, `set2-${index2}`)),
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "img",
             {
               src: logo2.src,
               alt: logo2.alt,
-              className: `${styles$6.logo} ${logo2.alt === "ThinkOrSwim" ? styles$6.tosLogo : ""}`
+              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
             }
           ) }, `set3-${index2}`))
         ]
@@ -11738,17 +11824,17 @@ const WelcomePage = () => {
   const { content: content2, loading } = useContent();
   const navigate = useNavigate();
   if (loading) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.container, children: "Loading..." });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.container, children: "Loading..." });
   }
   if (!content2) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.container, children: "Failed to load content" });
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.container, children: "Failed to load content" });
   }
   const sections = content2.sections;
   const renderContent = (content22) => {
     return content22.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   };
   const renderParagraphs = (paragraphs2) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.paragraphs, children: paragraphs2.map((paragraph, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.paragraphs, children: paragraphs2.map((paragraph, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       "p",
       {
         dangerouslySetInnerHTML: { __html: renderContent(paragraph) }
@@ -11759,26 +11845,26 @@ const WelcomePage = () => {
   const handleGetStarted = () => {
     navigate("/upload-and-settings");
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.container, "data-testid": "welcome-page", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: styles$7.header, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.brand, children: /* @__PURE__ */ jsxRuntimeExports.jsx(BrokerLogosBanner, {}) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: styles$7.main, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles$7.title, children: content2.title }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$7.subtitle, children: content2.subtitle }),
-      sections.map((section2, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: styles$7.card, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.container, "data-testid": "welcome-page", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: styles$8.header, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.brand, children: /* @__PURE__ */ jsxRuntimeExports.jsx(BrokerLogosBanner, {}) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: styles$8.main, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles$8.title, children: content2.title }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$8.subtitle, children: content2.subtitle }),
+      sections.map((section2, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: styles$8.card, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: section2.heading }),
         section2.paragraph && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { dangerouslySetInnerHTML: { __html: renderContent(section2.paragraph) } }),
         section2.paragraphs && renderParagraphs(section2.paragraphs)
       ] }, idx)),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.ctaSection, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.ctaSection, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
-          className: styles$7.ctaButton,
+          className: styles$8.ctaButton,
           onClick: handleGetStarted,
           children: "Get Started"
         }
       ) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: styles$7.footer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: styles$8.footer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
       "© ",
       (/* @__PURE__ */ new Date()).getFullYear(),
       " RL Futures Trading System"
@@ -11794,7 +11880,7 @@ const active$1 = "_active_1bakx_87";
 const completed = "_completed_1bakx_101";
 const stepLabel = "_stepLabel_1bakx_113";
 const connector = "_connector_1bakx_129";
-const styles$5 = {
+const styles$6 = {
   stepIndicator,
   container: container$1,
   stepWrapper,
@@ -11806,21 +11892,21 @@ const styles$5 = {
   connector
 };
 const StepIndicator = ({ steps }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.stepIndicator, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.container, children: steps.map((step2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.stepWrapper, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.step, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepIndicator, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.container, children: steps.map((step2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepWrapper, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.step, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
-          className: `${styles$5.stepNumber} ${step2.isCompleted ? styles$5.completed : ""} ${step2.isActive ? styles$5.active : ""}`,
+          className: `${styles$6.stepNumber} ${step2.isCompleted ? styles$6.completed : ""} ${step2.isActive ? styles$6.active : ""}`,
           children: step2.isCompleted ? "✓" : step2.id
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$5.stepLabel, children: step2.label })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$6.stepLabel, children: step2.label })
     ] }),
     index2 < steps.length - 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: `${styles$5.connector} ${step2.isCompleted ? styles$5.completed : ""}`
+        className: `${styles$6.connector} ${step2.isCompleted ? styles$6.completed : ""}`
       }
     )
   ] }, step2.id)) }) });
@@ -13928,7 +14014,7 @@ var initialState = {
 };
 function useDropzone() {
   var props = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-  var _defaultProps$props = _objectSpread(_objectSpread({}, defaultProps), props), accept = _defaultProps$props.accept, disabled = _defaultProps$props.disabled, getFilesFromEvent = _defaultProps$props.getFilesFromEvent, maxSize = _defaultProps$props.maxSize, minSize = _defaultProps$props.minSize, multiple = _defaultProps$props.multiple, maxFiles = _defaultProps$props.maxFiles, onDragEnter = _defaultProps$props.onDragEnter, onDragLeave = _defaultProps$props.onDragLeave, onDragOver = _defaultProps$props.onDragOver, onDrop = _defaultProps$props.onDrop, onDropAccepted = _defaultProps$props.onDropAccepted, onDropRejected = _defaultProps$props.onDropRejected, onFileDialogCancel = _defaultProps$props.onFileDialogCancel, onFileDialogOpen = _defaultProps$props.onFileDialogOpen, useFsAccessApi = _defaultProps$props.useFsAccessApi, autoFocus = _defaultProps$props.autoFocus, preventDropOnDocument = _defaultProps$props.preventDropOnDocument, noClick = _defaultProps$props.noClick, noKeyboard = _defaultProps$props.noKeyboard, noDrag = _defaultProps$props.noDrag, noDragEventsBubbling = _defaultProps$props.noDragEventsBubbling, onError = _defaultProps$props.onError, validator = _defaultProps$props.validator;
+  var _defaultProps$props = _objectSpread(_objectSpread({}, defaultProps), props), accept = _defaultProps$props.accept, disabled2 = _defaultProps$props.disabled, getFilesFromEvent = _defaultProps$props.getFilesFromEvent, maxSize = _defaultProps$props.maxSize, minSize = _defaultProps$props.minSize, multiple = _defaultProps$props.multiple, maxFiles = _defaultProps$props.maxFiles, onDragEnter = _defaultProps$props.onDragEnter, onDragLeave = _defaultProps$props.onDragLeave, onDragOver = _defaultProps$props.onDragOver, onDrop = _defaultProps$props.onDrop, onDropAccepted = _defaultProps$props.onDropAccepted, onDropRejected = _defaultProps$props.onDropRejected, onFileDialogCancel = _defaultProps$props.onFileDialogCancel, onFileDialogOpen = _defaultProps$props.onFileDialogOpen, useFsAccessApi = _defaultProps$props.useFsAccessApi, autoFocus = _defaultProps$props.autoFocus, preventDropOnDocument = _defaultProps$props.preventDropOnDocument, noClick = _defaultProps$props.noClick, noKeyboard = _defaultProps$props.noKeyboard, noDrag = _defaultProps$props.noDrag, noDragEventsBubbling = _defaultProps$props.noDragEventsBubbling, onError = _defaultProps$props.onError, validator = _defaultProps$props.validator;
   var acceptAttr = reactExports.useMemo(function() {
     return acceptPropAsAcceptAttr(accept);
   }, [accept]);
@@ -13988,12 +14074,12 @@ function useDropzone() {
     };
   }, [rootRef, preventDropOnDocument]);
   reactExports.useEffect(function() {
-    if (!disabled && autoFocus && rootRef.current) {
+    if (!disabled2 && autoFocus && rootRef.current) {
       rootRef.current.focus();
     }
     return function() {
     };
-  }, [rootRef, autoFocus, disabled]);
+  }, [rootRef, autoFocus, disabled2]);
   var onErrCb = reactExports.useCallback(function(e) {
     if (onError) {
       onError(e);
@@ -14219,7 +14305,7 @@ function useDropzone() {
     }
   }, [noClick, openFileDialog]);
   var composeHandler = function composeHandler2(fn) {
-    return disabled ? null : fn;
+    return disabled2 ? null : fn;
   };
   var composeKeyboardHandler = function composeKeyboardHandler2(fn) {
     return noKeyboard ? null : composeHandler(fn);
@@ -14245,11 +14331,11 @@ function useDropzone() {
         onDragLeave: composeDragHandler(composeEventHandlers(onDragLeave2, onDragLeaveCb)),
         onDrop: composeDragHandler(composeEventHandlers(onDrop2, onDropCb)),
         role: typeof role === "string" && role !== "" ? role : "presentation"
-      }, refKey, rootRef), !disabled && !noKeyboard ? {
+      }, refKey, rootRef), !disabled2 && !noKeyboard ? {
         tabIndex: 0
       } : {}), rest);
     };
-  }, [rootRef, onKeyDownCb, onFocusCb, onBlurCb, onClickCb, onDragEnterCb, onDragOverCb, onDragLeaveCb, onDropCb, noKeyboard, noDrag, disabled]);
+  }, [rootRef, onKeyDownCb, onFocusCb, onBlurCb, onClickCb, onDragEnterCb, onDragOverCb, onDragLeaveCb, onDropCb, noKeyboard, noDrag, disabled2]);
   var onInputElementClick = reactExports.useCallback(function(event) {
     event.stopPropagation();
   }, []);
@@ -14278,9 +14364,9 @@ function useDropzone() {
       }, refKey, inputRef);
       return _objectSpread(_objectSpread({}, inputProps), rest);
     };
-  }, [inputRef, accept, multiple, onDropCb, disabled]);
+  }, [inputRef, accept, multiple, onDropCb, disabled2]);
   return _objectSpread(_objectSpread({}, state), {}, {
-    isFocused: isFocused && !disabled,
+    isFocused: isFocused && !disabled2,
     getRootProps,
     getInputProps,
     rootRef,
@@ -30718,12 +30804,12 @@ function parse_BrtHLink(data, length) {
   var rfx = parse_UncheckedRfX(data);
   var relId = parse_XLNullableWideString(data);
   var loc = parse_XLWideString(data);
-  var tooltip = parse_XLWideString(data);
+  var tooltip2 = parse_XLWideString(data);
   var display = parse_XLWideString(data);
   data.l = end;
   var o = { rfx, relId, loc, display };
-  if (tooltip)
-    o.Tooltip = tooltip;
+  if (tooltip2)
+    o.Tooltip = tooltip2;
   return o;
 }
 function parse_BrtPane() {
@@ -42730,18 +42816,18 @@ function cell_set_number_format(cell, fmt) {
   cell.z = fmt;
   return cell;
 }
-function cell_set_hyperlink(cell, target, tooltip) {
+function cell_set_hyperlink(cell, target, tooltip2) {
   if (!target) {
     delete cell.l;
   } else {
     cell.l = { Target: target };
-    if (tooltip)
-      cell.l.Tooltip = tooltip;
+    if (tooltip2)
+      cell.l.Tooltip = tooltip2;
   }
   return cell;
 }
-function cell_set_internal_link(cell, range, tooltip) {
-  return cell_set_hyperlink(cell, "#" + range, tooltip);
+function cell_set_internal_link(cell, range, tooltip2) {
+  return cell_set_hyperlink(cell, "#" + range, tooltip2);
 }
 function cell_add_comment(cell, text, author) {
   if (!cell.c)
@@ -42826,7 +42912,7 @@ const fileDetails = "_fileDetails_9qt20_313";
 const success = "_success_9qt20_403";
 const successPulse = "_successPulse_9qt20_1";
 const error$1 = "_error_9qt20_413";
-const styles$4 = {
+const styles$5 = {
   fileUpload,
   header: header$3,
   dropzone,
@@ -42850,10 +42936,69 @@ const styles$4 = {
   successPulse,
   error: error$1
 };
-const FileUpload = ({ onFileProcessed, onValidationError }) => {
+const FileUpload = ({ onFileProcessed, onValidationError, configuration }) => {
   const [isProcessing, setIsProcessing] = reactExports.useState(false);
   const [uploadProgress, setUploadProgress] = reactExports.useState(0);
   const [currentFile, setCurrentFile] = reactExports.useState(null);
+  const parseTradingDays = (data) => {
+    if (!(configuration == null ? void 0 : configuration.dayMastery)) {
+      return { days: [data], insights: { totalDays: 1, partialDaysDeleted: 0, totalRows: data.length } };
+    }
+    const { startTime, endTime } = configuration.dayMastery;
+    const days2 = [];
+    let currentDay = [];
+    let partialDaysDeleted = 0;
+    let lastDate = "";
+    const parseDateTime = (timeStr) => {
+      const date = new Date(timeStr);
+      return {
+        date: date.toISOString().split("T")[0],
+        time: date.toTimeString().split(" ")[0].substring(0, 5)
+      };
+    };
+    const isWithinTradingHours = (time) => {
+      return time >= startTime && time <= endTime;
+    };
+    data.forEach((row, index2) => {
+      const { date, time } = parseDateTime(row.time);
+      if (date !== lastDate) {
+        if (currentDay.length > 0) {
+          const hasTradingHoursData = currentDay.some((row2) => {
+            const { time: time2 } = parseDateTime(row2.time);
+            return isWithinTradingHours(time2);
+          });
+          if (hasTradingHoursData) {
+            days2.push([...currentDay]);
+          } else {
+            partialDaysDeleted++;
+          }
+        }
+        currentDay = [];
+        lastDate = date;
+      }
+      currentDay.push(row);
+    });
+    if (currentDay.length > 0) {
+      const hasTradingHoursData = currentDay.some((row) => {
+        const { time } = parseDateTime(row.time);
+        return isWithinTradingHours(time);
+      });
+      if (hasTradingHoursData) {
+        days2.push([...currentDay]);
+      } else {
+        partialDaysDeleted++;
+      }
+    }
+    return {
+      days: days2,
+      insights: {
+        totalDays: days2.length,
+        partialDaysDeleted,
+        totalRows: data.length,
+        tradingHours: `${startTime} - ${endTime}`
+      }
+    };
+  };
   const validateFileData = (data) => {
     const errors = [];
     const warnings2 = [];
@@ -42978,9 +43123,14 @@ const FileUpload = ({ onFileProcessed, onValidationError }) => {
       }
       clearInterval(progressInterval);
       setUploadProgress(100);
+      const { days: days2, insights: insights2 } = parseTradingDays(data);
       const validation = validateFileData(data);
+      const validationWithInsights = {
+        ...validation,
+        insights: insights2
+      };
       if (validation.isValid) {
-        onFileProcessed(data, validation);
+        onFileProcessed(data, validationWithInsights);
       } else {
         onValidationError(validation.errors);
       }
@@ -43021,8 +43171,8 @@ const FileUpload = ({ onFileProcessed, onValidationError }) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k2));
     return parseFloat((bytes / Math.pow(k2, i)).toFixed(2)) + " " + sizes[i];
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileUpload, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.header, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileUpload, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.header, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Upload Trading Data" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Drag and drop your CSV or Excel file here, or click to browse" })
     ] }),
@@ -43030,40 +43180,40 @@ const FileUpload = ({ onFileProcessed, onValidationError }) => {
       "div",
       {
         ...getRootProps(),
-        className: `${styles$4.dropzone} ${isDragActive ? styles$4.dragActive : ""} ${isDragReject ? styles$4.dragReject : ""} ${isProcessing ? styles$4.processing : ""}`,
+        className: `${styles$5.dropzone} ${isDragActive ? styles$5.dragActive : ""} ${isDragReject ? styles$5.dragReject : ""} ${isProcessing ? styles$5.processing : ""}`,
         "data-testid": "dropzone",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("input", { ...getInputProps(), "data-testid": "file-input" }),
-          isProcessing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.processingContent, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.spinner }),
+          isProcessing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.processingContent, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.spinner }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
               "Processing ",
               currentFile == null ? void 0 : currentFile.name,
               "..."
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.progressBar, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.progressBar, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: styles$4.progressFill,
+                className: styles$5.progressFill,
                 style: { width: `${uploadProgress}%` }
               }
             ) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.progressText, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$5.progressText, children: [
               uploadProgress,
               "%"
             ] })
-          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.dropContent, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.uploadIcon, children: "📁" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.dropText, children: isDragActive ? "Drop the file here..." : "Drag & drop a file here, or click to select" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.fileTypes, children: "Supported formats: CSV, Excel (.xlsx, .xls)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.fileSize, children: "Maximum file size: 1GB" })
+          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.dropContent, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.uploadIcon, children: "📁" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.dropText, children: isDragActive ? "Drop the file here..." : "Drag & drop a file here, or click to select" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.fileTypes, children: "Supported formats: CSV, Excel (.xlsx, .xls)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.fileSize, children: "Maximum file size: 1GB" })
           ] })
         ]
       }
     ),
-    currentFile && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileInfo, children: [
+    currentFile && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileInfo, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "File Information" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileDetails, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileDetails, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Name:" }),
           " ",
@@ -43088,23 +43238,28 @@ const FileUpload = ({ onFileProcessed, onValidationError }) => {
     ] })
   ] });
 };
-const dataPreview = "_dataPreview_12m27_1";
-const header$2 = "_header_12m27_17";
-const summary = "_summary_12m27_49";
-const rowCount = "_rowCount_12m27_63";
-const warningCount = "_warningCount_12m27_81";
-const warnings = "_warnings_12m27_99";
-const warning = "_warning_12m27_81";
-const tableContainer = "_tableContainer_12m27_151";
-const previewTable = "_previewTable_12m27_165";
-const dataRow = "_dataRow_12m27_227";
-const rowNumber = "_rowNumber_12m27_235";
-const timeCell = "_timeCell_12m27_249";
-const priceCell = "_priceCell_12m27_261";
-const footer = "_footer_12m27_277";
-const note = "_note_12m27_293";
-const continueButton = "_continueButton_12m27_305";
-const styles$3 = {
+const dataPreview = "_dataPreview_yv81h_1";
+const header$2 = "_header_yv81h_9";
+const summary = "_summary_yv81h_25";
+const rowCount = "_rowCount_yv81h_32";
+const warningCount = "_warningCount_yv81h_41";
+const warnings = "_warnings_yv81h_50";
+const warning = "_warning_yv81h_41";
+const tableContainer = "_tableContainer_yv81h_76";
+const previewTable = "_previewTable_yv81h_83";
+const dataRow = "_dataRow_yv81h_114";
+const rowNumber = "_rowNumber_yv81h_118";
+const timeCell = "_timeCell_yv81h_125";
+const priceCell = "_priceCell_yv81h_131";
+const footer = "_footer_yv81h_139";
+const note = "_note_yv81h_147";
+const continueButton = "_continueButton_yv81h_153";
+const insights = "_insights_yv81h_267";
+const insightsGrid = "_insightsGrid_yv81h_285";
+const insightItem = "_insightItem_yv81h_291";
+const insightLabel = "_insightLabel_yv81h_297";
+const insightValue = "_insightValue_yv81h_303";
+const styles$4 = {
   dataPreview,
   header: header$2,
   summary,
@@ -43120,7 +43275,12 @@ const styles$3 = {
   priceCell,
   footer,
   note,
-  continueButton
+  continueButton,
+  insights,
+  insightsGrid,
+  insightItem,
+  insightLabel,
+  insightValue
 };
 const DataPreview = ({ validation, onContinue }) => {
   const formatNumber = (num) => {
@@ -43138,27 +43298,48 @@ const DataPreview = ({ validation, onContinue }) => {
     }
     return time;
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.dataPreview, "data-testid": "data-preview", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.header, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.dataPreview, "data-testid": "data-preview", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.header, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Data Preview" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.summary, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$3.rowCount, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.summary, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.rowCount, children: [
           "📊 ",
           validation.rowCount.toLocaleString(),
           " rows loaded"
         ] }),
-        validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$3.warningCount, children: [
+        validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.warningCount, children: [
           "⚠️ ",
           validation.warnings.length,
           " warnings"
         ] })
+      ] }),
+      validation.insights && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insights, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "📈 Trading Days Analysis" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightsGrid, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Total Trading Days:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.totalDays })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Partial Days Deleted:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.partialDaysDeleted })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Trading Hours:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.tradingHours })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Total Data Points:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.totalRows.toLocaleString() })
+          ] })
+        ] })
       ] })
     ] }),
-    validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.warnings, children: [
+    validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.warnings, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Warnings" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: validation.warnings.map((warning2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: styles$3.warning, children: warning2 }, index2)) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: validation.warnings.map((warning2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: styles$4.warning, children: warning2 }, index2)) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$3.tableContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: styles$3.previewTable, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.tableContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: styles$4.previewTable, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Row" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Time" }),
@@ -43167,17 +43348,17 @@ const DataPreview = ({ validation, onContinue }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Low" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Close" })
       ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: validation.preview.map((row, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: styles$3.dataRow, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.rowNumber, children: index2 + 1 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.timeCell, children: formatTime(row.time) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.open) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.high) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.low) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.close) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: validation.preview.map((row, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: styles$4.dataRow, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.rowNumber, children: index2 + 1 }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.timeCell, children: formatTime(row.time) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.open) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.high) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.low) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.close) })
       ] }, index2)) })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.footer, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: styles$3.note, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.footer, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: styles$4.note, children: [
         "Showing first 10 rows of ",
         validation.rowCount.toLocaleString(),
         " total rows"
@@ -43185,9 +43366,9 @@ const DataPreview = ({ validation, onContinue }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
-          className: styles$3.continueButton,
+          className: styles$4.continueButton,
           onClick: onContinue,
-          children: "Continue to Configuration"
+          children: "Start Training"
         }
       )
     ] })
@@ -43304,7 +43485,7 @@ var getProxyFormState = (formState, control, localProxyFormState, isRoot = true)
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
 function useFormState(props) {
   const methods = useFormContext();
-  const { control = methods.control, disabled, name, exact } = props || {};
+  const { control = methods.control, disabled: disabled2, name, exact } = props || {};
   const [formState, updateFormState] = React.useState(control._formState);
   const _localProxyFormState = React.useRef({
     isDirty: false,
@@ -43321,12 +43502,12 @@ function useFormState(props) {
     formState: _localProxyFormState.current,
     exact,
     callback: (formState2) => {
-      !disabled && updateFormState({
+      !disabled2 && updateFormState({
         ...control._formState,
         ...formState2
       });
     }
-  }), [name, disabled, exact]);
+  }), [name, disabled2, exact]);
   React.useEffect(() => {
     _localProxyFormState.current.isValid && control._setValid(true);
   }, [control]);
@@ -43378,7 +43559,7 @@ function deepEqual(object1, object2, _internal_visited = /* @__PURE__ */ new Wea
 }
 function useWatch(props) {
   const methods = useFormContext();
-  const { control = methods.control, name, defaultValue, disabled, exact, compute } = props || {};
+  const { control = methods.control, name, defaultValue, disabled: disabled2, exact, compute } = props || {};
   const _defaultValue = React.useRef(defaultValue);
   const _compute = React.useRef(compute);
   const _computeFormValues = React.useRef(void 0);
@@ -43392,7 +43573,7 @@ function useWatch(props) {
     },
     exact,
     callback: (formState) => {
-      if (!disabled) {
+      if (!disabled2) {
         const formValues = generateWatchOutput(name, control._names, formState.values || control._formValues, false, _defaultValue.current);
         if (_compute.current) {
           const computedFormValues = _compute.current(formValues);
@@ -43405,13 +43586,13 @@ function useWatch(props) {
         }
       }
     }
-  }), [control, disabled, name, exact]);
+  }), [control, disabled2, name, exact]);
   React.useEffect(() => control._removeUnmounted());
   return value2;
 }
 function useController(props) {
   const methods = useFormContext();
-  const { name, disabled, control = methods.control, shouldUnregister, defaultValue } = props;
+  const { name, disabled: disabled2, control = methods.control, shouldUnregister, defaultValue } = props;
   const isArrayField = isNameInFieldArray(control._names.array, name);
   const defaultValueMemo = React.useMemo(() => get(control._formValues, name, get(control._defaultValues, name, defaultValue)), [control, name, defaultValue]);
   const value2 = useWatch({
@@ -43482,11 +43663,11 @@ function useController(props) {
   const field = React.useMemo(() => ({
     name,
     value: value2,
-    ...isBoolean(disabled) || formState.disabled ? { disabled: formState.disabled || disabled } : {},
+    ...isBoolean(disabled2) || formState.disabled ? { disabled: formState.disabled || disabled2 } : {},
     onChange,
     onBlur,
     ref
-  }), [name, disabled, formState.disabled, onChange, onBlur, ref, value2]);
+  }), [name, disabled2, formState.disabled, onChange, onBlur, ref, value2]);
   React.useEffect(() => {
     const _shouldUnregisterField = control._options.shouldUnregister || shouldUnregister;
     control.register(name, {
@@ -43514,10 +43695,10 @@ function useController(props) {
   }, [name, control, isArrayField, shouldUnregister]);
   React.useEffect(() => {
     control._setDisabledField({
-      disabled,
+      disabled: disabled2,
       name
     });
-  }, [disabled, name, control]);
+  }, [disabled2, name, control]);
   return React.useMemo(() => ({
     field,
     formState,
@@ -44482,9 +44663,9 @@ function createFormControl(props = {}) {
     });
     !options.keepIsValid && _setValid();
   };
-  const _setDisabledField = ({ disabled, name }) => {
-    if (isBoolean(disabled) && _state.mount || !!disabled || _names.disabled.has(name)) {
-      disabled ? _names.disabled.add(name) : _names.disabled.delete(name);
+  const _setDisabledField = ({ disabled: disabled2, name }) => {
+    if (isBoolean(disabled2) && _state.mount || !!disabled2 || _names.disabled.has(name)) {
+      disabled2 ? _names.disabled.add(name) : _names.disabled.delete(name);
     }
   };
   const register = (name, options = {}) => {
@@ -44556,16 +44737,16 @@ function createFormControl(props = {}) {
     };
   };
   const _focusError = () => _options.shouldFocusError && iterateFieldsByAction(_fields, _focusInput, _names.mount);
-  const _disableForm = (disabled) => {
-    if (isBoolean(disabled)) {
-      _subjects.state.next({ disabled });
+  const _disableForm = (disabled2) => {
+    if (isBoolean(disabled2)) {
+      _subjects.state.next({ disabled: disabled2 });
       iterateFieldsByAction(_fields, (ref, name) => {
         const currentField = get(_fields, name);
         if (currentField) {
-          ref.disabled = currentField._f.disabled || disabled;
+          ref.disabled = currentField._f.disabled || disabled2;
           if (Array.isArray(currentField._f.refs)) {
             currentField._f.refs.forEach((inputRef) => {
-              inputRef.disabled = currentField._f.disabled || disabled;
+              inputRef.disabled = currentField._f.disabled || disabled2;
             });
           }
         }
@@ -44925,24 +45106,76 @@ function useForm(props = {}) {
   _formControl.current.formState = getProxyFormState(formState, control);
   return _formControl.current;
 }
-const configurationForm = "_configurationForm_1upcw_1";
-const header$1 = "_header_1upcw_15";
-const sectionNavigation = "_sectionNavigation_1upcw_51";
-const sectionTab = "_sectionTab_1upcw_67";
-const active = "_active_1upcw_109";
-const sectionIcon = "_sectionIcon_1upcw_121";
-const sectionTitle = "_sectionTitle_1upcw_129";
-const section = "_section_1upcw_51";
-const formGrid = "_formGrid_1upcw_165";
-const formGroup = "_formGroup_1upcw_177";
-const error = "_error_1upcw_257";
-const formActions = "_formActions_1upcw_269";
-const backButton$1 = "_backButton_1upcw_291";
-const navigationButtons$1 = "_navigationButtons_1upcw_327";
-const prevButton = "_prevButton_1upcw_337";
-const nextButton = "_nextButton_1upcw_339";
-const submitButton = "_submitButton_1upcw_341";
-const fadeIn = "_fadeIn_1upcw_1";
+const tooltipContainer = "_tooltipContainer_ten66_1";
+const tooltip = "_tooltip_ten66_1";
+const top = "_top_ten66_41";
+const bottom = "_bottom_ten66_55";
+const left = "_left_ten66_69";
+const right = "_right_ten66_83";
+const arrow = "_arrow_ten66_97";
+const styles$3 = {
+  tooltipContainer,
+  tooltip,
+  top,
+  bottom,
+  left,
+  right,
+  arrow,
+  "arrow-top": "_arrow-top_ten66_109",
+  "arrow-bottom": "_arrow-bottom_ten66_127",
+  "arrow-left": "_arrow-left_ten66_145",
+  "arrow-right": "_arrow-right_ten66_163"
+};
+const Tooltip = ({
+  content: content2,
+  children,
+  position = "top",
+  maxWidth = "300px"
+}) => {
+  const [isVisible, setIsVisible] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: styles$3.tooltipContainer,
+      onMouseEnter: () => setIsVisible(true),
+      onMouseLeave: () => setIsVisible(false),
+      children: [
+        children,
+        isVisible && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: `${styles$3.tooltip} ${styles$3[position]}`,
+            style: { maxWidth },
+            children: [
+              content2,
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `${styles$3.arrow} ${styles$3[`arrow-${position}`]}` })
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+const configurationForm = "_configurationForm_17byy_1";
+const header$1 = "_header_17byy_8";
+const sectionNavigation = "_sectionNavigation_17byy_26";
+const sectionTab = "_sectionTab_17byy_34";
+const active = "_active_17byy_55";
+const sectionIcon = "_sectionIcon_17byy_61";
+const sectionTitle = "_sectionTitle_17byy_65";
+const section = "_section_17byy_26";
+const formGrid = "_formGrid_17byy_83";
+const formGroup = "_formGroup_17byy_89";
+const error = "_error_17byy_129";
+const errorInput = "_errorInput_17byy_135";
+const formActions = "_formActions_17byy_145";
+const backButton$1 = "_backButton_17byy_156";
+const navigationButtons$1 = "_navigationButtons_17byy_174";
+const prevButton = "_prevButton_17byy_179";
+const nextButton = "_nextButton_17byy_180";
+const submitButton = "_submitButton_17byy_181";
+const disabled = "_disabled_17byy_229";
+const fadeIn = "_fadeIn_17byy_1";
 const styles$2 = {
   configurationForm,
   header: header$1,
@@ -44955,28 +45188,30 @@ const styles$2 = {
   formGrid,
   formGroup,
   error,
+  errorInput,
   formActions,
   backButton: backButton$1,
   navigationButtons: navigationButtons$1,
   prevButton,
   nextButton,
   submitButton,
+  disabled,
   fadeIn
 };
 const ConfigurationForm = ({ onSubmit, onBack }) => {
   const [activeSection, setActiveSection] = reactExports.useState(0);
-  const { control, handleSubmit, formState: { errors, isValid } } = useForm({
+  useNavigate();
+  const { control, handleSubmit, formState: { errors, isValid }, watch, getValues, trigger, reset } = useForm({
     mode: "onChange",
     defaultValues: {
       tradingMechanics: {
-        initialBalance: 1e5,
-        dailyProfitTarget: 5e3,
-        dailyMaxLossLimit: 1e4,
+        initialBalance: 1e3,
+        dailyProfitTarget: 500,
+        dailyMaxLossLimit: 500,
         commissions: 2.5,
         marginRequiredPerContract: 1e3,
         slippage: 0.5,
-        contractValue: 5,
-        equityReserve: 5e3
+        contractValue: 5
       },
       rewardFunction: {
         profitTargetBonus: 2,
@@ -44994,34 +45229,35 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
         vfCoef: 0.5
       },
       loggingCheckpointing: {
-        experimentName: "futures_trading_experiment",
+        experimentName: "",
         checkpointFrequency: 1e4,
         evaluationFrequency: 5e3
       },
       dayMastery: {
         minEpisodesToRun: 100,
-        requiredSuccessRate: 0.7,
+        requiredSuccessRate: 0.95,
         performancePlateauEpisodes: 50,
-        startTime: "09:30",
-        endTime: "16:00"
+        startTime: "17:00",
+        endTime: "16:00+1"
       },
       dataIndicators: {
-        observationHistoryLength: 100,
-        ema1Period: 20,
-        ema2Period: 50,
+        observationHistoryLength: 1440,
+        ema1Period: 13,
+        ema2Period: 55,
         bollingerBandsPeriod: 20,
         atrPeriod: 14,
         macdPeriod: 26
       },
       visualization: {
         renderingMode: "human",
-        rateOfSpeed: 1,
         fixedWindow: 100,
         candleWidthFactor: 1,
         trainingSpeed: 1
       }
     }
   });
+  const renderingMode = watch("visualization.renderingMode");
+  const isFastMode = renderingMode === "fast";
   const sections = [
     { id: 0, title: "Trading & Market Mechanics", icon: "💰" },
     { id: 1, title: "Reward Function Settings", icon: "🎯" },
@@ -45034,7 +45270,21 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
-  const nextSection = () => {
+  const handleBackToWelcome = () => {
+    onBack();
+  };
+  const nextSection = async () => {
+    if (activeSection === 3) {
+      const experimentName = getValues("loggingCheckpointing.experimentName");
+      if (!experimentName || experimentName.trim() === "") {
+        await trigger("loggingCheckpointing.experimentName");
+        return;
+      }
+    }
+    if (activeSection === 6) {
+      handleSubmit(handleFormSubmit)();
+      return;
+    }
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1);
     }
@@ -45045,12 +45295,12 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
     }
   };
   const renderTradingMechanics = () => {
-    var _a, _b, _c, _d, _e, _f;
+    var _a, _b, _c, _d, _e;
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.section, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "💰 Trading & Market Mechanics" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Initial Balance ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The starting capital amount for your trading account. This is the initial balance before any trades are executed.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Initial Balance ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45061,9 +45311,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "100000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "1000",
+                  "aria-label": "Initial Balance"
                 }
               )
             }
@@ -45071,7 +45330,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.tradingMechanics) == null ? void 0 : _a.initialBalance) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.initialBalance.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Profit Target ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The daily profit target amount in dollars. The system will aim to achieve this profit target each trading day.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Profit Target ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45082,9 +45341,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "5000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "500",
+                  "aria-label": "Daily Profit Target"
                 }
               )
             }
@@ -45092,7 +45360,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.tradingMechanics) == null ? void 0 : _b.dailyProfitTarget) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.dailyProfitTarget.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Max Loss Limit ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The maximum daily loss limit in dollars. Trading will stop for the day if losses reach this amount.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Max Loss Limit ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45103,9 +45371,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "10000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "500",
+                  "aria-label": "Daily Max Loss Limit"
                 }
               )
             }
@@ -45113,7 +45390,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.tradingMechanics) == null ? void 0 : _c.dailyMaxLossLimit) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.dailyMaxLossLimit.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Commissions ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The commission cost per trade in dollars. This is deducted from each trade's profit or loss.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Commissions ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45125,9 +45402,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "2.5"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "2.5",
+                  "aria-label": "Commissions"
                 }
               )
             }
@@ -45135,22 +45421,38 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_d = errors.tradingMechanics) == null ? void 0 : _d.commissions) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.commissions.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Margin Required Per Contract ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The margin requirement per contract. Choose between Mini contracts ($1,000) or Micro contracts ($100).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Margin Required Per Contract ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "tradingMechanics.marginRequiredPerContract",
               control,
               rules: { required: "Margin required is required", min: { value: 100, message: "Minimum $100" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, onChange: (e) => field.onChange(parseFloat(e.target.value)), children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1e3, children: "Mini's = $1,000" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 100, children: "Micro's = $100" })
-              ] })
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "select",
+                {
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  "aria-label": "Margin Required Per Contract",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1e3, children: "1,000" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 100, children: "100" })
+                  ]
+                }
+              )
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Slippage ($)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The expected slippage cost per trade in dollars. This accounts for the difference between expected and actual execution prices.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Slippage ($)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45162,9 +45464,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.5"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.5",
+                  "aria-label": "Slippage"
                 }
               )
             }
@@ -45172,40 +45483,35 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_e = errors.tradingMechanics) == null ? void 0 : _e.slippage) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.slippage.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Contract Value ($/tick)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The dollar value per tick movement. Choose between Mini contracts ($5/tick) or Micro contracts ($0.50/tick).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Contract Value ($/tick)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "tradingMechanics.contractValue",
               control,
               rules: { required: "Contract value is required", min: { value: 0.01, message: "Minimum $0.01" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, onChange: (e) => field.onChange(parseFloat(e.target.value)), children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 5, children: "Mini's = $5/tick" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 0.5, children: "Micro's = $0.50/tick" })
-              ] })
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Equity Reserve ($)" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Controller,
-            {
-              name: "tradingMechanics.equityReserve",
-              control,
-              rules: { required: "Equity reserve is required", min: { value: 100, message: "Minimum $100" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "input",
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "select",
                 {
-                  type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "5000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  "aria-label": "Contract Value",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 5, children: "5" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 0.5, children: "0.5" })
+                  ]
                 }
               )
             }
-          ),
-          ((_f = errors.tradingMechanics) == null ? void 0 : _f.equityReserve) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.equityReserve.message })
+          )
         ] })
       ] })
     ] });
@@ -45228,9 +45534,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "2.0"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "2.0",
+                  "aria-label": "Profit Target Bonus"
                 }
               )
             }
@@ -45250,9 +45565,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "-1.5"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "-1.5",
+                  "aria-label": "Bankruptcy Penalty"
                 }
               )
             }
@@ -45272,9 +45596,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.1"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.1",
+                  "aria-label": "Consecutive Winning Trades Bonus"
                 }
               )
             }
@@ -45302,9 +45635,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.00001",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.0003"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.0003",
+                  "aria-label": "Learning Rate"
                 }
               )
             }
@@ -45323,9 +45665,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "2048"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "2048",
+                  "aria-label": "N Steps"
                 }
               )
             }
@@ -45344,9 +45695,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "64"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "64",
+                  "aria-label": "Batch Size"
                 }
               )
             }
@@ -45366,9 +45726,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.99"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.99",
+                  "aria-label": "Gamma"
                 }
               )
             }
@@ -45388,9 +45757,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.95"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.95",
+                  "aria-label": "GAE Lambda"
                 }
               )
             }
@@ -45410,9 +45788,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.2"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.2",
+                  "aria-label": "Clip Range"
                 }
               )
             }
@@ -45432,9 +45819,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.001",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.01"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.01",
+                  "aria-label": "Ent Coef"
                 }
               )
             }
@@ -45454,9 +45850,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.5"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "0.5",
+                  "aria-label": "VF Coef"
                 }
               )
             }
@@ -45472,21 +45877,38 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "📊 Logging & Checkpointing" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Experiment Name" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "A unique name for this experiment. This will be used to identify your training runs and save checkpoints.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Experiment Name" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "loggingCheckpointing.experimentName",
               control,
-              rules: { required: "Experiment name is required" },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "input",
-                {
-                  type: "text",
-                  ...field,
-                  placeholder: "futures_trading_experiment"
+              rules: {
+                required: "Experiment name is required",
+                validate: (value2) => {
+                  if (!value2 || value2.trim() === "") {
+                    return "Experiment name cannot be empty";
+                  }
+                  return true;
                 }
-              )
+              },
+              render: ({ field }) => {
+                var _a2;
+                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "input",
+                  {
+                    type: "text",
+                    value: field.value || "",
+                    onChange: field.onChange,
+                    onBlur: field.onBlur,
+                    name: field.name,
+                    ref: field.ref,
+                    placeholder: "Enter experiment name",
+                    className: ((_a2 = errors.loggingCheckpointing) == null ? void 0 : _a2.experimentName) ? styles$2.errorInput : "",
+                    "aria-label": "Experiment Name"
+                  }
+                );
+              }
             }
           ),
           ((_a = errors.loggingCheckpointing) == null ? void 0 : _a.experimentName) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.loggingCheckpointing.experimentName.message })
@@ -45503,9 +45925,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "10000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "10000",
+                  "aria-label": "Checkpoint Frequency"
                 }
               )
             }
@@ -45524,9 +45955,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "5000"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "5000",
+                  "aria-label": "Evaluation Frequency"
                 }
               )
             }
@@ -45542,7 +45982,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "⏰ Day Mastery Mechanism" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Minimum Episodes to Run" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The minimum number of training episodes that must be completed before the system can be considered for day mastery evaluation.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Minimum Episodes to Run" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45553,9 +45993,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "100"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "100",
+                  "aria-label": "Minimum Episodes"
                 }
               )
             }
@@ -45563,7 +46012,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.dayMastery) == null ? void 0 : _a.minEpisodesToRun) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.minEpisodesToRun.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Required Success Rate (%)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The percentage of episodes that must reach the profit target to achieve day mastery. Enter as a whole number (95 = 95%).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Required Success Rate (%)" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45574,10 +46023,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  step: "0.01",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "0.7"
+                  value: field.value ? Math.round(field.value * 100) : "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2) && value2 >= 0 && value2 <= 100) {
+                      field.onChange(value2 / 100);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "95",
+                  "aria-label": "Success Rate"
                 }
               )
             }
@@ -45585,7 +46042,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.dayMastery) == null ? void 0 : _b.requiredSuccessRate) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.requiredSuccessRate.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Performance Plateau Episodes" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of consecutive episodes without improvement before considering the system has reached a performance plateau.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Performance Plateau Episodes" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45596,9 +46053,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "50"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "50",
+                  "aria-label": "Plateau Episodes"
                 }
               )
             }
@@ -45606,7 +46072,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.dayMastery) == null ? void 0 : _c.performancePlateauEpisodes) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.performancePlateauEpisodes.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Start Time" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Trading day starts at 5:00 PM on the previous calendar day and ends at 4:00 PM on the next calendar day (e.g., Sunday 5:00 PM to Monday 4:00 PM = 1 trading day)", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Start Time" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45617,15 +46083,20 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "time",
-                  ...field,
-                  placeholder: "09:30"
+                  value: field.value || "",
+                  onChange: field.onChange,
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "17:00",
+                  "aria-label": "Start Time"
                 }
               )
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "End Time" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Trading day starts at 5:00 PM on the previous calendar day and ends at 4:00 PM on the next calendar day (e.g., Sunday 5:00 PM to Monday 4:00 PM = 1 trading day)", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "End Time" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45636,8 +46107,13 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "time",
-                  ...field,
-                  placeholder: "16:00"
+                  value: field.value && typeof field.value === "string" ? field.value.replace("+1", "") : "",
+                  onChange: (e) => field.onChange(e.target.value + "+1"),
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "16:00",
+                  "aria-label": "End Time"
                 }
               )
             }
@@ -45652,7 +46128,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "📈 Data & Indicator Calculation" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Observation History Length" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of historical data points to include in each observation. This determines how much historical context the AI has for decision making.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Observation History Length" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45663,9 +46139,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "100"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "1440",
+                  "aria-label": "Observation History Length"
                 }
               )
             }
@@ -45673,7 +46158,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.dataIndicators) == null ? void 0 : _a.observationHistoryLength) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.observationHistoryLength.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 1 Period" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for the first Exponential Moving Average (EMA). This creates a shorter-term trend indicator.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 1 Period" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45684,9 +46169,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "20"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "13",
+                  "aria-label": "EMA 1 Period"
                 }
               )
             }
@@ -45694,7 +46188,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.dataIndicators) == null ? void 0 : _b.ema1Period) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.ema1Period.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 2 Period" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for the second Exponential Moving Average (EMA). This creates a longer-term trend indicator.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 2 Period" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45705,9 +46199,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "50"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "55",
+                  "aria-label": "EMA 2 Period"
                 }
               )
             }
@@ -45715,7 +46218,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.dataIndicators) == null ? void 0 : _c.ema2Period) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.ema2Period.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Bollinger Bands Period" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for Bollinger Bands calculation. This creates volatility bands around the moving average.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Bollinger Bands Period" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45726,9 +46229,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "20"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "20",
+                  "aria-label": "Bollinger Bands Period"
                 }
               )
             }
@@ -45736,7 +46248,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_d = errors.dataIndicators) == null ? void 0 : _d.bollingerBandsPeriod) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.bollingerBandsPeriod.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "ATR Period" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for Average True Range (ATR) calculation. This measures market volatility.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "ATR Period" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45747,9 +46259,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "14"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "14",
+                  "aria-label": "ATR Period"
                 }
               )
             }
@@ -45757,7 +46278,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_e = errors.dataIndicators) == null ? void 0 : _e.atrPeriod) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.atrPeriod.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "MACD Period" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for MACD (Moving Average Convergence Divergence) calculation. This creates momentum indicators.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "MACD Period" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45768,9 +46289,18 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "26"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "26",
+                  "aria-label": "MACD Period"
                 }
               )
             }
@@ -45781,49 +46311,38 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
     ] });
   };
   const renderVisualization = () => {
-    var _a, _b, _c, _d;
+    var _a, _b, _c;
     return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.section, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "🎨 Visualization" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Rendering Mode" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Choose between Human (detailed visualization) or Fast (minimal visualization for faster training).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Rendering Mode" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "visualization.renderingMode",
               control,
               rules: { required: "Rendering mode is required" },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "human", children: "Human (Detailed)" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "fast", children: "Fast (Minimal)" })
-              ] })
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "select",
+                {
+                  value: field.value || "",
+                  onChange: field.onChange,
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  "aria-label": "Rendering Mode",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "human", children: "Human (Detailed)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "fast", children: "Fast (Minimal)" })
+                  ]
+                }
+              )
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Rate of Speed" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Controller,
-            {
-              name: "visualization.rateOfSpeed",
-              control,
-              rules: { required: "Rate of speed is required", min: { value: 0.1, message: "Minimum 0.1" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "input",
-                {
-                  type: "number",
-                  step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "1"
-                }
-              )
-            }
-          ),
-          ((_a = errors.visualization) == null ? void 0 : _a.rateOfSpeed) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.rateOfSpeed.message })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Fixed Window" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of data points to display in the visualization window. Higher values show more historical data.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Fixed Window" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45834,17 +46353,28 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  ...field,
-                  onChange: (e) => field.onChange(parseInt(e.target.value)),
-                  placeholder: "100"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseInt(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "100",
+                  disabled: isFastMode,
+                  className: isFastMode ? styles$2.disabled : "",
+                  "aria-label": "Fixed Window"
                 }
               )
             }
           ),
-          ((_b = errors.visualization) == null ? void 0 : _b.fixedWindow) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.fixedWindow.message })
+          ((_a = errors.visualization) == null ? void 0 : _a.fixedWindow) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.fixedWindow.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Candle Width Factor" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The width factor for candlestick visualization. Higher values make candles wider.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Candle Width Factor" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45856,36 +46386,56 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "1"
+                  value: field.value || "",
+                  onChange: (e) => {
+                    const value2 = parseFloat(e.target.value);
+                    if (!isNaN(value2)) {
+                      field.onChange(value2);
+                    }
+                  },
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  placeholder: "1",
+                  disabled: isFastMode,
+                  className: isFastMode ? styles$2.disabled : "",
+                  "aria-label": "Candle Width Factor"
                 }
               )
             }
           ),
-          ((_c = errors.visualization) == null ? void 0 : _c.candleWidthFactor) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.candleWidthFactor.message })
+          ((_b = errors.visualization) == null ? void 0 : _b.candleWidthFactor) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.candleWidthFactor.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Training Speed" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The speed at which candles are streamed into the environment. 1x = 1 row per minute, 2x = 2 rows per minute, etc.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Training Speed" }) }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "visualization.trainingSpeed",
               control,
-              rules: { required: "Training speed is required", min: { value: 0.1, message: "Minimum 0.1" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "input",
+              rules: { required: "Training speed is required" },
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "select",
                 {
-                  type: "number",
-                  step: "0.1",
-                  ...field,
-                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
-                  placeholder: "1"
+                  value: field.value || "",
+                  onChange: field.onChange,
+                  onBlur: field.onBlur,
+                  name: field.name,
+                  ref: field.ref,
+                  disabled: isFastMode,
+                  className: isFastMode ? styles$2.disabled : "",
+                  "aria-label": "Training Speed",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1, children: "1x (1 row per minute)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 2, children: "2x (2 rows per minute)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 10, children: "10x (10 rows per minute)" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 50, children: "50x (50 rows per minute)" })
+                  ]
                 }
               )
             }
           ),
-          ((_d = errors.visualization) == null ? void 0 : _d.trainingSpeed) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.trainingSpeed.message })
+          ((_c = errors.visualization) == null ? void 0 : _c.trainingSpeed) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.trainingSpeed.message })
         ] })
       ] })
     ] });
@@ -45927,7 +46477,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       },
       section2.id
     )) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit(handleFormSubmit), className: styles$2.form, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { role: "form", onSubmit: handleSubmit(handleFormSubmit), className: styles$2.form, children: [
       renderSection(),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formActions, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -45935,8 +46485,8 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           {
             type: "button",
             className: styles$2.backButton,
-            onClick: onBack,
-            children: "← Back to Data Preview"
+            onClick: handleBackToWelcome,
+            children: "← Back to Welcome"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.navigationButtons, children: [
@@ -45968,7 +46518,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           )
         ] })
       ] })
-    ] })
+    ] }, "configuration-form")
   ] });
 };
 const configurationSummary = "_configurationSummary_15hd9_1";
@@ -46011,10 +46561,10 @@ const ConfigurationSummary = ({
     }).format(value2);
   };
   const formatPercentage = (value2) => {
-    return `${(value2 * 100).toFixed(1)}%`;
+    return `${Math.round(value2 * 100)}%`;
   };
-  const formatTime = (time) => {
-    return time;
+  const formatTradingHours = (startTime, endTime) => {
+    return `${startTime} - ${endTime}`;
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.configurationSummary, "data-testid": "configuration-summary", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.header, children: [
@@ -46055,10 +46605,6 @@ const ConfigurationSummary = ({
               formatCurrency(configuration.tradingMechanics.contractValue),
               "/tick"
             ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Equity Reserve:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: formatCurrency(configuration.tradingMechanics.equityReserve) })
           ] })
         ] })
       ] }),
@@ -46165,11 +46711,7 @@ const ConfigurationSummary = ({
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Trading Hours:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$1.value, children: [
-              formatTime(configuration.dayMastery.startTime),
-              " - ",
-              formatTime(configuration.dayMastery.endTime)
-            ] })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: formatTradingHours(configuration.dayMastery.startTime, configuration.dayMastery.endTime) })
           ] })
         ] })
       ] }),
@@ -46208,10 +46750,6 @@ const ConfigurationSummary = ({
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Rendering Mode:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.renderingMode })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Rate of Speed:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.rateOfSpeed })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Fixed Window:" }),
@@ -46281,18 +46819,18 @@ const UploadAndSettingsPage = () => {
   const [errors, setErrors] = reactExports.useState([]);
   const [configuration, setConfiguration] = reactExports.useState(null);
   const [showSummary, setShowSummary] = reactExports.useState(false);
-  const [showConfigurationForm, setShowConfigurationForm] = reactExports.useState(false);
+  const [showConfigurationForm, setShowConfigurationForm] = reactExports.useState(true);
   const steps = [
     {
       id: 1,
-      label: "Upload Data",
-      isCompleted: !!(uploadedData.length > 0 && (validation == null ? void 0 : validation.isValid)),
+      label: "Configure System",
+      isCompleted: !!configuration,
       isActive: currentStep === 1
     },
     {
       id: 2,
-      label: "Configure System",
-      isCompleted: !!configuration,
+      label: "Upload Data",
+      isCompleted: !!(uploadedData.length > 0 && (validation == null ? void 0 : validation.isValid)),
       isActive: currentStep === 2
     }
   ];
@@ -46300,35 +46838,30 @@ const UploadAndSettingsPage = () => {
     setUploadedData(data);
     setValidation(fileValidation);
     setErrors([]);
-    setCurrentStep(2);
   };
   const handleValidationError = (validationErrors) => {
     setErrors(validationErrors);
     setUploadedData([]);
     setValidation(null);
   };
-  const handleContinueToConfig = () => {
-    setShowSummary(false);
-    setShowConfigurationForm(true);
-  };
   const handleConfigurationSubmit = (configData) => {
     setConfiguration(configData);
     setShowSummary(true);
   };
-  const handleBackToUpload = () => {
+  const handleBackToConfig = () => {
     setCurrentStep(1);
     setUploadedData([]);
     setValidation(null);
     setErrors([]);
     setConfiguration(null);
     setShowSummary(false);
-    setShowConfigurationForm(false);
+    setShowConfigurationForm(true);
   };
-  const handleBackToConfig = () => {
+  const handleBackToConfigForm = () => {
     setShowSummary(false);
     setShowConfigurationForm(true);
   };
-  const handleConfirmConfiguration = () => {
+  const handleFinalSubmit = () => {
     console.log("Configuration confirmed:", configuration);
     console.log("Uploaded data:", uploadedData);
     alert("Configuration saved successfully! Your futures trading system is ready to start training.");
@@ -46336,8 +46869,8 @@ const UploadAndSettingsPage = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles.container, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(StepIndicator, { steps }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: styles.main, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles.content, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles.title, children: "Upload & Settings Configuration" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles.subtitle, children: "Upload your futures trading data and configure the system parameters" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles.title, children: "Settings & Data Upload Configuration" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles.subtitle, children: "Configure the system parameters and upload your futures trading data" }),
       errors.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles.errorContainer, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Upload Errors" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: errors.map((error2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: styles.errorItem, children: error2 }, index2)) }),
@@ -46345,51 +46878,53 @@ const UploadAndSettingsPage = () => {
           "button",
           {
             className: styles.retryButton,
-            onClick: handleBackToUpload,
+            onClick: handleBackToConfig,
             children: "Try Again"
           }
         )
       ] }),
-      currentStep === 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      currentStep === 1 && !showSummary && showConfigurationForm && /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorBoundary, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ConfigurationForm,
+        {
+          onSubmit: handleConfigurationSubmit,
+          onBack: () => {
+          }
+        }
+      ) }),
+      currentStep === 1 && showSummary && configuration && /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorBoundary, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ConfigurationSummary,
+        {
+          configuration,
+          onEdit: handleBackToConfigForm,
+          onConfirm: () => setCurrentStep(2)
+        }
+      ) }),
+      currentStep === 2 && /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorBoundary, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         FileUpload,
         {
           onFileProcessed: handleFileProcessed,
-          onValidationError: handleValidationError
+          onValidationError: handleValidationError,
+          configuration
         }
-      ),
-      currentStep === 2 && validation && !showSummary && !showConfigurationForm && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+      ) }),
+      currentStep === 2 && validation && /* @__PURE__ */ jsxRuntimeExports.jsxs(ErrorBoundary, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           DataPreview,
           {
             data: uploadedData,
             validation,
-            onContinue: handleContinueToConfig
+            onContinue: handleFinalSubmit
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles.navigationButtons, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             className: styles.backButton,
-            onClick: handleBackToUpload,
-            children: "← Back to Upload"
+            onClick: handleBackToConfig,
+            children: "← Back to Configuration"
           }
         ) })
-      ] }),
-      currentStep === 2 && !showSummary && showConfigurationForm && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ConfigurationForm,
-        {
-          onSubmit: handleConfigurationSubmit,
-          onBack: handleBackToUpload
-        }
-      ),
-      currentStep === 2 && showSummary && configuration && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        ConfigurationSummary,
-        {
-          configuration,
-          onEdit: handleBackToConfig,
-          onConfirm: handleConfirmConfiguration
-        }
-      )
+      ] })
     ] }) })
   ] });
 };
@@ -46419,7 +46954,7 @@ const router = createBrowserRouter([
   }
 ]);
 function App() {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(RouterProvider, { router }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(ErrorBoundary, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(RouterProvider, { router }) }) });
 }
 const root = createRoot(document.getElementById("root"));
 root.render(

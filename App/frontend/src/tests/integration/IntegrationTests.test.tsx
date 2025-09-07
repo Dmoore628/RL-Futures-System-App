@@ -203,23 +203,23 @@ describe('Integration Tests', () => {
       
       // Step 1: Check that form loads with default values
       await waitFor(() => {
-        expect(screen.getByDisplayValue('100000')).toBeInTheDocument();
-        expect(screen.getAllByDisplayValue('5000')).toHaveLength(2); // Two inputs with value 5000
+        expect(screen.getByDisplayValue('1000')).toBeInTheDocument();
+        expect(screen.getAllByDisplayValue('500')).toHaveLength(2); // Two inputs with value 500
       });
       
       // Step 2: Update configuration values
-      const initialBalanceInput = screen.getByDisplayValue('100000');
+      const initialBalanceInput = screen.getByDisplayValue('1000');
       await userEvent.clear(initialBalanceInput);
-      await userEvent.type(initialBalanceInput, '150000');
+      await userEvent.type(initialBalanceInput, '1500');
       
-      const dailyProfitTargetInput = screen.getAllByDisplayValue('5000')[0]; // First 5000 input
+      const dailyProfitTargetInput = screen.getAllByDisplayValue('500')[0]; // First 500 input
       await userEvent.clear(dailyProfitTargetInput);
-      await userEvent.type(dailyProfitTargetInput, '7500');
+      await userEvent.type(dailyProfitTargetInput, '750');
       
       // Also update daily max loss limit
-      const dailyMaxLossInput = screen.getByDisplayValue('10000');
+      const dailyMaxLossInput = screen.getByDisplayValue('500');
       await userEvent.clear(dailyMaxLossInput);
-      await userEvent.type(dailyMaxLossInput, '12000');
+      await userEvent.type(dailyMaxLossInput, '1200');
       
       // Step 3: Submit configuration
       const nextButton = screen.getByRole('button', { name: /next/i });
@@ -240,9 +240,9 @@ describe('Integration Tests', () => {
       );
       
       // Enter invalid values
-      const initialBalanceInput = screen.getByDisplayValue('100000');
+      const initialBalanceInput = screen.getByDisplayValue('1000');
       await userEvent.clear(initialBalanceInput);
-      await userEvent.type(initialBalanceInput, '-1000');
+      await userEvent.type(initialBalanceInput, '-100');
       
       // The form should handle the invalid input appropriately
       await waitFor(() => {
@@ -251,15 +251,15 @@ describe('Integration Tests', () => {
         console.log('Current input value:', currentValue);
         
         // The form should either prevent the invalid value or show validation error
-        if (currentValue === '100000') {
+        if (currentValue === '1000') {
           // Form prevented the invalid value
-          expect(initialBalanceInput).toHaveValue(100000);
-        } else if (currentValue === '1000') {
-          // Form accepted a transformed value
           expect(initialBalanceInput).toHaveValue(1000);
+        } else if (currentValue === '100') {
+          // Form accepted a transformed value
+          expect(initialBalanceInput).toHaveValue(100);
         } else {
           // Form accepted the invalid value
-          expect(initialBalanceInput).toHaveValue(-1000);
+          expect(initialBalanceInput).toHaveValue(-100);
         }
       });
       
@@ -300,9 +300,9 @@ describe('Integration Tests', () => {
       );
       
       // Change a value
-      const initialBalanceInput = screen.getByDisplayValue('100000');
+      const initialBalanceInput = screen.getByDisplayValue('1000');
       await userEvent.clear(initialBalanceInput);
-      await userEvent.type(initialBalanceInput, '150000');
+      await userEvent.type(initialBalanceInput, '1500');
       
       // Navigate away and back
       const { container: navContainer } = renderWithProviders(<Navigation />);
@@ -319,7 +319,7 @@ describe('Integration Tests', () => {
       
       // State should be preserved (in a real app with state management)
       await waitFor(() => {
-        expect(screen.getByDisplayValue('150000')).toBeInTheDocument();
+        expect(screen.getByDisplayValue('1500')).toBeInTheDocument();
       });
     });
   });
@@ -466,14 +466,14 @@ describe('Integration Tests', () => {
       );
       
       // Test keyboard navigation
-      const firstInput = screen.getByDisplayValue('100000');
+      const firstInput = screen.getByDisplayValue('1000');
       firstInput.focus();
       
       // Test that first input has focus
       expect(firstInput).toHaveFocus();
       
       // Test that we can focus on the second input
-      const secondInput = screen.getAllByDisplayValue('5000')[0]; // First 5000 input
+      const secondInput = screen.getAllByDisplayValue('500')[0]; // First 500 input
       secondInput.focus();
       expect(secondInput).toHaveFocus();
       

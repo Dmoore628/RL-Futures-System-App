@@ -2,12 +2,13 @@ import React, { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import Papa from 'papaparse'
 import * as XLSX from 'xlsx'
-import { FileData, FileValidationResult } from '../../types'
+import { FileData, FileValidationResult, ConfigurationForm } from '../../types'
 import styles from './FileUpload.module.css'
 
 interface FileUploadProps {
   onFileProcessed: (data: FileData[], validation: FileValidationResult) => void
   onValidationError: (errors: string[]) => void
+  configuration?: ConfigurationForm | null
 }
 
 interface ParsedRow {
@@ -33,10 +34,90 @@ interface ParsedRow {
   closePrice?: string | number
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ onFileProcessed, onValidationError }) => {
+const FileUpload: React.FC<FileUploadProps> = ({ onFileProcessed, onValidationError, configuration }) => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [uploadProgress, setUploadProgress] = useState(0)
   const [currentFile, setCurrentFile] = useState<File | null>(null)
+
+  // Function to parse data into individual trading days using configuration
+  const parseTradingDays = (data: FileData[]): { days: FileData[][], insights: any } => {
+    if (!configuration?.dayMastery) {
+      return { days: [data], insights: { totalDays: 1, partialDaysDeleted: 0, totalRows: data.length } }
+    }
+
+    const { startTime, endTime } = configuration.dayMastery
+    const days: FileData[][] = []
+    let currentDay: FileData[] = []
+    let partialDaysDeleted = 0
+    let lastDate = ''
+
+    // Parse time strings to extract date and time
+    const parseDateTime = (timeStr: string) => {
+      const date = new Date(timeStr)
+      return {
+        date: date.toISOString().split('T')[0],
+        time: date.toTimeString().split(' ')[0].substring(0, 5)
+      }
+    }
+
+    // Check if time is within trading hours
+    const isWithinTradingHours = (time: string) => {
+      return time >= startTime && time <= endTime
+    }
+
+    data.forEach((row, index) => {
+      const { date, time } = parseDateTime(row.time)
+      
+      // If this is a new day
+      if (date !== lastDate) {
+        // Save previous day if it has data
+        if (currentDay.length > 0) {
+          // Check if previous day is complete (has data within trading hours)
+          const hasTradingHoursData = currentDay.some(row => {
+            const { time } = parseDateTime(row.time)
+            return isWithinTradingHours(time)
+          })
+          
+          if (hasTradingHoursData) {
+            days.push([...currentDay])
+          } else {
+            partialDaysDeleted++
+          }
+        }
+        
+        // Start new day
+        currentDay = []
+        lastDate = date
+      }
+      
+      // Add row to current day
+      currentDay.push(row)
+    })
+
+    // Handle the last day
+    if (currentDay.length > 0) {
+      const hasTradingHoursData = currentDay.some(row => {
+        const { time } = parseDateTime(row.time)
+        return isWithinTradingHours(time)
+      })
+      
+      if (hasTradingHoursData) {
+        days.push([...currentDay])
+      } else {
+        partialDaysDeleted++
+      }
+    }
+
+    return {
+      days,
+      insights: {
+        totalDays: days.length,
+        partialDaysDeleted,
+        totalRows: data.length,
+        tradingHours: `${startTime} - ${endTime}`
+      }
+    }
+  }
 
   const validateFileData = (data: ParsedRow[]): FileValidationResult => {
     const errors: string[] = []
@@ -188,11 +269,20 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileProcessed, onValidationEr
       clearInterval(progressInterval)
       setUploadProgress(100)
 
+      // Parse data into trading days using configuration
+      const { days, insights } = parseTradingDays(data)
+      
       // Validate the data
       const validation = validateFileData(data as unknown as ParsedRow[])
       
+      // Add insights to validation result
+      const validationWithInsights = {
+        ...validation,
+        insights
+      }
+      
       if (validation.isValid) {
-        onFileProcessed(data, validation)
+        onFileProcessed(data, validationWithInsights)
       } else {
         onValidationError(validation.errors)
       }

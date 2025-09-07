@@ -60,14 +60,13 @@ const mockValidation: FileValidationResult = {
 
 const mockConfiguration: ConfigurationFormType = {
   tradingMechanics: {
-    initialBalance: 100000,
-    dailyProfitTarget: 5000,
-    dailyMaxLossLimit: 10000,
+    initialBalance: 1000,
+    dailyProfitTarget: 500,
+    dailyMaxLossLimit: 500,
     commissions: 2.5,
     marginRequiredPerContract: 1000,
     slippage: 0.5,
-    contractValue: 5,
-    equityReserve: 5000
+    contractValue: 5
   },
   rewardFunction: {
     profitTargetBonus: 2.0,
@@ -85,28 +84,27 @@ const mockConfiguration: ConfigurationFormType = {
     vfCoef: 0.5
   },
   loggingCheckpointing: {
-    experimentName: 'test_experiment',
+    experimentName: '',
     checkpointFrequency: 10000,
     evaluationFrequency: 5000
   },
   dayMastery: {
     minEpisodesToRun: 100,
-    requiredSuccessRate: 0.7,
+    requiredSuccessRate: 0.95,
     performancePlateauEpisodes: 50,
-    startTime: '09:30',
-    endTime: '16:00'
+    startTime: '17:00',
+    endTime: '16:00+1'
   },
   dataIndicators: {
-    observationHistoryLength: 100,
-    ema1Period: 20,
-    ema2Period: 50,
+    observationHistoryLength: 1440,
+    ema1Period: 13,
+    ema2Period: 55,
     bollingerBandsPeriod: 20,
     atrPeriod: 14,
     macdPeriod: 26
   },
   visualization: {
     renderingMode: 'human',
-    rateOfSpeed: 1,
     fixedWindow: 100,
     candleWidthFactor: 1,
     trainingSpeed: 1
