@@ -1,6 +1,7 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
+import ErrorBoundary from './components/ErrorBoundary'
 import Navigation from './components/Navigation'
 import WelcomePage from './pages/WelcomePage'
 import UploadAndSettingsPage from './pages/UploadAndSettingsPage'
@@ -37,9 +38,11 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <ThemeProvider>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
 

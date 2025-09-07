@@ -5,6 +5,7 @@ import FileUpload from '../components/FileUpload'
 import DataPreview from '../components/DataPreview'
 import ConfigurationForm from '../components/ConfigurationForm'
 import ConfigurationSummary from '../components/ConfigurationSummary'
+import ErrorBoundary from '../components/ErrorBoundary'
 import styles from './UploadAndSettingsPage.module.css'
 
 const UploadAndSettingsPage: React.FC = () => {
@@ -14,19 +15,19 @@ const UploadAndSettingsPage: React.FC = () => {
   const [errors, setErrors] = useState<string[]>([])
   const [configuration, setConfiguration] = useState<ConfigurationFormType | null>(null)
   const [showSummary, setShowSummary] = useState(false)
-  const [showConfigurationForm, setShowConfigurationForm] = useState(false)
+  const [showConfigurationForm, setShowConfigurationForm] = useState(true) // Start with configuration form
 
   const steps: Step[] = [
     {
       id: 1,
-      label: 'Upload Data',
-      isCompleted: !!(uploadedData.length > 0 && validation?.isValid),
+      label: 'Configure System',
+      isCompleted: !!configuration,
       isActive: currentStep === 1
     },
     {
       id: 2,
-      label: 'Configure System',
-      isCompleted: !!configuration,
+      label: 'Upload Data',
+      isCompleted: !!(uploadedData.length > 0 && validation?.isValid),
       isActive: currentStep === 2
     }
   ]
@@ -35,7 +36,7 @@ const UploadAndSettingsPage: React.FC = () => {
     setUploadedData(data)
     setValidation(fileValidation)
     setErrors([])
-    setCurrentStep(2)
+    // Stay on step 2 (Upload Data) - this is the final step
   }
 
   const handleValidationError = (validationErrors: string[]) => {
@@ -44,34 +45,35 @@ const UploadAndSettingsPage: React.FC = () => {
     setValidation(null)
   }
 
-  const handleContinueToConfig = () => {
-    // This will show the configuration form
-    setShowSummary(false)
-    setShowConfigurationForm(true)
-  }
 
   const handleConfigurationSubmit = (configData: ConfigurationFormType) => {
     setConfiguration(configData)
     setShowSummary(true)
+    // Stay on step 1 to show summary first
   }
 
-  const handleBackToUpload = () => {
+  const handleBackToConfig = () => {
     setCurrentStep(1)
     setUploadedData([])
     setValidation(null)
     setErrors([])
     setConfiguration(null)
     setShowSummary(false)
-    setShowConfigurationForm(false)
+    setShowConfigurationForm(true)
   }
 
-  const handleBackToConfig = () => {
+  const handleBackToConfigForm = () => {
     setShowSummary(false)
     setShowConfigurationForm(true)
   }
 
   const handleConfirmConfiguration = () => {
-    // Here you would typically send the configuration to the backend
+    // Move to Upload Data step
+    setCurrentStep(2)
+  }
+
+  const handleFinalSubmit = () => {
+    // Here you would typically send the configuration and data to the backend
     console.log('Configuration confirmed:', configuration)
     console.log('Uploaded data:', uploadedData)
     
@@ -85,9 +87,9 @@ const UploadAndSettingsPage: React.FC = () => {
       
       <main className={styles.main}>
         <div className={styles.content}>
-          <h1 className={styles.title}>Upload & Settings Configuration</h1>
+          <h1 className={styles.title}>Settings & Data Upload Configuration</h1>
           <p className={styles.subtitle}>
-            Upload your futures trading data and configure the system parameters
+            Configure the system parameters and upload your futures trading data
           </p>
           
           {errors.length > 0 && (
@@ -102,52 +104,59 @@ const UploadAndSettingsPage: React.FC = () => {
               </ul>
               <button 
                 className={styles.retryButton}
-                onClick={handleBackToUpload}
+                onClick={handleBackToConfig}
               >
                 Try Again
               </button>
             </div>
           )}
 
-          {currentStep === 1 && (
-            <FileUpload
-              onFileProcessed={handleFileProcessed}
-              onValidationError={handleValidationError}
-            />
+          {currentStep === 1 && !showSummary && showConfigurationForm && (
+            <ErrorBoundary>
+              <ConfigurationForm
+                onSubmit={handleConfigurationSubmit}
+                onBack={() => {}} // No back button on first step
+              />
+            </ErrorBoundary>
           )}
 
-          {currentStep === 2 && validation && !showSummary && !showConfigurationForm && (
-            <>
+          {currentStep === 1 && showSummary && configuration && (
+            <ErrorBoundary>
+              <ConfigurationSummary
+                configuration={configuration}
+                onEdit={handleBackToConfigForm}
+                onConfirm={() => setCurrentStep(2)} // Move to Upload Data step
+              />
+            </ErrorBoundary>
+          )}
+
+          {currentStep === 2 && (
+            <ErrorBoundary>
+              <FileUpload
+                onFileProcessed={handleFileProcessed}
+                onValidationError={handleValidationError}
+                configuration={configuration}
+              />
+            </ErrorBoundary>
+          )}
+
+          {currentStep === 2 && validation && (
+            <ErrorBoundary>
               <DataPreview
                 data={uploadedData}
                 validation={validation}
-                onContinue={handleContinueToConfig}
+                onContinue={handleFinalSubmit}
               />
               
               <div className={styles.navigationButtons}>
                 <button 
                   className={styles.backButton}
-                  onClick={handleBackToUpload}
+                  onClick={handleBackToConfig}
                 >
-                  ← Back to Upload
+                  ← Back to Configuration
                 </button>
               </div>
-            </>
-          )}
-
-          {currentStep === 2 && !showSummary && showConfigurationForm && (
-            <ConfigurationForm
-              onSubmit={handleConfigurationSubmit}
-              onBack={handleBackToUpload}
-            />
-          )}
-
-          {currentStep === 2 && showSummary && configuration && (
-            <ConfigurationSummary
-              configuration={configuration}
-              onEdit={handleBackToConfig}
-              onConfirm={handleConfirmConfiguration}
-            />
+            </ErrorBoundary>
           )}
         </div>
       </main>

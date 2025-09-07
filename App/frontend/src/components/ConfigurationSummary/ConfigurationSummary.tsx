@@ -23,11 +23,34 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
   }
 
   const formatPercentage = (value: number): string => {
-    return `${(value * 100).toFixed(1)}%`
+    return `${Math.round(value * 100)}%`
   }
 
   const formatTime = (time: string): string => {
     return time
+  }
+
+  const formatTradingHours = (startTime: string, endTime: string): string => {
+    // Convert times to comparable format (minutes since midnight)
+    const timeToMinutes = (time: string) => {
+      const [hours, minutes] = time.split(':').map(Number)
+      return hours * 60 + minutes
+    }
+    
+    const startMinutes = timeToMinutes(startTime)
+    const endMinutes = timeToMinutes(endTime)
+    
+    // If end time is before start time, add +1 notation
+    const displayEndTime = endMinutes < startMinutes ? `${endTime}+1` : endTime
+    return `${startTime} - ${displayEndTime}`
+  }
+
+  const formatMarginRequired = (value: number): string => {
+    return value === 1000 ? '$1,000 (Mini\'s)' : '$100 (Micro\'s)'
+  }
+
+  const formatContractValue = (value: number): string => {
+    return value === 5 ? '$5/Tick (Mini\'s)' : '$0.5/Tick (Micro\'s)'
   }
 
   return (
@@ -60,7 +83,7 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.label}>Margin Required Per Contract:</span>
-              <span className={styles.value}>{formatCurrency(configuration.tradingMechanics.marginRequiredPerContract)}</span>
+              <span className={styles.value}>{formatMarginRequired(configuration.tradingMechanics.marginRequiredPerContract)}</span>
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.label}>Slippage:</span>
@@ -68,11 +91,7 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.label}>Contract Value:</span>
-              <span className={styles.value}>{formatCurrency(configuration.tradingMechanics.contractValue)}/tick</span>
-            </div>
-            <div className={styles.summaryItem}>
-              <span className={styles.label}>Equity Reserve:</span>
-              <span className={styles.value}>{formatCurrency(configuration.tradingMechanics.equityReserve)}</span>
+              <span className={styles.value}>{formatContractValue(configuration.tradingMechanics.contractValue)}</span>
             </div>
           </div>
         </div>
@@ -172,7 +191,7 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
             </div>
             <div className={styles.summaryItem}>
               <span className={styles.label}>Trading Hours:</span>
-              <span className={styles.value}>{formatTime(configuration.dayMastery.startTime)} - {formatTime(configuration.dayMastery.endTime)}</span>
+              <span className={styles.value}>{formatTradingHours(configuration.dayMastery.startTime, configuration.dayMastery.endTime)}</span>
             </div>
           </div>
         </div>
@@ -216,22 +235,28 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
               <span className={styles.label}>Rendering Mode:</span>
               <span className={styles.value}>{configuration.visualization.renderingMode}</span>
             </div>
-            <div className={styles.summaryItem}>
-              <span className={styles.label}>Rate of Speed:</span>
-              <span className={styles.value}>{configuration.visualization.rateOfSpeed}</span>
-            </div>
-            <div className={styles.summaryItem}>
-              <span className={styles.label}>Fixed Window:</span>
-              <span className={styles.value}>{configuration.visualization.fixedWindow}</span>
-            </div>
-            <div className={styles.summaryItem}>
-              <span className={styles.label}>Candle Width Factor:</span>
-              <span className={styles.value}>{configuration.visualization.candleWidthFactor}</span>
-            </div>
-            <div className={styles.summaryItem}>
-              <span className={styles.label}>Training Speed:</span>
-              <span className={styles.value}>{configuration.visualization.trainingSpeed}</span>
-            </div>
+            {configuration.visualization.renderingMode === 'human' && (
+              <>
+                <div className={styles.summaryItem}>
+                  <span className={styles.label}>Fixed Window:</span>
+                  <span className={styles.value}>{configuration.visualization.fixedWindow}</span>
+                </div>
+                <div className={styles.summaryItem}>
+                  <span className={styles.label}>Candle Width Factor:</span>
+                  <span className={styles.value}>{configuration.visualization.candleWidthFactor}</span>
+                </div>
+                <div className={styles.summaryItem}>
+                  <span className={styles.label}>Training Speed:</span>
+                  <span className={styles.value}>{configuration.visualization.trainingSpeed}</span>
+                </div>
+              </>
+            )}
+            {configuration.visualization.renderingMode === 'fast' && (
+              <div className={styles.summaryItem}>
+                <span className={styles.label}>Note:</span>
+                <span className={styles.value}>Fast mode - detailed visualization settings disabled</span>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -250,7 +275,7 @@ const ConfigurationSummary: React.FC<ConfigurationSummaryProps> = ({
           className={styles.confirmButton}
           onClick={onConfirm}
         >
-          Confirm & Start Training
+          Confirm & Proceed to Data Upload
         </button>
       </div>
     </div>

@@ -170,14 +170,38 @@ def config_endpoint():
     if request.method == 'GET':
         return jsonify({
             'trading_params': {
-                'risk_tolerance': 'medium',
-                'max_position_size': 1000,
-                'stop_loss_percentage': 2.0
+                'initial_balance': 1000,
+                'daily_profit_target': 500,
+                'daily_max_loss_limit': 500,
+                'commissions': 2.5,
+                'margin_required_per_contract': 1000,
+                'slippage': 0.5,
+                'contract_value': 5
             },
             'ppo_settings': {
                 'learning_rate': 0.0003,
+                'n_steps': 2048,
                 'batch_size': 64,
-                'epochs': 10
+                'gamma': 0.99,
+                'gae_lambda': 0.95,
+                'clip_range': 0.2,
+                'ent_coef': 0.01,
+                'vf_coef': 0.5
+            },
+            'day_mastery': {
+                'min_episodes_to_run': 100,
+                'required_success_rate': 0.95,
+                'performance_plateau_episodes': 50,
+                'start_time': '17:00',
+                'end_time': '16:00+1'
+            },
+            'data_indicators': {
+                'observation_history_length': 1440,
+                'ema1_period': 13,
+                'ema2_period': 55,
+                'bollinger_bands_period': 20,
+                'atr_period': 14,
+                'macd_period': 26
             }
         }), 200
     

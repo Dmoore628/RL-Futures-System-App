@@ -25,6 +25,12 @@ export interface FileValidationResult {
   warnings: string[]
   rowCount: number
   preview: FileData[]
+  insights?: {
+    totalDays: number
+    partialDaysDeleted: number
+    totalRows: number
+    tradingHours: string
+  }
 }
 
 // Configuration Types
@@ -36,7 +42,6 @@ export interface TradingMechanics {
   marginRequiredPerContract: number
   slippage: number
   contractValue: number
-  equityReserve: number
 }
 
 export interface RewardFunctionSettings {
@@ -81,7 +86,6 @@ export interface DataIndicatorCalculations {
 
 export interface Visualization {
   renderingMode: 'human' | 'fast'
-  rateOfSpeed: number
   fixedWindow: number
   candleWidthFactor: number
   trainingSpeed: number
