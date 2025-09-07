@@ -1,8 +1,13 @@
 .fileUpload {
-  background: var(--bg-primary);
-  border-radius: 12px;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: var(--shadow-light);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .header {
@@ -13,51 +18,54 @@
 .header h2 {
   font-size: 1.75rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin: 0;
   font-size: 1rem;
+  opacity: 0.9;
 }
 
 .dropzone {
-  border: 2px dashed var(--border-color);
-  border-radius: 8px;
+  border: 2px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 12px;
   padding: 3rem 2rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: var(--bg-secondary);
+  background: rgba(30, 41, 59, 0.6);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 }
 
 .dropzone:hover {
-  border-color: var(--accent-primary);
-  background: var(--bg-primary);
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(30, 41, 59, 0.8);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-medium);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
 }
 
 .dragActive {
-  border-color: var(--accent-primary);
-  background: var(--bg-primary);
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
   transform: scale(1.02);
-  box-shadow: var(--shadow-medium);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
 }
 
 .dragReject {
-  border-color: var(--error-color);
-  background: var(--error-bg);
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
 }
 
 .processing {
   cursor: not-allowed;
-  border-color: var(--accent-primary);
-  background: var(--bg-primary);
+  border-color: #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
 }
 
 .dropContent {
@@ -71,28 +79,30 @@
   font-size: 3rem;
   opacity: 0.7;
   transition: opacity 0.3s ease;
+  color: #3b82f6;
 }
 
 .dropzone:hover .uploadIcon {
   opacity: 1;
+  color: #60a5fa;
 }
 
 .dropText {
   font-size: 1.125rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0;
 }
 
 .fileTypes {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin: 0;
 }
 
 .fileSize {
   font-size: 0.875rem;
-  color: var(--text-muted);
+  color: #94a3b8;
   margin: 0;
 }
 

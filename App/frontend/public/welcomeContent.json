@@ -1,0 +1,42 @@
+{
+  "brand": "Moore Tech",
+  "title": "Welcome to the Reinforcement Learning System for Futures Trading",
+  "subtitle": "An Advanced System that allows PPO models to train for profitable futures trading",
+  "sections": [
+    {
+      "heading": "What This Application Does",
+      "paragraph": "This application houses and orchestrates a reinforcement learning environment that trains a PPO model to reach a configurable profit target during individual trading days, and transfer learning between days and then finally deploy live via an API to a futures broker."
+    },
+    {
+      "heading": "How It Works",
+      "paragraphs": [
+        "1. **Configure Settings**: Set your trading parameters, profit targets, and risk management rules",
+        "2. **Upload Data**: Import CSV or Excel files with historical price data for NQ E-mini Futures",
+        "3. **Start Training**: Begin training in human or fast rendering mode",
+        "4. **Monitor Progress**: Watch the model train completely in the high-fidelity simulator",
+        "5. **Live Trading**: Navigate to the live trading connector to deploy your trained model"
+      ]
+    },
+    {
+      "heading": "Key Features",
+      "paragraphs": [
+        "• **PPO Algorithm**: State-of-the-art reinforcement learning for trading strategy optimization",
+        "• **High-Fidelity Simulator**: Realistic market conditions for robust model training",
+        "• **Transfer Learning**: Knowledge retention between trading days for continuous improvement",
+        "• **Live API Integration**: Seamless deployment to futures brokers for real-time trading",
+        "• **Configurable Targets**: Customizable profit targets and risk management parameters"
+      ]
+    },
+    {
+      "heading": "Getting Started",
+      "paragraphs": [
+        "1. Review the system requirements and ensure your environment is properly configured",
+        "2. Navigate to the Settings page to configure your trading parameters",
+        "3. Upload your historical futures data in the Data Management section",
+        "4. Start the training process and monitor model performance",
+        "5. Once training is complete, connect to live trading for real-world deployment"
+      ]
+    }
+  ]
+}
+

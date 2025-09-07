@@ -1,7 +1,20 @@
 .stepIndicator {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-color);
+  background: rgba(15, 23, 42, 0.8);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
   padding: 1.5rem 0;
+  backdrop-filter: blur(20px);
+  position: relative;
+}
+
+.stepIndicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
+  pointer-events: none;
 }
 
 .container {
@@ -11,6 +24,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
 }
 
 .stepWrapper {
@@ -30,48 +45,59 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--bg-primary);
-  border: 2px solid var(--border-color);
+  background: rgba(51, 65, 85, 0.8);
+  border: 2px solid rgba(59, 130, 246, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 600;
   font-size: 1rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .stepNumber.active {
-  border-color: var(--accent-primary);
-  background: var(--accent-primary);
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
-  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2), 0 4px 12px rgba(59, 130, 246, 0.3);
+  transform: scale(1.1);
 }
 
 .stepNumber.completed {
-  border-color: var(--success-color);
-  background: var(--success-color);
+  border-color: #10b981;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2), 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .stepLabel {
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   text-align: center;
   line-height: 1.2;
+  transition: color 0.3s ease;
+}
+
+.step.active .stepLabel {
+  color: #ffffff;
+  font-weight: 600;
 }
 
 .connector {
   width: 80px;
   height: 2px;
-  background: var(--border-color);
+  background: rgba(59, 130, 246, 0.2);
   margin: 0 1rem;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 1px;
 }
 
 .connector.completed {
-  background: var(--success-color);
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
 }
 
 /* Responsive Design */

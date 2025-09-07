@@ -1,0 +1,430 @@
+/* ScrollTriggeredAnimation Component Styles */
+/* Advanced scroll-triggered animations with sophisticated timing and effects */
+
+/* ===== BASE ANIMATION CONTAINER ===== */
+
+.scrollTriggeredAnimation {
+  position: relative;
+  width: 100%;
+  transition: all var(--duration-300) var(--ease-out);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* ===== ANIMATION STATES ===== */
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-500) var(--ease-out);
+}
+
+.entering {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animated {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+/* ===== ANIMATION TYPES ===== */
+
+.animation-fade {
+  opacity: 0;
+  transition: opacity var(--duration-500) var(--ease-out);
+}
+
+.animation-slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-slide-down {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-slide-left {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-slide-right {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-scale {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all var(--duration-500) var(--ease-out);
+}
+
+.animation-rotate {
+  opacity: 0;
+  transform: rotate(-10deg) scale(0.9);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-flip {
+  opacity: 0;
+  transform: rotateY(-90deg);
+  transition: all var(--duration-800) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+/* ===== STAGGERED ANIMATIONS ===== */
+
+.staggerItem {
+  transition: all var(--duration-500) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.staggerHidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.staggerVisible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--stagger-delay);
+}
+
+/* ===== ANIMATION GROUP ===== */
+
+.animationGroup {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.group-vertical {
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.group-horizontal {
+  flex-direction: row;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.groupItem {
+  transition: all var(--duration-500) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.groupItemHidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.groupItemVisible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: var(--item-delay);
+}
+
+/* ===== PARALLAX ELEMENT ===== */
+
+.parallaxElement {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* ===== ANIMATION VARIATIONS ===== */
+
+/* Bounce effect */
+.animation-bounce {
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: all var(--duration-600) var(--ease-bounce);
+}
+
+.animation-bounce.animated {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Elastic effect */
+.animation-elastic {
+  opacity: 0;
+  transform: translateY(50px) scale(0.8);
+  transition: all var(--duration-800) var(--ease-spring);
+}
+
+.animation-elastic.animated {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Slide with rotation */
+.animation-slide-rotate {
+  opacity: 0;
+  transform: translateX(50px) rotate(5deg);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-slide-rotate.animated {
+  opacity: 1;
+  transform: translateX(0) rotate(0deg);
+}
+
+/* Scale with fade */
+.animation-scale-fade {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--duration-600) var(--ease-out);
+}
+
+.animation-scale-fade.animated {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ===== TIMING VARIATIONS ===== */
+
+.animation-fast {
+  transition-duration: var(--duration-300);
+}
+
+.animation-normal {
+  transition-duration: var(--duration-500);
+}
+
+.animation-slow {
+  transition-duration: var(--duration-1000);
+}
+
+.animation-slower {
+  transition-duration: var(--duration-1500);
+}
+
+/* ===== EASING VARIATIONS ===== */
+
+.animation-ease-in {
+  transition-timing-function: var(--ease-in);
+}
+
+.animation-ease-out {
+  transition-timing-function: var(--ease-out);
+}
+
+.animation-ease-in-out {
+  transition-timing-function: var(--ease-in-out);
+}
+
+.animation-ease-spring {
+  transition-timing-function: var(--ease-spring);
+}
+
+.animation-ease-bounce {
+  transition-timing-function: var(--ease-bounce);
+}
+
+/* ===== DIRECTIONAL VARIATIONS ===== */
+
+.animation-from-top {
+  transform: translateY(-50px);
+}
+
+.animation-from-bottom {
+  transform: translateY(50px);
+}
+
+.animation-from-left {
+  transform: translateX(-50px);
+}
+
+.animation-from-right {
+  transform: translateX(50px);
+}
+
+.animation-from-center {
+  transform: scale(0.8);
+}
+
+/* ===== COMPLEX ANIMATIONS ===== */
+
+.animation-slide-scale {
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition: all var(--duration-700) var(--ease-out);
+}
+
+.animation-slide-scale.animated {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.animation-rotate-scale {
+  opacity: 0;
+  transform: rotate(-5deg) scale(0.8);
+  transition: all var(--duration-800) var(--ease-out);
+}
+
+.animation-rotate-scale.animated {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.animation-flip-scale {
+  opacity: 0;
+  transform: rotateY(-90deg) scale(0.8);
+  transition: all var(--duration-900) var(--ease-out);
+  transform-style: preserve-3d;
+}
+
+.animation-flip-scale.animated {
+  opacity: 1;
+  transform: rotateY(0deg) scale(1);
+}
+
+/* ===== RESPONSIVE ANIMATIONS ===== */
+
+@media (max-width: 1024px) {
+  .animation-slide-up,
+  .animation-slide-down {
+    transform: translateY(30px);
+  }
+  
+  .animation-slide-left,
+  .animation-slide-right {
+    transform: translateX(30px);
+  }
+  
+  .animation-scale {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 768px) {
+  .animation-slide-up,
+  .animation-slide-down {
+    transform: translateY(20px);
+  }
+  
+  .animation-slide-left,
+  .animation-slide-right {
+    transform: translateX(20px);
+  }
+  
+  .animation-scale {
+    transform: scale(0.95);
+  }
+  
+  .group-horizontal {
+    flex-direction: column;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollTriggeredAnimation,
+  .staggerItem,
+  .groupItem,
+  .parallaxElement {
+    transition: none;
+    animation: none;
+  }
+  
+  .hidden,
+  .entering,
+  .staggerHidden,
+  .groupItemHidden {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .animated,
+  .staggerVisible,
+  .groupItemVisible {
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Disable all animation classes */
+  .animation-fade,
+  .animation-slide-up,
+  .animation-slide-down,
+  .animation-slide-left,
+  .animation-slide-right,
+  .animation-scale,
+  .animation-rotate,
+  .animation-flip,
+  .animation-bounce,
+  .animation-elastic,
+  .animation-slide-rotate,
+  .animation-scale-fade,
+  .animation-slide-scale,
+  .animation-rotate-scale,
+  .animation-flip-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.scrollTriggeredAnimation {
+  contain: layout style paint;
+}
+
+.staggerItem,
+.groupItem {
+  contain: layout style paint;
+}
+
+.parallaxElement {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* ===== DEBUG MODE ===== */
+
+[data-debug="true"] .scrollTriggeredAnimation {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 2px;
+}
+
+[data-debug="true"] .scrollTriggeredAnimation[data-visible="true"] {
+  outline-color: var(--color-accent-green);
+}
+
+[data-debug="true"] .scrollTriggeredAnimation[data-animated="true"] {
+  outline-color: var(--color-primary-blue);
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .scrollTriggeredAnimation,
+  .staggerItem,
+  .groupItem,
+  .parallaxElement {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
+  }
+  
+  .hidden,
+  .entering,
+  .staggerHidden,
+  .groupItemHidden {
+    opacity: 1;
+    transform: none;
+  }
+}

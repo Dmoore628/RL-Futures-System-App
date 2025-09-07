@@ -20,8 +20,8 @@ export const useContent = () => {
   useEffect(() => {
     const loadContent = async () => {
       try {
-        // Use fetch from the content directory (not public)
-        const response = await fetch('/content/welcomeContent.json')
+        // Use fetch from the public directory
+        const response = await fetch('/welcomeContent.json')
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`)
         }

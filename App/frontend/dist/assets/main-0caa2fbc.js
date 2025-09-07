@@ -11369,7 +11369,7 @@ const ThemeProvider = ({ children }) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(ThemeContext.Provider, { value: { theme, toggleTheme }, children });
 };
 const errorBoundary = "_errorBoundary_1tsfb_1";
-const errorContainer$1 = "_errorContainer_1tsfb_21";
+const errorContainer$2 = "_errorContainer_1tsfb_21";
 const errorIcon = "_errorIcon_1tsfb_41";
 const bounce = "_bounce_1tsfb_1";
 const errorTitle = "_errorTitle_1tsfb_77";
@@ -11379,9 +11379,9 @@ const errorStack = "_errorStack_1tsfb_139";
 const errorActions = "_errorActions_1tsfb_165";
 const retryButton$1 = "_retryButton_1tsfb_179";
 const refreshButton = "_refreshButton_1tsfb_181";
-const styles$a = {
+const styles$9 = {
   errorBoundary,
-  errorContainer: errorContainer$1,
+  errorContainer: errorContainer$2,
   errorIcon,
   bounce,
   errorTitle,
@@ -11415,16 +11415,16 @@ class ErrorBoundary extends reactExports.Component {
       if (this.props.fallback) {
         return this.props.fallback;
       }
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$a.errorBoundary, "data-testid": "error-boundary", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$a.errorContainer, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$a.errorIcon, children: "⚠️" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$a.errorTitle, children: "Something went wrong" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$a.errorMessage, children: "We're sorry, but something unexpected happened. Please try refreshing the page or contact support if the problem persists." }),
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$9.errorBoundary, "data-testid": "error-boundary", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.errorContainer, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$9.errorIcon, children: "⚠️" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$9.errorTitle, children: "Something went wrong" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$9.errorMessage, children: "We're sorry, but something unexpected happened. Please try refreshing the page or contact support if the problem persists." }),
         false,
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$a.errorActions, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.errorActions, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
-              className: styles$a.retryButton,
+              className: styles$9.retryButton,
               onClick: this.handleRetry,
               children: "Try Again"
             }
@@ -11432,7 +11432,7 @@ class ErrorBoundary extends reactExports.Component {
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
-              className: styles$a.refreshButton,
+              className: styles$9.refreshButton,
               onClick: () => window.location.reload(),
               children: "Refresh Page"
             }
@@ -11443,32 +11443,32 @@ class ErrorBoundary extends reactExports.Component {
     return this.props.children;
   }
 }
-const navigation = "_navigation_1lcqo_1";
-const container$3 = "_container_1lcqo_19";
-const brand$1 = "_brand_1lcqo_39";
-const rocket = "_rocket_1lcqo_57";
-const float = "_float_1lcqo_1";
-const companyName = "_companyName_1lcqo_67";
-const navLinks = "_navLinks_1lcqo_91";
-const navLink = "_navLink_1lcqo_91";
-const active$2 = "_active_1lcqo_131";
-const systemStatus = "_systemStatus_1lcqo_167";
-const statusIndicator = "_statusIndicator_1lcqo_183";
-const pulse = "_pulse_1lcqo_1";
-const statusText = "_statusText_1lcqo_199";
-const styles$9 = {
+const navigation = "_navigation_njfz1_1";
+const container$2 = "_container_njfz1_11";
+const brand = "_brand_njfz1_21";
+const rocket = "_rocket_njfz1_30";
+const float$1 = "_float_njfz1_1";
+const companyName = "_companyName_njfz1_35";
+const navLinks = "_navLinks_njfz1_47";
+const navLink = "_navLink_njfz1_47";
+const active$2 = "_active_njfz1_70";
+const systemStatus = "_systemStatus_njfz1_91";
+const statusIndicator = "_statusIndicator_njfz1_103";
+const pulse$1 = "_pulse_njfz1_1";
+const statusText = "_statusText_njfz1_112";
+const styles$8 = {
   navigation,
-  container: container$3,
-  brand: brand$1,
+  container: container$2,
+  brand,
   rocket,
-  float,
+  float: float$1,
   companyName,
   navLinks,
   navLink,
   active: active$2,
   systemStatus,
   statusIndicator,
-  pulse,
+  pulse: pulse$1,
   statusText
 };
 const Navigation = () => {
@@ -11477,49 +11477,25 @@ const Navigation = () => {
     { path: "/welcome", label: "Welcome" },
     { path: "/upload-and-settings", label: "Upload & Settings" }
   ];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: styles$9.navigation, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.container, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.brand, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.rocket, children: "🚀" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.companyName, children: "Moore Tech" })
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: styles$8.navigation, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.container, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.brand, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.rocket, children: "🚀" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.companyName, children: "Moore Tech" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$9.navLinks, children: navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.navLinks, children: navigationItems.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx(
       Link,
       {
         to: item.path,
-        className: `${styles$9.navLink} ${location.pathname === item.path ? styles$9.active : ""}`,
+        className: `${styles$8.navLink} ${location.pathname === item.path ? styles$8.active : ""}`,
         children: item.label
       },
       item.path
     )) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$9.systemStatus, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.statusIndicator }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$9.statusText, children: "System Online" })
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.systemStatus, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.statusIndicator }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$8.statusText, children: "System Online" })
     ] })
   ] }) });
-};
-const container$2 = "_container_tvhgy_1";
-const header$4 = "_header_tvhgy_19";
-const brand = "_brand_tvhgy_33";
-const main$1 = "_main_tvhgy_51";
-const title$1 = "_title_tvhgy_73";
-const subtitle$1 = "_subtitle_tvhgy_91";
-const card = "_card_tvhgy_109";
-const paragraphs = "_paragraphs_tvhgy_217";
-const ctaSection = "_ctaSection_tvhgy_265";
-const ctaButton = "_ctaButton_tvhgy_277";
-const footer$1 = "_footer_tvhgy_321";
-const styles$8 = {
-  container: container$2,
-  header: header$4,
-  brand,
-  main: main$1,
-  title: title$1,
-  subtitle: subtitle$1,
-  card,
-  paragraphs,
-  ctaSection,
-  ctaButton,
-  footer: footer$1
 };
 const useContent = () => {
   const [content2, setContent] = reactExports.useState(null);
@@ -11527,7 +11503,7 @@ const useContent = () => {
   reactExports.useEffect(() => {
     const loadContent = async () => {
       try {
-        const response = await fetch("/content/welcomeContent.json");
+        const response = await fetch("/welcomeContent.json");
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -11554,333 +11530,697 @@ const useContent = () => {
   }, []);
   return { content: content2, loading };
 };
-const bannerContainer = "_bannerContainer_8g3kj_5";
-const bannerTitle = "_bannerTitle_8g3kj_31";
-const logosWrapper = "_logosWrapper_8g3kj_53";
-const logoItem = "_logoItem_8g3kj_87";
-const logo = "_logo_8g3kj_53";
-const tosLogo = "_tosLogo_8g3kj_169";
-const styles$7 = {
-  bannerContainer,
-  bannerTitle,
-  logosWrapper,
-  logoItem,
-  logo,
-  tosLogo
-};
-const BrokerLogosBanner = () => {
-  const [isDragging, setIsDragging] = reactExports.useState(false);
-  const [currentScrollX, setCurrentScrollX] = reactExports.useState(0);
-  const [isMomentumActive, setIsMomentumActive] = reactExports.useState(false);
-  const [dragStartX, setDragStartX] = reactExports.useState(0);
-  const [dragStartScrollX, setDragStartScrollX] = reactExports.useState(0);
-  const [animationId, setAnimationId] = reactExports.useState(null);
-  const [momentumVelocity, setMomentumVelocity] = reactExports.useState(0);
-  const logosWrapperRef = reactExports.useRef(null);
-  const lastFrameTime = reactExports.useRef(0);
-  const scrollSpeed = reactExports.useRef(1.5);
-  const lastDragTime = reactExports.useRef(0);
-  const lastDragX = reactExports.useRef(0);
-  const momentumStartTime = reactExports.useRef(0);
-  const logos = [
-    { src: "/ninjatraderlogo.png", alt: "NINJATRADER" },
-    { src: "/interactivebrokers-logo-stacked.png", alt: "Interactive Brokers" },
-    { src: "/topsteplogo.jpg", alt: "TOPSTEPX" },
-    { src: "/Tradovatelogo.png", alt: "Tradovate" },
-    { src: "/TOS_Overview_thinkorswim_TALL.avif", alt: "ThinkOrSwim" },
-    { src: "/TradeStation_Logo.png", alt: "TradeStation" },
-    { src: "/optimusfutureslogo.png", alt: "Optimus Futures" }
-  ];
-  const animateScroll = reactExports.useCallback((timestamp) => {
-    if (!logosWrapperRef.current || isDragging) {
-      const nextFrameId2 = requestAnimationFrame(animateScroll);
-      setAnimationId(nextFrameId2);
-      return;
-    }
-    if (isMomentumActive) {
-      const nextFrameId2 = requestAnimationFrame(animateScroll);
-      setAnimationId(nextFrameId2);
-      return;
-    }
-    if (lastFrameTime.current === 0) {
-      lastFrameTime.current = timestamp;
-    }
-    const deltaTime = timestamp - lastFrameTime.current;
-    const deltaX = scrollSpeed.current * (deltaTime / 16.67);
-    setCurrentScrollX((prev) => {
-      const newScrollX = prev - deltaX;
-      const totalWidth = logos.length * 300;
-      if (newScrollX <= -totalWidth) {
-        return newScrollX + totalWidth;
-      }
-      return newScrollX;
+const useScrollAnimation = (options = {}) => {
+  const [scrollPosition, setScrollPosition] = reactExports.useState({
+    x: 0,
+    y: 0,
+    direction: "down",
+    velocity: 0,
+    progress: 0
+  });
+  const [isScrolling, setIsScrolling] = reactExports.useState(false);
+  const [scrollDirection, setScrollDirection] = reactExports.useState("down");
+  const [scrollVelocity, setScrollVelocity] = reactExports.useState(0);
+  const lastScrollY = reactExports.useRef(0);
+  const lastScrollX = reactExports.useRef(0);
+  const scrollTimeout = reactExports.useRef(null);
+  const animationFrame = reactExports.useRef(null);
+  const calculateScrollProgress = reactExports.useCallback(() => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.min(Math.max(scrollTop / scrollHeight, 0), 1);
+  }, []);
+  const calculateScrollVelocity = reactExports.useCallback((currentY, previousY) => {
+    const deltaY = currentY - previousY;
+    const deltaTime = 16;
+    return Math.abs(deltaY) / deltaTime;
+  }, []);
+  const determineScrollDirection = reactExports.useCallback((currentY, previousY) => {
+    if (currentY > previousY)
+      return "down";
+    if (currentY < previousY)
+      return "up";
+    return scrollDirection;
+  }, [scrollDirection]);
+  const updateScrollPosition = reactExports.useCallback(() => {
+    const currentY = window.pageYOffset || document.documentElement.scrollTop;
+    const currentX = window.pageXOffset || document.documentElement.scrollLeft;
+    const velocity = calculateScrollVelocity(currentY, lastScrollY.current);
+    const direction = determineScrollDirection(currentY, lastScrollY.current);
+    const progress = calculateScrollProgress();
+    setScrollPosition({
+      x: currentX,
+      y: currentY,
+      direction: direction === "down" ? "down" : "up",
+      velocity,
+      progress
     });
-    lastFrameTime.current = timestamp;
-    const nextFrameId = requestAnimationFrame(animateScroll);
-    setAnimationId(nextFrameId);
-  }, [logos.length, isDragging, isMomentumActive]);
-  const stopAnimation = reactExports.useCallback(() => {
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-      setAnimationId(null);
+    setScrollDirection(direction);
+    setScrollVelocity(velocity);
+    setIsScrolling(true);
+    lastScrollY.current = currentY;
+    lastScrollX.current = currentX;
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
     }
-    lastFrameTime.current = 0;
-  }, [animationId]);
-  const startMomentumAnimation = reactExports.useCallback(() => {
-    const startTime = Date.now();
-    const initialVelocity = momentumVelocity;
-    const momentumDuration = 3e3;
-    const animateMomentum = () => {
-      const elapsed = Date.now() - startTime;
-      const progress = elapsed / momentumDuration;
-      if (progress >= 1) {
-        setIsMomentumActive(false);
-        setMomentumVelocity(0);
-        if (logosWrapperRef.current) {
-          lastFrameTime.current = 0;
-          const nextFrameId = requestAnimationFrame(animateScroll);
-          setAnimationId(nextFrameId);
-        }
-        return;
-      }
-      const easeOut = 1 - Math.pow(progress, 2);
-      const currentVelocity = initialVelocity * easeOut;
-      setMomentumVelocity(currentVelocity);
-      setCurrentScrollX((prev) => {
-        const newScrollX = prev + currentVelocity;
-        const totalWidth = logos.length * 300;
-        if (newScrollX <= -totalWidth) {
-          return newScrollX + totalWidth;
-        }
-        if (newScrollX > 0) {
-          return newScrollX - totalWidth;
-        }
-        return newScrollX;
-      });
-      requestAnimationFrame(animateMomentum);
-    };
-    requestAnimationFrame(animateMomentum);
-  }, [momentumVelocity, logos.length, animateScroll]);
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsDragging(true);
-    setDragStartX(e.clientX);
-    setDragStartScrollX(currentScrollX);
-    stopAnimation();
-    setIsMomentumActive(false);
-    setMomentumVelocity(0);
-    lastDragTime.current = Date.now();
-    lastDragX.current = e.clientX;
-  };
-  const handleMouseMove = (e) => {
-    if (!isDragging)
-      return;
-    e.preventDefault();
-    e.stopPropagation();
-    const deltaX = e.clientX - dragStartX;
-    const newScrollX = dragStartScrollX + deltaX;
-    const currentTime = Date.now();
-    const timeDelta = currentTime - lastDragTime.current;
-    if (timeDelta > 0) {
-      const totalDragDelta = e.clientX - dragStartX;
-      const totalTimeDelta = currentTime - lastDragTime.current;
-      const velocity = totalDragDelta / totalTimeDelta * 0.6;
-      const cappedVelocity = Math.max(-5, Math.min(5, velocity));
-      console.log("Drag velocity calculation:", {
-        totalDragDelta,
-        totalTimeDelta,
-        velocity,
-        cappedVelocity,
-        dragDirection: totalDragDelta > 0 ? "right" : "left"
-      });
-      setMomentumVelocity(cappedVelocity);
+    scrollTimeout.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 150);
+  }, [calculateScrollVelocity, determineScrollDirection, calculateScrollProgress]);
+  const handleScroll = reactExports.useCallback(() => {
+    if (animationFrame.current) {
+      cancelAnimationFrame(animationFrame.current);
     }
-    lastDragTime.current = currentTime;
-    lastDragX.current = e.clientX;
-    setCurrentScrollX(newScrollX);
-  };
-  const handleMouseUp = () => {
-    if (!isDragging)
-      return;
-    setIsDragging(false);
-    console.log("Mouse up - momentumVelocity:", momentumVelocity, "threshold:", 0.2);
-    if (Math.abs(momentumVelocity) > 0.2) {
-      console.log("Activating momentum with velocity:", momentumVelocity);
-      setIsMomentumActive(true);
-      momentumStartTime.current = Date.now();
-      startMomentumAnimation();
-    } else {
-      console.log("No momentum - resuming normal animation");
-      if (logosWrapperRef.current) {
-        lastFrameTime.current = 0;
-        const nextFrameId = requestAnimationFrame(animateScroll);
-        setAnimationId(nextFrameId);
-      }
-    }
-  };
+    animationFrame.current = requestAnimationFrame(updateScrollPosition);
+  }, [updateScrollPosition]);
   reactExports.useEffect(() => {
-    if (logosWrapperRef.current) {
-      lastFrameTime.current = 0;
-      const nextFrameId = requestAnimationFrame(animateScroll);
-      setAnimationId(nextFrameId);
-    }
+    updateScrollPosition();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", updateScrollPosition, { passive: true });
     return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", updateScrollPosition);
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
       }
     };
+  }, [handleScroll, updateScrollPosition]);
+  return {
+    scrollPosition,
+    isScrolling,
+    scrollDirection,
+    scrollVelocity,
+    calculateScrollProgress
+  };
+};
+const brokerWheelContainer = "_brokerWheelContainer_1co15_5";
+const wheelWrapper = "_wheelWrapper_1co15_33";
+const brokerWheel = "_brokerWheel_1co15_5";
+const brokerCard = "_brokerCard_1co15_73";
+const brokerCardInner = "_brokerCardInner_1co15_101";
+const brokerLogoContainer = "_brokerLogoContainer_1co15_167";
+const brokerLogo = "_brokerLogo_1co15_167";
+const brokerInfo = "_brokerInfo_1co15_233";
+const brokerName = "_brokerName_1co15_245";
+const brokerDescription = "_brokerDescription_1co15_273";
+const brokerGlow = "_brokerGlow_1co15_301";
+const centralHub = "_centralHub_1co15_337";
+const pulse = "_pulse_1co15_1";
+const hubInner = "_hubInner_1co15_377";
+const hubIcon = "_hubIcon_1co15_393";
+const spin$2 = "_spin_1co15_1";
+const hubText = "_hubText_1co15_405";
+const orbitalRing1 = "_orbitalRing1_1co15_421";
+const orbitalRing2 = "_orbitalRing2_1co15_423";
+const orbitalRing3 = "_orbitalRing3_1co15_425";
+const rotate = "_rotate_1co15_1";
+const instructions = "_instructions_1co15_491";
+const styles$7 = {
+  brokerWheelContainer,
+  wheelWrapper,
+  brokerWheel,
+  brokerCard,
+  brokerCardInner,
+  brokerLogoContainer,
+  brokerLogo,
+  brokerInfo,
+  brokerName,
+  brokerDescription,
+  brokerGlow,
+  centralHub,
+  pulse,
+  hubInner,
+  hubIcon,
+  spin: spin$2,
+  hubText,
+  orbitalRing1,
+  orbitalRing2,
+  orbitalRing3,
+  rotate,
+  instructions
+};
+const brokers = [
+  {
+    id: "interactive-brokers",
+    name: "Interactive Brokers",
+    logo: "/interactivebrokers-logo-stacked.png",
+    brandColor: "#1e40af",
+    accentColor: "#3b82f6",
+    description: "Professional Trading Platform"
+  },
+  {
+    id: "ninjatrader",
+    name: "NinjaTrader",
+    logo: "/ninjatraderlogo.png",
+    brandColor: "#dc2626",
+    accentColor: "#ef4444",
+    description: "Advanced Charting & Analysis"
+  },
+  {
+    id: "optimus-futures",
+    name: "Optimus Futures",
+    logo: "/optimusfutureslogo.png",
+    brandColor: "#059669",
+    accentColor: "#10b981",
+    description: "Futures Trading Specialists"
+  },
+  {
+    id: "topstep",
+    name: "TopStep",
+    logo: "/topsteplogo.jpg",
+    brandColor: "#7c3aed",
+    accentColor: "#8b5cf6",
+    description: "Trading Challenge Platform"
+  },
+  {
+    id: "thinkorswim",
+    name: "ThinkOrSwim",
+    logo: "/TOS_Overview_thinkorswim_TALL.avif",
+    brandColor: "#ea580c",
+    accentColor: "#f97316",
+    description: "TD Ameritrade Platform"
+  },
+  {
+    id: "tradestation",
+    name: "TradeStation",
+    logo: "/TradeStation_Logo.png",
+    brandColor: "#0891b2",
+    accentColor: "#06b6d4",
+    description: "Professional Trading Tools"
+  },
+  {
+    id: "tradovate",
+    name: "Tradovate",
+    logo: "/Tradovatelogo.png",
+    brandColor: "#be185d",
+    accentColor: "#ec4899",
+    description: "Modern Futures Trading"
+  }
+];
+const BrokerWheel3D = () => {
+  const wheelRef = reactExports.useRef(null);
+  const [rotation, setRotation] = reactExports.useState(0);
+  const [isDragging, setIsDragging] = reactExports.useState(false);
+  const [dragStart, setDragStart] = reactExports.useState({ x: 0, rotation: 0 });
+  const [hoveredBroker, setHoveredBroker] = reactExports.useState(null);
+  const [isAutoRotating, setIsAutoRotating] = reactExports.useState(true);
+  const { scrollPosition } = useScrollAnimation();
+  reactExports.useEffect(() => {
+    if (!isAutoRotating || isDragging)
+      return;
+    const interval = setInterval(() => {
+      setRotation((prev) => prev + 0.3);
+    }, 16);
+    return () => clearInterval(interval);
+  }, [isAutoRotating, isDragging]);
+  const handleMouseEnter = reactExports.useCallback(() => {
+    setIsAutoRotating(false);
+  }, []);
+  const handleMouseLeave = reactExports.useCallback(() => {
+    setIsAutoRotating(true);
+  }, []);
+  const handleMouseDown = reactExports.useCallback((e) => {
+    setIsDragging(true);
+    setIsAutoRotating(false);
+    setDragStart({
+      x: e.clientX,
+      rotation
+    });
+  }, [rotation]);
+  const handleMouseMove = reactExports.useCallback((e) => {
+    if (!isDragging)
+      return;
+    const deltaX = e.clientX - dragStart.x;
+    const newRotation = dragStart.rotation + deltaX * 0.8;
+    setRotation(newRotation);
+  }, [isDragging, dragStart]);
+  const handleMouseUp = reactExports.useCallback(() => {
+    setIsDragging(false);
+    setIsAutoRotating(true);
   }, []);
   reactExports.useEffect(() => {
-    if (logosWrapperRef.current) {
-      logosWrapperRef.current.style.transform = `translateX(${currentScrollX}px)`;
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+      return () => {
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+      };
     }
-  }, [currentScrollX]);
-  reactExports.useEffect(() => {
-    const handleGlobalMouseUp = (e) => {
-      if (isDragging) {
-        e.preventDefault();
-        handleMouseUp();
-      }
-    };
-    const handleGlobalMouseMove = (e) => {
-      if (isDragging) {
-        e.preventDefault();
-        const reactEvent = {
-          clientX: e.clientX,
-          clientY: e.clientY,
-          preventDefault: () => e.preventDefault(),
-          stopPropagation: () => e.stopPropagation(),
-          nativeEvent: e,
-          isDefaultPrevented: () => e.defaultPrevented,
-          isPropagationStopped: () => false,
-          persist: () => {
-          },
-          target: e.target,
-          currentTarget: e.currentTarget,
-          bubbles: e.bubbles,
-          cancelable: e.cancelable,
-          defaultPrevented: e.defaultPrevented,
-          eventPhase: e.eventPhase,
-          isTrusted: e.isTrusted,
-          timeStamp: e.timeStamp,
-          type: e.type
-        };
-        handleMouseMove(reactEvent);
-      }
-    };
-    document.addEventListener("mouseup", handleGlobalMouseUp);
-    document.addEventListener("mousemove", handleGlobalMouseMove);
-    return () => {
-      document.removeEventListener("mouseup", handleGlobalMouseUp);
-      document.removeEventListener("mousemove", handleGlobalMouseMove);
-    };
   }, [isDragging, handleMouseMove, handleMouseUp]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.bannerContainer, "data-testid": "broker-logos-banner", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.bannerTitle, children: "Supported Broker Connections" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        ref: logosWrapperRef,
-        className: styles$7.logosWrapper,
-        onMouseDown: handleMouseDown,
-        onMouseMove: handleMouseMove,
-        onMouseUp: handleMouseUp,
-        style: {
-          cursor: isDragging ? "grabbing" : "grab",
-          transform: `translateX(${currentScrollX}px)`
-        },
-        children: [
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "img",
-            {
-              src: logo2.src,
-              alt: logo2.alt,
-              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
-            }
-          ) }, `set1-${index2}`)),
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "img",
-            {
-              src: logo2.src,
-              alt: logo2.alt,
-              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
-            }
-          ) }, `set2-${index2}`)),
-          logos.map((logo2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.logoItem, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "img",
-            {
-              src: logo2.src,
-              alt: logo2.alt,
-              className: `${styles$7.logo} ${logo2.alt === "ThinkOrSwim" ? styles$7.tosLogo : ""}`
-            }
-          ) }, `set3-${index2}`))
-        ]
-      }
-    )
+  const handleTouchStart = reactExports.useCallback((e) => {
+    setIsDragging(true);
+    setIsAutoRotating(false);
+    setDragStart({
+      x: e.touches[0].clientX,
+      rotation
+    });
+  }, [rotation]);
+  const handleTouchMove = reactExports.useCallback((e) => {
+    if (!isDragging)
+      return;
+    const deltaX = e.touches[0].clientX - dragStart.x;
+    const newRotation = dragStart.rotation + deltaX * 0.8;
+    setRotation(newRotation);
+  }, [isDragging, dragStart]);
+  const handleTouchEnd = reactExports.useCallback(() => {
+    setIsDragging(false);
+    setIsAutoRotating(true);
+  }, []);
+  reactExports.useEffect(() => {
+    const scrollFactor = scrollPosition * 0.02;
+    if (!isDragging && Math.abs(scrollFactor) > 0.1) {
+      setRotation((prev) => prev + scrollFactor);
+    }
+  }, [scrollPosition, isDragging]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.brokerWheelContainer, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.wheelWrapper, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          ref: wheelRef,
+          className: styles$7.brokerWheel,
+          style: {
+            transform: `rotateY(${rotation}deg)`,
+            transformStyle: "preserve-3d"
+          },
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+          onMouseDown: handleMouseDown,
+          onTouchStart: handleTouchStart,
+          onTouchMove: handleTouchMove,
+          onTouchEnd: handleTouchEnd,
+          children: brokers.map((broker, index2) => {
+            const angle = 360 / brokers.length * index2;
+            const isHovered = hoveredBroker === broker.id;
+            return /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                className: `${styles$7.brokerCard} ${isHovered ? styles$7.hovered : ""}`,
+                style: {
+                  transform: `rotateY(${angle}deg) translateZ(280px)`,
+                  "--broker-brand-color": broker.brandColor,
+                  "--broker-accent-color": broker.accentColor
+                },
+                onMouseEnter: () => setHoveredBroker(broker.id),
+                onMouseLeave: () => setHoveredBroker(null),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.brokerCardInner, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.brokerLogoContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "img",
+                    {
+                      src: broker.logo,
+                      alt: broker.name,
+                      className: styles$7.brokerLogo
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.brokerInfo, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: styles$7.brokerName, children: broker.name }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$7.brokerDescription, children: broker.description })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.brokerGlow })
+                ] })
+              },
+              broker.id
+            );
+          })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.centralHub, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$7.hubInner, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.hubIcon, children: "⚡" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$7.hubText, children: "RL Trading" })
+      ] }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.orbitalRing1 }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.orbitalRing2 }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.orbitalRing3 })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$7.instructions, children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Drag to rotate • Hover to explore" }) })
   ] });
 };
-const WelcomePage = () => {
-  const { content: content2, loading } = useContent();
+const modernWelcomePage = "_modernWelcomePage_1wvi9_7";
+const loadingContainer = "_loadingContainer_1wvi9_33";
+const loadingSpinner = "_loadingSpinner_1wvi9_51";
+const spin$1 = "_spin_1wvi9_1";
+const loadingText = "_loadingText_1wvi9_79";
+const errorContainer$1 = "_errorContainer_1wvi9_91";
+const errorText = "_errorText_1wvi9_105";
+const heroSection = "_heroSection_1wvi9_121";
+const heroBackground = "_heroBackground_1wvi9_141";
+const heroGradient = "_heroGradient_1wvi9_159";
+const heroParticles = "_heroParticles_1wvi9_177";
+const float = "_float_1wvi9_1";
+const heroContent = "_heroContent_1wvi9_209";
+const heroText = "_heroText_1wvi9_225";
+const fadeInUp = "_fadeInUp_1wvi9_1";
+const heroTitle = "_heroTitle_1wvi9_255";
+const heroSubtitle = "_heroSubtitle_1wvi9_277";
+const heroButtons = "_heroButtons_1wvi9_291";
+const primaryCtaButton = "_primaryCtaButton_1wvi9_305";
+const secondaryCtaButton = "_secondaryCtaButton_1wvi9_351";
+const sectionContainer = "_sectionContainer_1wvi9_401";
+const sectionTitle$1 = "_sectionTitle_1wvi9_413";
+const sectionDescription = "_sectionDescription_1wvi9_435";
+const problemSection = "_problemSection_1wvi9_461";
+const problemGrid = "_problemGrid_1wvi9_471";
+const problemCard = "_problemCard_1wvi9_485";
+const problemIcon = "_problemIcon_1wvi9_513";
+const solutionSection = "_solutionSection_1wvi9_553";
+const solutionFeatures = "_solutionFeatures_1wvi9_563";
+const featureCard = "_featureCard_1wvi9_577";
+const featureIcon = "_featureIcon_1wvi9_605";
+const processSection = "_processSection_1wvi9_645";
+const processTimeline = "_processTimeline_1wvi9_655";
+const processStep = "_processStep_1wvi9_675";
+const stepNumber$1 = "_stepNumber_1wvi9_707";
+const stepContent = "_stepContent_1wvi9_735";
+const brokerSection = "_brokerSection_1wvi9_765";
+const featuresSection = "_featuresSection_1wvi9_811";
+const featuresGrid = "_featuresGrid_1wvi9_821";
+const featureItem = "_featureItem_1wvi9_835";
+const ctaSection = "_ctaSection_1wvi9_903";
+const ctaTitle = "_ctaTitle_1wvi9_915";
+const ctaDescription = "_ctaDescription_1wvi9_935";
+const ctaButtons = "_ctaButtons_1wvi9_955";
+const pageFooter = "_pageFooter_1wvi9_973";
+const footerContainer = "_footerContainer_1wvi9_985";
+const footerContent = "_footerContent_1wvi9_997";
+const footerBrand = "_footerBrand_1wvi9_1013";
+const footerLinks = "_footerLinks_1wvi9_1023";
+const styles$6 = {
+  modernWelcomePage,
+  loadingContainer,
+  loadingSpinner,
+  spin: spin$1,
+  loadingText,
+  errorContainer: errorContainer$1,
+  errorText,
+  heroSection,
+  heroBackground,
+  heroGradient,
+  heroParticles,
+  float,
+  heroContent,
+  heroText,
+  fadeInUp,
+  heroTitle,
+  heroSubtitle,
+  heroButtons,
+  primaryCtaButton,
+  secondaryCtaButton,
+  sectionContainer,
+  sectionTitle: sectionTitle$1,
+  sectionDescription,
+  problemSection,
+  problemGrid,
+  problemCard,
+  problemIcon,
+  solutionSection,
+  solutionFeatures,
+  featureCard,
+  featureIcon,
+  processSection,
+  processTimeline,
+  processStep,
+  stepNumber: stepNumber$1,
+  stepContent,
+  brokerSection,
+  featuresSection,
+  featuresGrid,
+  featureItem,
+  ctaSection,
+  ctaTitle,
+  ctaDescription,
+  ctaButtons,
+  pageFooter,
+  footerContainer,
+  footerContent,
+  footerBrand,
+  footerLinks
+};
+const CompleteModernWelcomePage = () => {
   const navigate = useNavigate();
-  if (loading) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.container, children: "Loading..." });
-  }
-  if (!content2) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.container, children: "Failed to load content" });
-  }
-  const sections = content2.sections;
-  const renderContent = (content22) => {
-    return content22.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-  };
-  const renderParagraphs = (paragraphs2) => {
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.paragraphs, children: paragraphs2.map((paragraph, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "p",
-      {
-        dangerouslySetInnerHTML: { __html: renderContent(paragraph) }
-      },
-      index2
-    )) });
-  };
+  const { content: content2, loading, error: error2 } = useContent();
+  useScrollAnimation();
+  const pageRef = reactExports.useRef(null);
+  const [currentSection, setCurrentSection] = reactExports.useState(0);
   const handleGetStarted = () => {
     navigate("/upload-and-settings");
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$8.container, "data-testid": "welcome-page", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("header", { className: styles$8.header, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.brand, children: /* @__PURE__ */ jsxRuntimeExports.jsx(BrokerLogosBanner, {}) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: styles$8.main, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles$8.title, children: content2.title }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$8.subtitle, children: content2.subtitle }),
-      sections.map((section2, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: styles$8.card, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: section2.heading }),
-        section2.paragraph && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { dangerouslySetInnerHTML: { __html: renderContent(section2.paragraph) } }),
-        section2.paragraphs && renderParagraphs(section2.paragraphs)
-      ] }, idx)),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$8.ctaSection, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          className: styles$8.ctaButton,
-          onClick: handleGetStarted,
-          children: "Get Started"
-        }
-      ) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: styles$8.footer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
-      "© ",
-      (/* @__PURE__ */ new Date()).getFullYear(),
-      " RL Futures Trading System"
-    ] }) })
-  ] });
+  reactExports.useEffect(() => {
+    const handleScroll = () => {
+      if (pageRef.current) {
+        const sections = pageRef.current.querySelectorAll("[data-section]");
+        const windowHeight = window.innerHeight;
+        sections.forEach((section2, index2) => {
+          const element = section2;
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= windowHeight / 2 && rect.bottom >= windowHeight / 2) {
+            setCurrentSection(index2);
+          }
+        });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  if (loading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.modernWelcomePage, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.loadingContainer, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.loadingSpinner }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.loadingText, children: "Loading RL Trading System..." })
+    ] }) });
+  }
+  if (error2) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.modernWelcomePage, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.errorContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: styles$6.errorText, children: [
+      "Error: ",
+      error2
+    ] }) }) });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      ref: pageRef,
+      className: styles$6.modernWelcomePage,
+      "data-current-section": currentSection,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "section",
+          {
+            className: styles$6.heroSection,
+            "data-section": "hero",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.heroBackground, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.heroGradient }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.heroParticles })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.heroContent, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.heroText, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: styles$6.heroTitle, children: (content2 == null ? void 0 : content2.title) || "Welcome to RL Futures Trading System" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$6.heroSubtitle, children: (content2 == null ? void 0 : content2.subtitle) || "Advanced reinforcement learning for futures trading" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.heroButtons, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    className: styles$6.primaryCtaButton,
+                    onClick: handleGetStarted,
+                    children: "Get Started Now"
+                  }
+                ) })
+              ] }) })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.problemSection,
+            "data-section": "problem",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.sectionTitle, children: "The Challenge" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$6.sectionDescription, children: "Traditional trading strategies often fail to adapt to market volatility and changing conditions. Manual analysis is time-consuming and prone to human error, while static algorithms can't learn from new market patterns." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.problemGrid, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.problemCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.problemIcon, children: "📊" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Market Volatility" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Rapid price changes make traditional strategies ineffective" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.problemCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.problemIcon, children: "⏰" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Time Constraints" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Manual analysis can't keep up with real-time market data" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.problemCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.problemIcon, children: "🤖" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Static Algorithms" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Fixed rules can't adapt to new market patterns" })
+                ] })
+              ] })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.solutionSection,
+            "data-section": "solution",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.sectionTitle, children: "Our Solution" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$6.sectionDescription, children: "Our reinforcement learning system continuously learns and adapts to market conditions, using advanced PPO algorithms to optimize trading strategies in real-time." }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.solutionFeatures, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "🧠" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "AI-Powered Learning" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Advanced PPO algorithms that learn from market data" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "⚡" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Real-Time Adaptation" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Strategies that adapt to changing market conditions" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureCard, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "📈" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Profit Optimization" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Continuous optimization for maximum returns" })
+                ] })
+              ] })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.processSection,
+            "data-section": "process",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.sectionTitle, children: "How It Works" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processTimeline, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processStep, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepNumber, children: "1" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepContent, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Configure Settings" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Set your trading parameters, profit targets, and risk management rules" })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processStep, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepNumber, children: "2" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepContent, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Upload Data" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Import CSV or Excel files with historical price data for NQ E-mini Futures" })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processStep, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepNumber, children: "3" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepContent, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Start Training" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Begin training in human or fast rendering mode" })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processStep, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepNumber, children: "4" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepContent, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Monitor Progress" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Watch the model train completely in the high-fidelity simulator" })
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.processStep, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepNumber, children: "5" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepContent, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Live Trading" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Navigate to the live trading connector to deploy your trained model" })
+                  ] })
+                ] })
+              ] })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.brokerSection,
+            "data-section": "brokers",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.sectionTitle, children: "Supported Brokers" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$6.sectionDescription, children: "Seamlessly integrate with leading futures brokers for live trading" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(BrokerWheel3D, {})
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.featuresSection,
+            "data-section": "features",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.sectionTitle, children: "Key Features" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featuresGrid, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureItem, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "🎯" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Precision Trading" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Advanced algorithms for precise entry and exit points" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureItem, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "🛡️" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Risk Management" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Built-in risk controls and position sizing" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureItem, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "📊" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Real-Time Analytics" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Live performance monitoring and analysis" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.featureItem, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.featureIcon, children: "🔄" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Continuous Learning" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Models that improve with every trade" })
+                ] })
+              ] })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "section",
+          {
+            className: styles$6.ctaSection,
+            "data-section": "cta",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.sectionContainer, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: styles$6.ctaTitle, children: "Ready to Transform Your Trading?" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$6.ctaDescription, children: "Join the future of algorithmic trading with our advanced reinforcement learning system" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.ctaButtons, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  className: styles$6.primaryCtaButton,
+                  onClick: handleGetStarted,
+                  children: "Get Started Now"
+                }
+              ) })
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("footer", { className: styles$6.pageFooter, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.footerContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.footerContent, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.footerBrand, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+            "© ",
+            (/* @__PURE__ */ new Date()).getFullYear(),
+            " Moore Tech"
+          ] }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.footerLinks, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "#privacy", children: "Privacy Policy" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "#terms", children: "Terms of Service" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "#contact", children: "Contact" })
+          ] })
+        ] }) }) })
+      ]
+    }
+  );
 };
-const stepIndicator = "_stepIndicator_1bakx_1";
-const container$1 = "_container_1bakx_13";
-const stepWrapper = "_stepWrapper_1bakx_31";
-const step = "_step_1bakx_1";
-const stepNumber = "_stepNumber_1bakx_57";
-const active$1 = "_active_1bakx_87";
-const completed = "_completed_1bakx_101";
-const stepLabel = "_stepLabel_1bakx_113";
-const connector = "_connector_1bakx_129";
-const styles$6 = {
+const stepIndicator = "_stepIndicator_1ukv9_1";
+const container$1 = "_container_1ukv9_39";
+const stepWrapper = "_stepWrapper_1ukv9_61";
+const step = "_step_1ukv9_1";
+const stepNumber = "_stepNumber_1ukv9_87";
+const active$1 = "_active_1ukv9_119";
+const completed = "_completed_1ukv9_135";
+const stepLabel = "_stepLabel_1ukv9_149";
+const connector = "_connector_1ukv9_177";
+const styles$5 = {
   stepIndicator,
   container: container$1,
   stepWrapper,
@@ -11892,21 +12232,21 @@ const styles$6 = {
   connector
 };
 const StepIndicator = ({ steps }) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.stepIndicator, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$6.container, children: steps.map((step2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.stepWrapper, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$6.step, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.stepIndicator, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.container, children: steps.map((step2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.stepWrapper, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.step, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
-          className: `${styles$6.stepNumber} ${step2.isCompleted ? styles$6.completed : ""} ${step2.isActive ? styles$6.active : ""}`,
+          className: `${styles$5.stepNumber} ${step2.isCompleted ? styles$5.completed : ""} ${step2.isActive ? styles$5.active : ""}`,
           children: step2.isCompleted ? "✓" : step2.id
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$6.stepLabel, children: step2.label })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$5.stepLabel, children: step2.label })
     ] }),
     index2 < steps.length - 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        className: `${styles$6.connector} ${step2.isCompleted ? styles$6.completed : ""}`
+        className: `${styles$5.connector} ${step2.isCompleted ? styles$5.completed : ""}`
       }
     )
   ] }, step2.id)) }) });
@@ -30804,12 +31144,12 @@ function parse_BrtHLink(data, length) {
   var rfx = parse_UncheckedRfX(data);
   var relId = parse_XLNullableWideString(data);
   var loc = parse_XLWideString(data);
-  var tooltip2 = parse_XLWideString(data);
+  var tooltip = parse_XLWideString(data);
   var display = parse_XLWideString(data);
   data.l = end;
   var o = { rfx, relId, loc, display };
-  if (tooltip2)
-    o.Tooltip = tooltip2;
+  if (tooltip)
+    o.Tooltip = tooltip;
   return o;
 }
 function parse_BrtPane() {
@@ -42816,18 +43156,18 @@ function cell_set_number_format(cell, fmt) {
   cell.z = fmt;
   return cell;
 }
-function cell_set_hyperlink(cell, target, tooltip2) {
+function cell_set_hyperlink(cell, target, tooltip) {
   if (!target) {
     delete cell.l;
   } else {
     cell.l = { Target: target };
-    if (tooltip2)
-      cell.l.Tooltip = tooltip2;
+    if (tooltip)
+      cell.l.Tooltip = tooltip;
   }
   return cell;
 }
-function cell_set_internal_link(cell, range, tooltip2) {
-  return cell_set_hyperlink(cell, "#" + range, tooltip2);
+function cell_set_internal_link(cell, range, tooltip) {
+  return cell_set_hyperlink(cell, "#" + range, tooltip);
 }
 function cell_add_comment(cell, text, author) {
   if (!cell.c)
@@ -42890,29 +43230,29 @@ var utils = {
     SHEET_VERY_HIDDEN: 2
   }
 };
-const fileUpload = "_fileUpload_9qt20_1";
-const header$3 = "_header_9qt20_15";
-const dropzone = "_dropzone_9qt20_51";
-const dragActive = "_dragActive_9qt20_89";
-const dragReject = "_dragReject_9qt20_103";
-const processing = "_processing_9qt20_113";
-const dropContent = "_dropContent_9qt20_125";
-const uploadIcon = "_uploadIcon_9qt20_139";
-const dropText = "_dropText_9qt20_159";
-const fileTypes = "_fileTypes_9qt20_173";
-const fileSize = "_fileSize_9qt20_185";
-const processingContent = "_processingContent_9qt20_197";
-const spinner = "_spinner_9qt20_211";
-const spin = "_spin_9qt20_211";
-const progressBar = "_progressBar_9qt20_239";
-const progressFill = "_progressFill_9qt20_257";
-const progressText = "_progressText_9qt20_271";
-const fileInfo = "_fileInfo_9qt20_283";
-const fileDetails = "_fileDetails_9qt20_313";
-const success = "_success_9qt20_403";
-const successPulse = "_successPulse_9qt20_1";
-const error$1 = "_error_9qt20_413";
-const styles$5 = {
+const fileUpload = "_fileUpload_15gbn_1";
+const header$3 = "_header_15gbn_25";
+const dropzone = "_dropzone_15gbn_65";
+const dragActive = "_dragActive_15gbn_105";
+const dragReject = "_dragReject_15gbn_119";
+const processing = "_processing_15gbn_129";
+const dropContent = "_dropContent_15gbn_141";
+const uploadIcon = "_uploadIcon_15gbn_155";
+const dropText = "_dropText_15gbn_179";
+const fileTypes = "_fileTypes_15gbn_193";
+const fileSize = "_fileSize_15gbn_205";
+const processingContent = "_processingContent_15gbn_217";
+const spinner = "_spinner_15gbn_231";
+const spin = "_spin_15gbn_231";
+const progressBar = "_progressBar_15gbn_259";
+const progressFill = "_progressFill_15gbn_277";
+const progressText = "_progressText_15gbn_291";
+const fileInfo = "_fileInfo_15gbn_303";
+const fileDetails = "_fileDetails_15gbn_333";
+const success = "_success_15gbn_423";
+const successPulse = "_successPulse_15gbn_1";
+const error$1 = "_error_15gbn_433";
+const styles$4 = {
   fileUpload,
   header: header$3,
   dropzone,
@@ -43171,8 +43511,8 @@ const FileUpload = ({ onFileProcessed, onValidationError, configuration }) => {
     const i = Math.floor(Math.log(bytes) / Math.log(k2));
     return parseFloat((bytes / Math.pow(k2, i)).toFixed(2)) + " " + sizes[i];
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileUpload, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.header, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileUpload, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.header, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Upload Trading Data" }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Drag and drop your CSV or Excel file here, or click to browse" })
     ] }),
@@ -43180,40 +43520,40 @@ const FileUpload = ({ onFileProcessed, onValidationError, configuration }) => {
       "div",
       {
         ...getRootProps(),
-        className: `${styles$5.dropzone} ${isDragActive ? styles$5.dragActive : ""} ${isDragReject ? styles$5.dragReject : ""} ${isProcessing ? styles$5.processing : ""}`,
+        className: `${styles$4.dropzone} ${isDragActive ? styles$4.dragActive : ""} ${isDragReject ? styles$4.dragReject : ""} ${isProcessing ? styles$4.processing : ""}`,
         "data-testid": "dropzone",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("input", { ...getInputProps(), "data-testid": "file-input" }),
-          isProcessing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.processingContent, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.spinner }),
+          isProcessing ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.processingContent, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.spinner }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
               "Processing ",
               currentFile == null ? void 0 : currentFile.name,
               "..."
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.progressBar, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.progressBar, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               "div",
               {
-                className: styles$5.progressFill,
+                className: styles$4.progressFill,
                 style: { width: `${uploadProgress}%` }
               }
             ) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$5.progressText, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.progressText, children: [
               uploadProgress,
               "%"
             ] })
-          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.dropContent, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$5.uploadIcon, children: "📁" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.dropText, children: isDragActive ? "Drop the file here..." : "Drag & drop a file here, or click to select" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.fileTypes, children: "Supported formats: CSV, Excel (.xlsx, .xls)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$5.fileSize, children: "Maximum file size: 1GB" })
+          ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.dropContent, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.uploadIcon, children: "📁" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.dropText, children: isDragActive ? "Drop the file here..." : "Drag & drop a file here, or click to select" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.fileTypes, children: "Supported formats: CSV, Excel (.xlsx, .xls)" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: styles$4.fileSize, children: "Maximum file size: 1GB" })
           ] })
         ]
       }
     ),
-    currentFile && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileInfo, children: [
+    currentFile && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileInfo, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "File Information" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$5.fileDetails, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.fileDetails, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: "Name:" }),
           " ",
@@ -43238,28 +43578,28 @@ const FileUpload = ({ onFileProcessed, onValidationError, configuration }) => {
     ] })
   ] });
 };
-const dataPreview = "_dataPreview_yv81h_1";
-const header$2 = "_header_yv81h_9";
-const summary = "_summary_yv81h_25";
-const rowCount = "_rowCount_yv81h_32";
-const warningCount = "_warningCount_yv81h_41";
-const warnings = "_warnings_yv81h_50";
-const warning = "_warning_yv81h_41";
-const tableContainer = "_tableContainer_yv81h_76";
-const previewTable = "_previewTable_yv81h_83";
-const dataRow = "_dataRow_yv81h_114";
-const rowNumber = "_rowNumber_yv81h_118";
-const timeCell = "_timeCell_yv81h_125";
-const priceCell = "_priceCell_yv81h_131";
-const footer = "_footer_yv81h_139";
-const note = "_note_yv81h_147";
-const continueButton = "_continueButton_yv81h_153";
-const insights = "_insights_yv81h_267";
-const insightsGrid = "_insightsGrid_yv81h_285";
-const insightItem = "_insightItem_yv81h_291";
-const insightLabel = "_insightLabel_yv81h_297";
-const insightValue = "_insightValue_yv81h_303";
-const styles$4 = {
+const dataPreview = "_dataPreview_20w9b_1";
+const header$2 = "_header_20w9b_27";
+const summary = "_summary_20w9b_61";
+const rowCount = "_rowCount_20w9b_75";
+const warningCount = "_warningCount_20w9b_97";
+const warnings = "_warnings_20w9b_119";
+const warning = "_warning_20w9b_97";
+const tableContainer = "_tableContainer_20w9b_171";
+const previewTable = "_previewTable_20w9b_185";
+const dataRow = "_dataRow_20w9b_247";
+const rowNumber = "_rowNumber_20w9b_255";
+const timeCell = "_timeCell_20w9b_269";
+const priceCell = "_priceCell_20w9b_281";
+const footer = "_footer_20w9b_297";
+const note = "_note_20w9b_313";
+const continueButton = "_continueButton_20w9b_325";
+const insights = "_insights_20w9b_553";
+const insightsGrid = "_insightsGrid_20w9b_589";
+const insightItem = "_insightItem_20w9b_601";
+const insightLabel = "_insightLabel_20w9b_613";
+const insightValue = "_insightValue_20w9b_625";
+const styles$3 = {
   dataPreview,
   header: header$2,
   summary,
@@ -43298,48 +43638,48 @@ const DataPreview = ({ validation, onContinue }) => {
     }
     return time;
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.dataPreview, "data-testid": "data-preview", children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.header, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.dataPreview, "data-testid": "data-preview", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.header, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Data Preview" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.summary, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.rowCount, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.summary, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$3.rowCount, children: [
           "📊 ",
           validation.rowCount.toLocaleString(),
           " rows loaded"
         ] }),
-        validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$4.warningCount, children: [
+        validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$3.warningCount, children: [
           "⚠️ ",
           validation.warnings.length,
           " warnings"
         ] })
       ] }),
-      validation.insights && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insights, children: [
+      validation.insights && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insights, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "📈 Trading Days Analysis" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightsGrid, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Total Trading Days:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.totalDays })
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insightsGrid, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightLabel, children: "Total Trading Days:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightValue, children: validation.insights.totalDays })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Partial Days Deleted:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.partialDaysDeleted })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightLabel, children: "Partial Days Deleted:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightValue, children: validation.insights.partialDaysDeleted })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Trading Hours:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.tradingHours })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightLabel, children: "Trading Hours:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightValue, children: validation.insights.tradingHours })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.insightItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightLabel, children: "Total Data Points:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$4.insightValue, children: validation.insights.totalRows.toLocaleString() })
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.insightItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightLabel, children: "Total Data Points:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$3.insightValue, children: validation.insights.totalRows.toLocaleString() })
           ] })
         ] })
       ] })
     ] }),
-    validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.warnings, children: [
+    validation.warnings.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.warnings, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Warnings" }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: validation.warnings.map((warning2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: styles$4.warning, children: warning2 }, index2)) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { children: validation.warnings.map((warning2, index2) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: styles$3.warning, children: warning2 }, index2)) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$4.tableContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: styles$4.previewTable, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: styles$3.tableContainer, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("table", { className: styles$3.previewTable, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("thead", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Row" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Time" }),
@@ -43348,17 +43688,17 @@ const DataPreview = ({ validation, onContinue }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Low" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("th", { children: "Close" })
       ] }) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: validation.preview.map((row, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: styles$4.dataRow, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.rowNumber, children: index2 + 1 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.timeCell, children: formatTime(row.time) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.open) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.high) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.low) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$4.priceCell, children: formatNumber(row.close) })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("tbody", { children: validation.preview.map((row, index2) => /* @__PURE__ */ jsxRuntimeExports.jsxs("tr", { className: styles$3.dataRow, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.rowNumber, children: index2 + 1 }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.timeCell, children: formatTime(row.time) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.open) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.high) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.low) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("td", { className: styles$3.priceCell, children: formatNumber(row.close) })
       ] }, index2)) })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$4.footer, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: styles$4.note, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$3.footer, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: styles$3.note, children: [
         "Showing first 10 rows of ",
         validation.rowCount.toLocaleString(),
         " total rows"
@@ -43366,7 +43706,7 @@ const DataPreview = ({ validation, onContinue }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
-          className: styles$4.continueButton,
+          className: styles$3.continueButton,
           onClick: onContinue,
           children: "Start Training"
         }
@@ -45106,76 +45446,26 @@ function useForm(props = {}) {
   _formControl.current.formState = getProxyFormState(formState, control);
   return _formControl.current;
 }
-const tooltipContainer = "_tooltipContainer_ten66_1";
-const tooltip = "_tooltip_ten66_1";
-const top = "_top_ten66_41";
-const bottom = "_bottom_ten66_55";
-const left = "_left_ten66_69";
-const right = "_right_ten66_83";
-const arrow = "_arrow_ten66_97";
-const styles$3 = {
-  tooltipContainer,
-  tooltip,
-  top,
-  bottom,
-  left,
-  right,
-  arrow,
-  "arrow-top": "_arrow-top_ten66_109",
-  "arrow-bottom": "_arrow-bottom_ten66_127",
-  "arrow-left": "_arrow-left_ten66_145",
-  "arrow-right": "_arrow-right_ten66_163"
-};
-const Tooltip = ({
-  content: content2,
-  children,
-  position = "top",
-  maxWidth = "300px"
-}) => {
-  const [isVisible, setIsVisible] = reactExports.useState(false);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: styles$3.tooltipContainer,
-      onMouseEnter: () => setIsVisible(true),
-      onMouseLeave: () => setIsVisible(false),
-      children: [
-        children,
-        isVisible && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: `${styles$3.tooltip} ${styles$3[position]}`,
-            style: { maxWidth },
-            children: [
-              content2,
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `${styles$3.arrow} ${styles$3[`arrow-${position}`]}` })
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-const configurationForm = "_configurationForm_17byy_1";
-const header$1 = "_header_17byy_8";
-const sectionNavigation = "_sectionNavigation_17byy_26";
-const sectionTab = "_sectionTab_17byy_34";
-const active = "_active_17byy_55";
-const sectionIcon = "_sectionIcon_17byy_61";
-const sectionTitle = "_sectionTitle_17byy_65";
-const section = "_section_17byy_26";
-const formGrid = "_formGrid_17byy_83";
-const formGroup = "_formGroup_17byy_89";
-const error = "_error_17byy_129";
-const errorInput = "_errorInput_17byy_135";
-const formActions = "_formActions_17byy_145";
-const backButton$1 = "_backButton_17byy_156";
-const navigationButtons$1 = "_navigationButtons_17byy_174";
-const prevButton = "_prevButton_17byy_179";
-const nextButton = "_nextButton_17byy_180";
-const submitButton = "_submitButton_17byy_181";
-const disabled = "_disabled_17byy_229";
-const fadeIn = "_fadeIn_17byy_1";
+const configurationForm = "_configurationForm_173vt_1";
+const header$1 = "_header_173vt_25";
+const sectionNavigation = "_sectionNavigation_173vt_65";
+const sectionTab = "_sectionTab_173vt_81";
+const active = "_active_173vt_127";
+const sectionIcon = "_sectionIcon_173vt_141";
+const sectionTitle = "_sectionTitle_173vt_149";
+const section = "_section_173vt_65";
+const formGrid = "_formGrid_173vt_185";
+const formGroup = "_formGroup_173vt_197";
+const error = "_error_173vt_281";
+const errorInput = "_errorInput_173vt_293";
+const formActions = "_formActions_173vt_313";
+const backButton$1 = "_backButton_173vt_335";
+const navigationButtons$1 = "_navigationButtons_173vt_371";
+const prevButton = "_prevButton_173vt_381";
+const nextButton = "_nextButton_173vt_383";
+const submitButton = "_submitButton_173vt_385";
+const disabled = "_disabled_173vt_497";
+const fadeIn = "_fadeIn_173vt_1";
 const styles$2 = {
   configurationForm,
   header: header$1,
@@ -45200,17 +45490,16 @@ const styles$2 = {
 };
 const ConfigurationForm = ({ onSubmit, onBack }) => {
   const [activeSection, setActiveSection] = reactExports.useState(0);
-  useNavigate();
-  const { control, handleSubmit, formState: { errors, isValid }, watch, getValues, trigger, reset } = useForm({
+  const { control, handleSubmit, formState: { errors, isValid }, reset } = useForm({
     mode: "onChange",
     defaultValues: {
       tradingMechanics: {
         initialBalance: 1e3,
         dailyProfitTarget: 500,
         dailyMaxLossLimit: 500,
-        commissions: 2.5,
+        commissions: 3,
         marginRequiredPerContract: 1e3,
-        slippage: 0.5,
+        slippage: 1,
         contractValue: 5
       },
       rewardFunction: {
@@ -45238,7 +45527,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
         requiredSuccessRate: 0.95,
         performancePlateauEpisodes: 50,
         startTime: "17:00",
-        endTime: "16:00+1"
+        endTime: "16:00"
       },
       dataIndicators: {
         observationHistoryLength: 1440,
@@ -45256,8 +45545,62 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       }
     }
   });
-  const renderingMode = watch("visualization.renderingMode");
+  const renderingMode = useWatch({ control, name: "visualization.renderingMode" });
   const isFastMode = renderingMode === "fast";
+  React.useEffect(() => {
+    reset({
+      tradingMechanics: {
+        initialBalance: 1e3,
+        dailyProfitTarget: 500,
+        dailyMaxLossLimit: 500,
+        commissions: 3,
+        marginRequiredPerContract: 1e3,
+        slippage: 1,
+        contractValue: 5
+      },
+      rewardFunction: {
+        profitTargetBonus: 2,
+        bankruptcyPenalty: -1.5,
+        consecutiveWinningTradesBonus: 0.1
+      },
+      ppoHyperParams: {
+        learningRate: 3e-4,
+        nSteps: 2048,
+        batchSize: 64,
+        gamma: 0.99,
+        gaeLambda: 0.95,
+        clipRange: 0.2,
+        entCoef: 0.01,
+        vfCoef: 0.5
+      },
+      loggingCheckpointing: {
+        experimentName: "",
+        checkpointFrequency: 1e4,
+        evaluationFrequency: 5e3
+      },
+      dayMastery: {
+        minEpisodesToRun: 100,
+        requiredSuccessRate: 0.95,
+        performancePlateauEpisodes: 50,
+        startTime: "17:00",
+        endTime: "16:00"
+      },
+      dataIndicators: {
+        observationHistoryLength: 1440,
+        ema1Period: 13,
+        ema2Period: 55,
+        bollingerBandsPeriod: 20,
+        atrPeriod: 14,
+        macdPeriod: 26
+      },
+      visualization: {
+        renderingMode: "human",
+        fixedWindow: 100,
+        candleWidthFactor: 1,
+        trainingSpeed: 1
+      }
+    });
+  }, [reset]);
   const sections = [
     { id: 0, title: "Trading & Market Mechanics", icon: "💰" },
     { id: 1, title: "Reward Function Settings", icon: "🎯" },
@@ -45270,21 +45613,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
   const handleFormSubmit = (data) => {
     onSubmit(data);
   };
-  const handleBackToWelcome = () => {
-    onBack();
-  };
-  const nextSection = async () => {
-    if (activeSection === 3) {
-      const experimentName = getValues("loggingCheckpointing.experimentName");
-      if (!experimentName || experimentName.trim() === "") {
-        await trigger("loggingCheckpointing.experimentName");
-        return;
-      }
-    }
-    if (activeSection === 6) {
-      handleSubmit(handleFormSubmit)();
-      return;
-    }
+  const nextSection = () => {
     if (activeSection < sections.length - 1) {
       setActiveSection(activeSection + 1);
     }
@@ -45300,7 +45629,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "💰 Trading & Market Mechanics" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The starting capital amount for your trading account. This is the initial balance before any trades are executed.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Initial Balance ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Starting capital for the trading system", children: "Initial Balance ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45311,18 +45640,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "1000",
-                  "aria-label": "Initial Balance"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "100000",
+                  title: "Starting capital for the trading system"
                 }
               )
             }
@@ -45330,7 +45651,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.tradingMechanics) == null ? void 0 : _a.initialBalance) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.initialBalance.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The daily profit target amount in dollars. The system will aim to achieve this profit target each trading day.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Profit Target ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Target profit amount per trading day", children: "Daily Profit Target ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45341,18 +45662,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "500",
-                  "aria-label": "Daily Profit Target"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "5000",
+                  title: "Target profit amount per trading day"
                 }
               )
             }
@@ -45360,7 +45673,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.tradingMechanics) == null ? void 0 : _b.dailyProfitTarget) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.dailyProfitTarget.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The maximum daily loss limit in dollars. Trading will stop for the day if losses reach this amount.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Daily Max Loss Limit ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Maximum loss allowed per trading day before stopping", children: "Daily Max Loss Limit ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45371,18 +45684,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "500",
-                  "aria-label": "Daily Max Loss Limit"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "10000",
+                  title: "Maximum loss allowed per trading day before stopping"
                 }
               )
             }
@@ -45390,7 +45695,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.tradingMechanics) == null ? void 0 : _c.dailyMaxLossLimit) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.dailyMaxLossLimit.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The commission cost per trade in dollars. This is deducted from each trade's profit or loss.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Commissions ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Trading commission cost per trade", children: "Commissions ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45402,18 +45707,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "2.5",
-                  "aria-label": "Commissions"
+                  title: "Trading commission cost per trade"
                 }
               )
             }
@@ -45421,38 +45718,22 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_d = errors.tradingMechanics) == null ? void 0 : _d.commissions) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.commissions.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The margin requirement per contract. Choose between Mini contracts ($1,000) or Micro contracts ($100).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Margin Required Per Contract ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Margin requirement per futures contract (Minis vs Micros)", children: "Margin Required Per Contract ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "tradingMechanics.marginRequiredPerContract",
               control,
               rules: { required: "Margin required is required", min: { value: 100, message: "Minimum $100" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "select",
-                {
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  "aria-label": "Margin Required Per Contract",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1e3, children: "1,000" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 100, children: "100" })
-                  ]
-                }
-              )
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, onChange: (e) => field.onChange(parseFloat(e.target.value)), title: "Margin requirement per futures contract (Minis vs Micros)", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1e3, children: "1000 (Mini's)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 100, children: "100 (Micro's)" })
+              ] })
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The expected slippage cost per trade in dollars. This accounts for the difference between expected and actual execution prices.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Slippage ($)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Expected price slippage per trade", children: "Slippage ($)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45464,18 +45745,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "0.5",
-                  "aria-label": "Slippage"
+                  title: "Expected price slippage per trade"
                 }
               )
             }
@@ -45483,33 +45756,17 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_e = errors.tradingMechanics) == null ? void 0 : _e.slippage) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.tradingMechanics.slippage.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The dollar value per tick movement. Choose between Mini contracts ($5/tick) or Micro contracts ($0.50/tick).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Contract Value ($/tick)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Dollar value per price tick movement (Minis vs Micros)", children: "Contract Value ($/tick)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "tradingMechanics.contractValue",
               control,
               rules: { required: "Contract value is required", min: { value: 0.01, message: "Minimum $0.01" } },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "select",
-                {
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  "aria-label": "Contract Value",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 5, children: "5" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 0.5, children: "0.5" })
-                  ]
-                }
-              )
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, onChange: (e) => field.onChange(parseFloat(e.target.value)), title: "Dollar value per price tick movement (Minis vs Micros)", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 5, children: "5 (Mini's)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 0.5, children: "0.5 (Micro's)" })
+              ] })
             }
           )
         ] })
@@ -45522,7 +45779,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "🎯 Reward Function Settings" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Profit Target Bonus (multiplier)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Multiplier bonus when profit target is reached", children: "Profit Target Bonus (multiplier)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45534,18 +45791,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "2.0",
-                  "aria-label": "Profit Target Bonus"
+                  title: "Multiplier bonus when profit target is reached"
                 }
               )
             }
@@ -45553,7 +45802,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.rewardFunction) == null ? void 0 : _a.profitTargetBonus) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.rewardFunction.profitTargetBonus.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Bankruptcy Penalty (multiplier)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Penalty multiplier when account goes bankrupt", children: "Bankruptcy Penalty (multiplier)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45565,18 +45814,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "-1.5",
-                  "aria-label": "Bankruptcy Penalty"
+                  title: "Penalty multiplier when account goes bankrupt"
                 }
               )
             }
@@ -45584,7 +45825,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.rewardFunction) == null ? void 0 : _b.bankruptcyPenalty) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.rewardFunction.bankruptcyPenalty.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Consecutive Winning Trades Bonus" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Bonus multiplier for consecutive winning trades", children: "Consecutive Winning Trades Bonus" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45596,18 +45837,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "0.1",
-                  "aria-label": "Consecutive Winning Trades Bonus"
+                  title: "Bonus multiplier for consecutive winning trades"
                 }
               )
             }
@@ -45623,7 +45856,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "🧠 PPO Hyper Parameters" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Learning Rate" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Learning rate for the PPO algorithm (how fast the model learns)", children: "Learning Rate" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45635,18 +45868,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.00001",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
                   placeholder: "0.0003",
-                  "aria-label": "Learning Rate"
+                  title: "Learning rate for the PPO algorithm (how fast the model learns)"
                 }
               )
             }
@@ -45654,7 +45879,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.ppoHyperParams) == null ? void 0 : _a.learningRate) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.ppoHyperParams.learningRate.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "n_steps (rollout collection steps)" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Number of steps to collect before updating the policy", children: "n_steps (rollout collection steps)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -45665,18 +45890,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
                   placeholder: "2048",
-                  "aria-label": "N Steps"
+                  title: "Number of steps to collect before updating the policy"
                 }
               )
             }
@@ -45695,18 +45912,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "64",
-                  "aria-label": "Batch Size"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "64"
                 }
               )
             }
@@ -45726,18 +45934,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "0.99",
-                  "aria-label": "Gamma"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "0.99"
                 }
               )
             }
@@ -45757,18 +45956,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "0.95",
-                  "aria-label": "GAE Lambda"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "0.95"
                 }
               )
             }
@@ -45788,18 +45978,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.01",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "0.2",
-                  "aria-label": "Clip Range"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "0.2"
                 }
               )
             }
@@ -45819,18 +46000,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.001",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "0.01",
-                  "aria-label": "Ent Coef"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "0.01"
                 }
               )
             }
@@ -45850,18 +46022,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "0.5",
-                  "aria-label": "VF Coef"
+                  ...field,
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "0.5"
                 }
               )
             }
@@ -45877,38 +46040,21 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "📊 Logging & Checkpointing" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "A unique name for this experiment. This will be used to identify your training runs and save checkpoints.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Experiment Name" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Experiment Name" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "loggingCheckpointing.experimentName",
               control,
-              rules: {
-                required: "Experiment name is required",
-                validate: (value2) => {
-                  if (!value2 || value2.trim() === "") {
-                    return "Experiment name cannot be empty";
-                  }
-                  return true;
+              rules: { required: "Experiment name is required" },
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
+                {
+                  type: "text",
+                  ...field,
+                  placeholder: "futures_trading_experiment"
                 }
-              },
-              render: ({ field }) => {
-                var _a2;
-                return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "input",
-                  {
-                    type: "text",
-                    value: field.value || "",
-                    onChange: field.onChange,
-                    onBlur: field.onBlur,
-                    name: field.name,
-                    ref: field.ref,
-                    placeholder: "Enter experiment name",
-                    className: ((_a2 = errors.loggingCheckpointing) == null ? void 0 : _a2.experimentName) ? styles$2.errorInput : "",
-                    "aria-label": "Experiment Name"
-                  }
-                );
-              }
+              )
             }
           ),
           ((_a = errors.loggingCheckpointing) == null ? void 0 : _a.experimentName) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.loggingCheckpointing.experimentName.message })
@@ -45925,18 +46071,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "10000",
-                  "aria-label": "Checkpoint Frequency"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "10000"
                 }
               )
             }
@@ -45955,18 +46092,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "5000",
-                  "aria-label": "Evaluation Frequency"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "5000"
                 }
               )
             }
@@ -45982,7 +46110,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "⏰ Day Mastery Mechanism" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The minimum number of training episodes that must be completed before the system can be considered for day mastery evaluation.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Minimum Episodes to Run" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Minimum number of training episodes before evaluation", children: "Minimum Episodes to Run" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46004,7 +46132,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                   name: field.name,
                   ref: field.ref,
                   placeholder: "100",
-                  "aria-label": "Minimum Episodes"
+                  title: "Minimum number of training episodes before evaluation"
                 }
               )
             }
@@ -46012,29 +46140,28 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.dayMastery) == null ? void 0 : _a.minEpisodesToRun) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.minEpisodesToRun.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The percentage of episodes that must reach the profit target to achieve day mastery. Enter as a whole number (95 = 95%).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Required Success Rate (%)" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Required Success Rate (%)" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "dayMastery.requiredSuccessRate",
               control,
-              rules: { required: "Success rate is required", min: { value: 0.1, message: "Minimum 10%" }, max: { value: 1, message: "Maximum 100%" } },
+              rules: { required: "Success rate is required", min: { value: 10, message: "Minimum 10%" }, max: { value: 100, message: "Maximum 100%" } },
               render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "input",
                 {
                   type: "number",
-                  value: field.value ? Math.round(field.value * 100) : "",
+                  min: "10",
+                  max: "100",
+                  ...field,
+                  value: Math.round(field.value * 100),
                   onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2) && value2 >= 0 && value2 <= 100) {
-                      field.onChange(value2 / 100);
+                    const wholeNumber = parseInt(e.target.value);
+                    if (!isNaN(wholeNumber)) {
+                      field.onChange(wholeNumber / 100);
                     }
                   },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "95",
-                  "aria-label": "Success Rate"
+                  placeholder: "95"
                 }
               )
             }
@@ -46042,7 +46169,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.dayMastery) == null ? void 0 : _b.requiredSuccessRate) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.requiredSuccessRate.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of consecutive episodes without improvement before considering the system has reached a performance plateau.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Performance Plateau Episodes" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Performance Plateau Episodes" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46053,18 +46180,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "50",
-                  "aria-label": "Plateau Episodes"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "50"
                 }
               )
             }
@@ -46072,7 +46190,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.dayMastery) == null ? void 0 : _c.performancePlateauEpisodes) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dayMastery.performancePlateauEpisodes.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Trading day starts at 5:00 PM on the previous calendar day and ends at 4:00 PM on the next calendar day (e.g., Sunday 5:00 PM to Monday 4:00 PM = 1 trading day)", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Start Time" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Trading day start time (e.g., 17:00 for 5:00 PM)", children: "Start Time" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46083,20 +46201,16 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "time",
-                  value: field.value || "",
-                  onChange: field.onChange,
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "17:00",
-                  "aria-label": "Start Time"
+                  ...field,
+                  placeholder: "09:30",
+                  title: "Trading day start time (e.g., 17:00 for 5:00 PM)"
                 }
               )
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Trading day starts at 5:00 PM on the previous calendar day and ends at 4:00 PM on the next calendar day (e.g., Sunday 5:00 PM to Monday 4:00 PM = 1 trading day)", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "End Time" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Trading day end time (if before start time, will be next day with +1 notation)", children: "End Time" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46107,13 +46221,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "time",
-                  value: field.value && typeof field.value === "string" ? field.value.replace("+1", "") : "",
-                  onChange: (e) => field.onChange(e.target.value + "+1"),
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  ...field,
                   placeholder: "16:00",
-                  "aria-label": "End Time"
+                  title: "Trading day end time (if before start time, will be next day with +1 notation)"
                 }
               )
             }
@@ -46128,7 +46238,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "📈 Data & Indicator Calculation" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of historical data points to include in each observation. This determines how much historical context the AI has for decision making.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Observation History Length" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { title: "Number of historical data points to use for indicators (default: 1440 = 1 day of minute data)", children: "Observation History Length" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46139,18 +46249,10 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "1440",
-                  "aria-label": "Observation History Length"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "100",
+                  title: "Number of historical data points to use for indicators (default: 1440 = 1 day of minute data)"
                 }
               )
             }
@@ -46158,7 +46260,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_a = errors.dataIndicators) == null ? void 0 : _a.observationHistoryLength) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.observationHistoryLength.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for the first Exponential Moving Average (EMA). This creates a shorter-term trend indicator.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 1 Period" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 1 Period" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46169,18 +46271,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "13",
-                  "aria-label": "EMA 1 Period"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "20"
                 }
               )
             }
@@ -46188,7 +46281,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_b = errors.dataIndicators) == null ? void 0 : _b.ema1Period) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.ema1Period.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for the second Exponential Moving Average (EMA). This creates a longer-term trend indicator.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 2 Period" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "EMA 2 Period" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46199,18 +46292,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "55",
-                  "aria-label": "EMA 2 Period"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "50"
                 }
               )
             }
@@ -46218,7 +46302,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_c = errors.dataIndicators) == null ? void 0 : _c.ema2Period) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.ema2Period.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for Bollinger Bands calculation. This creates volatility bands around the moving average.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Bollinger Bands Period" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Bollinger Bands Period" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46229,18 +46313,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "20",
-                  "aria-label": "Bollinger Bands Period"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "20"
                 }
               )
             }
@@ -46248,7 +46323,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_d = errors.dataIndicators) == null ? void 0 : _d.bollingerBandsPeriod) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.bollingerBandsPeriod.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for Average True Range (ATR) calculation. This measures market volatility.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "ATR Period" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "ATR Period" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46259,18 +46334,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "14",
-                  "aria-label": "ATR Period"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "14"
                 }
               )
             }
@@ -46278,7 +46344,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           ((_e = errors.dataIndicators) == null ? void 0 : _e.atrPeriod) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.dataIndicators.atrPeriod.message })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The period for MACD (Moving Average Convergence Divergence) calculation. This creates momentum indicators.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "MACD Period" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "MACD Period" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46289,18 +46355,9 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "26",
-                  "aria-label": "MACD Period"
+                  ...field,
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "26"
                 }
               )
             }
@@ -46316,33 +46373,22 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "🎨 Visualization" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGrid, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "Choose between Human (detailed visualization) or Fast (minimal visualization for faster training).", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Rendering Mode" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Rendering Mode" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "visualization.renderingMode",
               control,
               rules: { required: "Rendering mode is required" },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "select",
-                {
-                  value: field.value || "",
-                  onChange: field.onChange,
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  "aria-label": "Rendering Mode",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "human", children: "Human (Detailed)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "fast", children: "Fast (Minimal)" })
-                  ]
-                }
-              )
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { ...field, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "human", children: "Human (Detailed)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "fast", children: "Fast (Minimal)" })
+              ] })
             }
           )
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The number of data points to display in the visualization window. Higher values show more historical data.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Fixed Window" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: isFastMode ? styles$2.disabled : "", children: "Fixed Window" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46353,28 +46399,20 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 "input",
                 {
                   type: "number",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseInt(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "100",
+                  ...field,
                   disabled: isFastMode,
                   className: isFastMode ? styles$2.disabled : "",
-                  "aria-label": "Fixed Window"
+                  onChange: (e) => field.onChange(parseInt(e.target.value)),
+                  placeholder: "100"
                 }
               )
             }
           ),
-          ((_a = errors.visualization) == null ? void 0 : _a.fixedWindow) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.fixedWindow.message })
+          ((_a = errors.visualization) == null ? void 0 : _a.fixedWindow) && !isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.fixedWindow.message }),
+          isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("small", { className: styles$2.disabled, children: "Disabled in fast mode" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The width factor for candlestick visualization. Higher values make candles wider.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Candle Width Factor" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: isFastMode ? styles$2.disabled : "", children: "Candle Width Factor" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
@@ -46386,56 +46424,42 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
                 {
                   type: "number",
                   step: "0.1",
-                  value: field.value || "",
-                  onChange: (e) => {
-                    const value2 = parseFloat(e.target.value);
-                    if (!isNaN(value2)) {
-                      field.onChange(value2);
-                    }
-                  },
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
-                  placeholder: "1",
+                  ...field,
                   disabled: isFastMode,
                   className: isFastMode ? styles$2.disabled : "",
-                  "aria-label": "Candle Width Factor"
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "1"
                 }
               )
             }
           ),
-          ((_b = errors.visualization) == null ? void 0 : _b.candleWidthFactor) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.candleWidthFactor.message })
+          ((_b = errors.visualization) == null ? void 0 : _b.candleWidthFactor) && !isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.candleWidthFactor.message }),
+          isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("small", { className: styles$2.disabled, children: "Disabled in fast mode" })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formGroup, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip, { content: "The speed at which candles are streamed into the environment. 1x = 1 row per minute, 2x = 2 rows per minute, etc.", children: /* @__PURE__ */ jsxRuntimeExports.jsx("label", { children: "Training Speed" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: isFastMode ? styles$2.disabled : "", children: "Training Speed" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             Controller,
             {
               name: "visualization.trainingSpeed",
               control,
-              rules: { required: "Training speed is required" },
-              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "select",
+              rules: { required: "Training speed is required", min: { value: 0.1, message: "Minimum 0.1" } },
+              render: ({ field }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "input",
                 {
-                  value: field.value || "",
-                  onChange: field.onChange,
-                  onBlur: field.onBlur,
-                  name: field.name,
-                  ref: field.ref,
+                  type: "number",
+                  step: "0.1",
+                  ...field,
                   disabled: isFastMode,
                   className: isFastMode ? styles$2.disabled : "",
-                  "aria-label": "Training Speed",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 1, children: "1x (1 row per minute)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 2, children: "2x (2 rows per minute)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 10, children: "10x (10 rows per minute)" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: 50, children: "50x (50 rows per minute)" })
-                  ]
+                  onChange: (e) => field.onChange(parseFloat(e.target.value)),
+                  placeholder: "1"
                 }
               )
             }
           ),
-          ((_c = errors.visualization) == null ? void 0 : _c.trainingSpeed) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.trainingSpeed.message })
+          ((_c = errors.visualization) == null ? void 0 : _c.trainingSpeed) && !isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$2.error, children: errors.visualization.trainingSpeed.message }),
+          isFastMode && /* @__PURE__ */ jsxRuntimeExports.jsx("small", { className: styles$2.disabled, children: "Disabled in fast mode" })
         ] })
       ] })
     ] });
@@ -46477,7 +46501,7 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
       },
       section2.id
     )) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { role: "form", onSubmit: handleSubmit(handleFormSubmit), className: styles$2.form, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSubmit(handleFormSubmit), className: styles$2.form, children: [
       renderSection(),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.formActions, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -46485,8 +46509,8 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           {
             type: "button",
             className: styles$2.backButton,
-            onClick: handleBackToWelcome,
-            children: "← Back to Welcome"
+            onClick: onBack,
+            children: "← Back to Welcome Page"
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$2.navigationButtons, children: [
@@ -46518,21 +46542,21 @@ const ConfigurationForm = ({ onSubmit, onBack }) => {
           )
         ] })
       ] })
-    ] }, "configuration-form")
+    ] }, `form-section-${activeSection}`)
   ] });
 };
-const configurationSummary = "_configurationSummary_15hd9_1";
-const header = "_header_15hd9_15";
-const summaryGrid = "_summaryGrid_15hd9_51";
-const summarySection = "_summarySection_15hd9_65";
-const summaryItems = "_summaryItems_15hd9_99";
-const summaryItem = "_summaryItem_15hd9_99";
-const label = "_label_15hd9_135";
-const value = "_value_15hd9_149";
-const actions = "_actions_15hd9_165";
-const editButton = "_editButton_15hd9_181";
-const confirmButton = "_confirmButton_15hd9_183";
-const slideIn = "_slideIn_15hd9_1";
+const configurationSummary = "_configurationSummary_1n8kz_1";
+const header = "_header_1n8kz_25";
+const summaryGrid = "_summaryGrid_1n8kz_65";
+const summarySection = "_summarySection_1n8kz_79";
+const summaryItems = "_summaryItems_1n8kz_115";
+const summaryItem = "_summaryItem_1n8kz_115";
+const label = "_label_1n8kz_151";
+const value = "_value_1n8kz_165";
+const actions = "_actions_1n8kz_181";
+const editButton = "_editButton_1n8kz_197";
+const confirmButton = "_confirmButton_1n8kz_199";
+const slideIn = "_slideIn_1n8kz_1";
 const styles$1 = {
   configurationSummary,
   header,
@@ -46564,7 +46588,20 @@ const ConfigurationSummary = ({
     return `${Math.round(value2 * 100)}%`;
   };
   const formatTradingHours = (startTime, endTime) => {
-    return `${startTime} - ${endTime}`;
+    const timeToMinutes = (time) => {
+      const [hours, minutes] = time.split(":").map(Number);
+      return hours * 60 + minutes;
+    };
+    const startMinutes = timeToMinutes(startTime);
+    const endMinutes = timeToMinutes(endTime);
+    const displayEndTime = endMinutes < startMinutes ? `${endTime}+1` : endTime;
+    return `${startTime} - ${displayEndTime}`;
+  };
+  const formatMarginRequired = (value2) => {
+    return value2 === 1e3 ? "$1,000 (Mini's)" : "$100 (Micro's)";
+  };
+  const formatContractValue = (value2) => {
+    return value2 === 5 ? "$5/Tick (Mini's)" : "$0.5/Tick (Micro's)";
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.configurationSummary, "data-testid": "configuration-summary", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.header, children: [
@@ -46593,7 +46630,7 @@ const ConfigurationSummary = ({
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Margin Required Per Contract:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: formatCurrency(configuration.tradingMechanics.marginRequiredPerContract) })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: formatMarginRequired(configuration.tradingMechanics.marginRequiredPerContract) })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Slippage:" }),
@@ -46601,10 +46638,7 @@ const ConfigurationSummary = ({
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Contract Value:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: styles$1.value, children: [
-              formatCurrency(configuration.tradingMechanics.contractValue),
-              "/tick"
-            ] })
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: formatContractValue(configuration.tradingMechanics.contractValue) })
           ] })
         ] })
       ] }),
@@ -46751,17 +46785,23 @@ const ConfigurationSummary = ({
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Rendering Mode:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.renderingMode })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Fixed Window:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.fixedWindow })
+          configuration.visualization.renderingMode === "human" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Fixed Window:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.fixedWindow })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Candle Width Factor:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.candleWidthFactor })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Training Speed:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.trainingSpeed })
+            ] })
           ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Candle Width Factor:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.candleWidthFactor })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Training Speed:" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: configuration.visualization.trainingSpeed })
+          configuration.visualization.renderingMode === "fast" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: styles$1.summaryItem, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.label, children: "Note:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: styles$1.value, children: "Fast mode - detailed visualization settings disabled" })
           ] })
         ] })
       ] })
@@ -46782,23 +46822,23 @@ const ConfigurationSummary = ({
           type: "button",
           className: styles$1.confirmButton,
           onClick: onConfirm,
-          children: "Confirm & Start Training"
+          children: "Confirm & Proceed to Data Upload"
         }
       )
     ] })
   ] });
 };
-const container = "_container_1fd1b_1";
-const main = "_main_1fd1b_11";
-const content = "_content_1fd1b_27";
-const title = "_title_1fd1b_35";
-const subtitle = "_subtitle_1fd1b_51";
-const placeholder = "_placeholder_1fd1b_67";
-const errorContainer = "_errorContainer_1fd1b_111";
-const errorItem = "_errorItem_1fd1b_153";
-const retryButton = "_retryButton_1fd1b_165";
-const navigationButtons = "_navigationButtons_1fd1b_207";
-const backButton = "_backButton_1fd1b_219";
+const container = "_container_1oxsc_1";
+const main = "_main_1oxsc_43";
+const content = "_content_1oxsc_63";
+const title = "_title_1oxsc_71";
+const subtitle = "_subtitle_1oxsc_97";
+const placeholder = "_placeholder_1oxsc_115";
+const errorContainer = "_errorContainer_1oxsc_173";
+const errorItem = "_errorItem_1oxsc_217";
+const retryButton = "_retryButton_1oxsc_229";
+const navigationButtons = "_navigationButtons_1oxsc_275";
+const backButton = "_backButton_1oxsc_287";
 const styles = {
   container,
   main,
@@ -46940,11 +46980,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {})
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(CompleteModernWelcomePage, {})
       },
       {
         path: "welcome",
-        element: /* @__PURE__ */ jsxRuntimeExports.jsx(WelcomePage, {})
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(CompleteModernWelcomePage, {})
       },
       {
         path: "upload-and-settings",
