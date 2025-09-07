@@ -45,9 +45,9 @@ Transform the welcome page into a modern, desktop-optimized, scroll-driven narra
 - [x] Final performance optimization
 - [x] Documentation and cleanup
 
-## **CURRENT SUBTASK**: ALL PHASES COMPLETED
+## **CURRENT SUBTASK**: REMOVE BROKER WHEEL TOOLTIP
 **Status**: COMPLETED
-**Notes**: Complete UI overhaul delivered, working, tested, and ready for visual inspection
+**Notes**: Removed the "Drag to rotate • Hover to explore" tooltip from below the 3D broker wheel component for cleaner UI
 
 ---
 
@@ -87,6 +87,8 @@ Transform the welcome page into a modern, desktop-optimized, scroll-driven narra
 ✅ **Content Fetch Error**: Fixed missing welcomeContent.json file - moved to public directory
 ✅ **Blank Page Issue**: Resolved the blank page problem by fixing content loading
 ✅ **Navigation**: Both pages now have consistent navigation bar
+✅ **Broker Logo Backgrounds**: Changed BrokerWheel3D component logo container backgrounds from light grey to white for better visibility
+✅ **Broker Wheel Tooltip**: Removed the "Drag to rotate • Hover to explore" tooltip for cleaner UI presentation
 
 ---
 

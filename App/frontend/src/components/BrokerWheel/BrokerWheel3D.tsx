@@ -231,10 +231,6 @@ const BrokerWheel3D: React.FC = () => {
         <div className={styles.orbitalRing3} />
       </div>
 
-      {/* Instructions */}
-      <div className={styles.instructions}>
-        <p>Drag to rotate • Hover to explore</p>
-      </div>
     </div>
   )
 }
