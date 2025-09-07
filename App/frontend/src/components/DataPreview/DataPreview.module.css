@@ -1,8 +1,13 @@
 .dataPreview {
-  background: var(--bg-primary);
-  border-radius: 12px;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: var(--shadow-light);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   margin-top: 2rem;
 }
 
@@ -18,8 +23,9 @@
 .header h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .summary {
@@ -30,21 +36,25 @@
 }
 
 .rowCount {
-  background: var(--success-bg);
-  color: var(--success-color);
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .warningCount {
-  background: var(--warning-bg);
-  color: var(--warning-color);
+  background: rgba(245, 158, 11, 0.2);
+  color: #f59e0b;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 500;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .warnings {

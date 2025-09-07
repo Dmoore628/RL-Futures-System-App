@@ -1,6 +1,22 @@
 .container {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .main {
@@ -9,6 +25,8 @@
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .content {
@@ -19,51 +37,65 @@
   font-size: 2.5rem;
   font-weight: 700;
   margin: 0 0 1rem 0;
-  color: var(--text-primary);
+  color: #ffffff;
   line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .subtitle {
   font-size: 1.125rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   max-width: 600px;
   margin: 0 auto 3rem auto;
   line-height: 1.6;
+  opacity: 0.9;
 }
 
 .placeholder {
-  background: var(--bg-secondary);
-  border: 2px dashed var(--border-color);
-  border-radius: 12px;
+  background: rgba(51, 65, 85, 0.6);
+  border: 2px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
   padding: 4rem 2rem;
   margin: 2rem 0;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.placeholder:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  background: rgba(51, 65, 85, 0.8);
 }
 
 .placeholder h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #ffffff;
   margin: 0 0 1rem 0;
 }
 
 .placeholder p {
   font-size: 1rem;
-  color: var(--text-muted);
+  color: #e2e8f0;
   margin: 0;
   line-height: 1.6;
 }
 
 .errorContainer {
-  background: var(--error-bg);
-  border: 1px solid var(--error-color);
-  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
   padding: 1.5rem;
   margin: 2rem 0;
   text-align: left;
+  backdrop-filter: blur(10px);
 }
 
 .errorContainer h3 {
-  color: var(--error-color);
+  color: #ef4444;
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
   font-weight: 600;
@@ -75,26 +107,28 @@
 }
 
 .errorItem {
-  color: var(--error-color);
+  color: #fca5a5;
   margin-bottom: 0.5rem;
   font-size: 0.875rem;
 }
 
 .retryButton {
-  background: var(--error-color);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 8px;
+  font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
 }
 
 .retryButton:hover {
-  background: var(--error-color-dark);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
 }
 
 .retryButton:active {
@@ -108,21 +142,24 @@
 }
 
 .backButton {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(51, 65, 85, 0.8);
+  color: #e2e8f0;
+  border: 1px solid rgba(59, 130, 246, 0.3);
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 8px;
+  font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .backButton:hover {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.1);
+  color: #ffffff;
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .backButton:active {

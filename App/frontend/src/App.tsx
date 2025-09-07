@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom'
 import { ThemeProvider } from './context/ThemeContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import Navigation from './components/Navigation'
-import WelcomePage from './pages/WelcomePage'
+import CompleteModernWelcomePage from './pages/CompleteModernWelcomePage'
 import UploadAndSettingsPage from './pages/UploadAndSettingsPage'
 import './styles/global.css'
 
@@ -15,6 +15,20 @@ const Layout = () => (
   </>
 )
 
+// Layout without navigation for debugging
+const LayoutNoNav = () => (
+  <>
+    <Outlet />
+  </>
+)
+
+// Layout without navigation for pages that have their own navigation
+const LayoutWithoutNav = () => (
+  <>
+    <Outlet />
+  </>
+)
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -22,11 +36,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <WelcomePage />,
+        element: <CompleteModernWelcomePage />,
       },
       {
         path: 'welcome',
-        element: <WelcomePage />,
+        element: <CompleteModernWelcomePage />,
       },
       {
         path: 'upload-and-settings',

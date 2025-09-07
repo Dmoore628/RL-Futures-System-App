@@ -1,8 +1,13 @@
 .configurationForm {
-  background: var(--bg-primary);
-  border-radius: 12px;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: var(--shadow-light);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .header {
@@ -13,14 +18,16 @@
 .header h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin: 0;
   font-size: 1.125rem;
+  opacity: 0.9;
 }
 
 .sectionNavigation {
@@ -36,26 +43,29 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   white-space: nowrap;
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: #e2e8f0;
+  backdrop-filter: blur(10px);
 }
 
 .sectionTab:hover {
-  background: var(--bg-primary);
-  border-color: var(--accent-primary);
-  color: var(--text-primary);
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .sectionTab.active {
-  background: var(--accent-primary);
-  border-color: var(--accent-primary);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  border-color: #3b82f6;
   color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .sectionIcon {
@@ -73,7 +83,7 @@
 .section h3 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 1.5rem 0;
   display: flex;
   align-items: center;
@@ -94,30 +104,32 @@
 
 .formGroup label {
   font-weight: 500;
-  color: var(--text-primary);
+  color: #e2e8f0;
   font-size: 0.875rem;
 }
 
 .formGroup input,
 .formGroup select {
   padding: 0.75rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.6);
+  color: #ffffff;
   font-size: 0.875rem;
-  transition: border-color 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
 }
 
 .formGroup input:focus,
 .formGroup select:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.1);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  background: rgba(30, 41, 59, 0.8);
 }
 
 .formGroup input::placeholder {
-  color: var(--text-muted);
+  color: #94a3b8;
 }
 
 .formGroup small {
@@ -180,50 +192,58 @@
 .nextButton,
 .submitButton {
   padding: 0.75rem 1.5rem;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 8px;
+  font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
 }
 
 .prevButton {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(51, 65, 85, 0.8);
+  color: #e2e8f0;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .prevButton:hover {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--accent-primary);
+  background: rgba(59, 130, 246, 0.1);
+  color: #ffffff;
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .nextButton {
-  background: var(--accent-secondary);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
 .nextButton:hover {
-  background: var(--accent-primary);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
 }
 
 .submitButton {
-  background: var(--success-color);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .submitButton:hover:not(:disabled) {
-  background: var(--success-color-dark);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 .submitButton:disabled {
-  background: var(--text-muted);
+  background: rgba(148, 163, 184, 0.6);
   cursor: not-allowed;
   opacity: 0.6;
+  box-shadow: none;
 }
 
 .disabled {

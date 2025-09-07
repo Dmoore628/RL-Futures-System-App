@@ -1,0 +1,451 @@
+/* SystemDiagram3D Component Styles */
+/* Interactive 3D system diagram with sophisticated animations and hover effects */
+
+/* ===== BASE CONTAINER ===== */
+
+.systemDiagram3D {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  perspective: 1200px;
+  perspective-origin: center center;
+  overflow: hidden;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-bg-primary) 0%, var(--color-bg-secondary) 100%);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ===== 3D SCENE ===== */
+
+.scene3D {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: 
+    rotateX(var(--rotation-x))
+    rotateY(var(--rotation-y))
+    rotateZ(var(--rotation-z));
+  transition: transform var(--duration-300) var(--ease-out);
+}
+
+/* ===== SYSTEM NODES ===== */
+
+.systemNode {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--node-size);
+  height: var(--node-size);
+  margin-left: calc(var(--node-size) / -2);
+  margin-top: calc(var(--node-size) / -2);
+  background: var(--node-color);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-300) var(--ease-out);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 0 0 0 rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  opacity: var(--node-opacity);
+  transform: translate3d(var(--node-x), var(--node-y), var(--node-z)) scale(var(--node-scale));
+}
+
+.systemNode:hover {
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 0 0 8px rgba(255, 255, 255, 0.1);
+  transform: translate3d(var(--node-x), var(--node-y), var(--node-z)) scale(1.1);
+}
+
+.nodeHovered {
+  z-index: 10;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+/* ===== NODE CONTENT ===== */
+
+.nodeIcon {
+  font-size: 2rem;
+  margin-bottom: var(--space-1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.nodeTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-inverse);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ===== NODE TOOLTIP ===== */
+
+.nodeTooltip {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  color: var(--color-text-inverse);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-xl);
+  min-width: 200px;
+  z-index: 20;
+  animation: tooltipFadeIn var(--duration-300) var(--ease-out);
+}
+
+.tooltipTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-2);
+  color: var(--color-accent-gold);
+}
+
+.tooltipDescription {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-neutral-300);
+}
+
+/* ===== CONNECTION LINES ===== */
+
+.connectionLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 2px;
+  background: linear-gradient(
+    45deg,
+    var(--color-primary-blue) 0%,
+    var(--color-accent-cyan) 50%,
+    var(--color-accent-gold) 100%
+  );
+  opacity: var(--connection-opacity);
+  transform-origin: 0 0;
+  animation: connectionPulse 3s ease-in-out infinite;
+}
+
+.connectionLine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: 1px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* ===== CENTER FOCUS ===== */
+
+.centerFocus {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  background: radial-gradient(circle, var(--color-accent-gold) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: centerPulse 2s ease-in-out infinite;
+  z-index: 5;
+}
+
+/* ===== LEGEND ===== */
+
+.legend {
+  position: absolute;
+  top: var(--space-6);
+  right: var(--space-6);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-lg);
+  z-index: 15;
+  min-width: 200px;
+}
+
+.legendTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+  text-align: center;
+}
+
+.legendItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-200) var(--ease-out);
+}
+
+.legendItem:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateX(4px);
+}
+
+.legendColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.legendLabel {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes connectionPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes centerPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* ===== INTERACTIVE STATES ===== */
+
+.systemDiagram3D[data-hovered="true"] .scene3D {
+  transform: 
+    rotateX(calc(var(--rotation-x) + var(--mouse-y) * 0.1))
+    rotateY(calc(var(--rotation-y) + var(--mouse-x) * 0.1))
+    rotateZ(var(--rotation-z));
+}
+
+.systemDiagram3D[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.systemDiagram3D[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--duration-1000) var(--ease-out);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1280px) {
+  .systemDiagram3D {
+    height: 500px;
+  }
+  
+  .systemNode {
+    width: calc(var(--node-size) * 0.8);
+    height: calc(var(--node-size) * 0.8);
+  }
+  
+  .nodeIcon {
+    font-size: 1.5rem;
+  }
+  
+  .nodeTitle {
+    font-size: var(--text-xs);
+  }
+  
+  .legend {
+    top: var(--space-4);
+    right: var(--space-4);
+    padding: var(--space-4);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .systemDiagram3D {
+    height: 400px;
+  }
+  
+  .systemNode {
+    width: calc(var(--node-size) * 0.7);
+    height: calc(var(--node-size) * 0.7);
+  }
+  
+  .nodeIcon {
+    font-size: 1.2rem;
+  }
+  
+  .nodeTitle {
+    font-size: var(--text-xs);
+    max-width: 80px;
+  }
+  
+  .legend {
+    position: static;
+    margin-top: var(--space-6);
+    width: 100%;
+  }
+  
+  .legendItems {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  
+  .legendItem {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .systemDiagram3D {
+    height: 350px;
+  }
+  
+  .systemNode {
+    width: calc(var(--node-size) * 0.6);
+    height: calc(var(--node-size) * 0.6);
+  }
+  
+  .nodeIcon {
+    font-size: 1rem;
+  }
+  
+  .nodeTitle {
+    font-size: var(--text-xs);
+    max-width: 60px;
+  }
+  
+  .nodeTooltip {
+    min-width: 150px;
+    padding: var(--space-3);
+  }
+  
+  .tooltipTitle {
+    font-size: var(--text-base);
+  }
+  
+  .tooltipDescription {
+    font-size: var(--text-xs);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .systemDiagram3D,
+  .scene3D,
+  .systemNode,
+  .connectionLine,
+  .centerFocus {
+    animation: none;
+    transition: none;
+  }
+  
+  .systemDiagram3D[data-hovered="true"] .scene3D {
+    transform: none;
+  }
+  
+  .systemNode:hover {
+    transform: translate3d(var(--node-x), var(--node-y), var(--node-z)) scale(1);
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.systemDiagram3D {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.scene3D {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.systemNode {
+  contain: layout style paint;
+  will-change: transform, box-shadow;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .systemDiagram3D {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .systemNode {
+    background: #f0f0f0;
+    color: black;
+    box-shadow: none;
+  }
+  
+  .legend {
+    background: white;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .connectionLine {
+    background: #ccc;
+  }
+}

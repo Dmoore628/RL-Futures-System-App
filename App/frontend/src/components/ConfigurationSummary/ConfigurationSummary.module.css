@@ -1,8 +1,13 @@
 .configurationSummary {
-  background: var(--bg-primary);
-  border-radius: 12px;
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 16px;
   padding: 2rem;
-  box-shadow: var(--shadow-light);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .header {
@@ -13,14 +18,16 @@
 .header h2 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .header p {
-  color: var(--text-secondary);
+  color: #e2e8f0;
   margin: 0;
   font-size: 1.125rem;
+  opacity: 0.9;
 }
 
 .summaryGrid {
@@ -31,16 +38,17 @@
 }
 
 .summarySection {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  border-radius: 12px;
   padding: 1.5rem;
+  backdrop-filter: blur(10px);
 }
 
 .summarySection h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   margin: 0 0 1rem 0;
   display: flex;
   align-items: center;
@@ -58,7 +66,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .summaryItem:last-child {
@@ -67,14 +75,14 @@
 
 .label {
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #e2e8f0;
   font-size: 0.875rem;
   flex: 1;
 }
 
 .value {
   font-weight: 600;
-  color: var(--text-primary);
+  color: #ffffff;
   font-size: 0.875rem;
   text-align: right;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -85,7 +93,7 @@
   justify-content: center;
   gap: 1rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .editButton,
@@ -95,33 +103,36 @@
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border: none;
   min-width: 200px;
 }
 
 .editButton {
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-color);
+  background: rgba(51, 65, 85, 0.8);
+  color: #e2e8f0;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  backdrop-filter: blur(10px);
 }
 
 .editButton:hover {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  border-color: var(--accent-primary);
-  transform: translateY(-1px);
+  background: rgba(59, 130, 246, 0.1);
+  color: #ffffff;
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .confirmButton {
-  background: var(--success-color);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .confirmButton:hover {
-  background: var(--success-color-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
 }
 
 /* Responsive Design */

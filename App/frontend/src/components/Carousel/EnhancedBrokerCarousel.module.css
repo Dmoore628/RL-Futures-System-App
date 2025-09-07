@@ -1,0 +1,545 @@
+/* EnhancedBrokerCarousel Component Styles */
+/* 3D broker carousel with sophisticated animations and interactive elements */
+
+/* ===== BASE CAROUSEL ===== */
+
+.enhancedBrokerCarousel {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, var(--color-bg-secondary) 100%);
+  overflow: hidden;
+}
+
+/* ===== CAROUSEL HEADER ===== */
+
+.carouselHeader {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp var(--duration-700) var(--ease-out) 0.2s forwards;
+}
+
+.carouselTitle {
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-accent-cyan) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.carouselSubtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: var(--leading-relaxed);
+}
+
+/* ===== CAROUSEL CONTAINER ===== */
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  perspective: 1000px;
+  perspective-origin: center center;
+  overflow: hidden;
+  cursor: grab;
+  transform-style: preserve-3d;
+}
+
+.carouselContainer:active {
+  cursor: grabbing;
+}
+
+/* ===== CAROUSEL TRACK ===== */
+
+.carouselTrack {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  transform: translateY(-50%) translateX(var(--scroll-x));
+  transition: transform var(--duration-300) var(--ease-out);
+  will-change: transform;
+}
+
+/* ===== BROKER LOGO ===== */
+
+.brokerLogo {
+  position: relative;
+  width: 220px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-2xl);
+  border: 2px solid var(--color-border-light);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  transition: all var(--duration-300) var(--ease-out);
+  transform: var(--logo-transform);
+  transform-style: preserve-3d;
+  overflow: hidden;
+  opacity: 0;
+  animation: logoReveal var(--duration-700) var(--ease-out) calc(var(--logo-index) * 100ms) forwards;
+}
+
+.brokerLogo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(59, 130, 246, 0.05) 100%);
+  opacity: 0;
+  transition: opacity var(--duration-300) var(--ease-out);
+}
+
+.brokerLogo:hover::before {
+  opacity: 1;
+}
+
+/* Logo status styles */
+.logo-connected {
+  border-color: var(--color-accent-green);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, var(--color-bg-primary) 100%);
+}
+
+.logo-disconnected {
+  border-color: var(--color-accent-red);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, var(--color-bg-primary) 100%);
+}
+
+.logo-pending {
+  border-color: var(--color-accent-gold);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, var(--color-bg-primary) 100%);
+}
+
+.logoHovered {
+  transform: var(--logo-transform) scale(1.05) translateZ(20px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-primary-blue);
+}
+
+/* ===== LOGO IMAGE ===== */
+
+.logoImage {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+  transition: transform var(--duration-300) var(--ease-out);
+}
+
+.brokerLogo:hover .logoImage {
+  transform: scale(1.1);
+}
+
+.logoImg {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  transition: filter var(--duration-300) var(--ease-out);
+}
+
+.brokerLogo:hover .logoImg {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+/* ===== LOGO INFO ===== */
+
+.logoInfo {
+  text-align: center;
+  z-index: 2;
+  position: relative;
+}
+
+.logoName {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--leading-tight);
+}
+
+.logoStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.statusIndicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+.statusText {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
+/* ===== LOGO TOOLTIP ===== */
+
+.logoTooltip {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(20px);
+  color: var(--color-text-inverse);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-xl);
+  min-width: 250px;
+  z-index: 20;
+  animation: tooltipFadeIn var(--duration-300) var(--ease-out);
+}
+
+.tooltipContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tooltipTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin: 0;
+  color: var(--color-accent-gold);
+}
+
+.tooltipDescription {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-neutral-300);
+  margin: 0;
+}
+
+.tooltipFeatures {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.tooltipFeature {
+  font-size: var(--text-xs);
+  color: var(--color-neutral-400);
+  line-height: var(--leading-relaxed);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.tooltipFeature::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent-gold);
+  font-weight: var(--font-bold);
+}
+
+/* ===== PERSPECTIVE OVERLAY ===== */
+
+.perspectiveOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ===== CAROUSEL CONTROLS ===== */
+
+.carouselControls {
+  margin-top: var(--space-8);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp var(--duration-700) var(--ease-out) 0.4s forwards;
+}
+
+.controlInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-primary);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.controlText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-medium);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ===== INTERACTIVE STATES ===== */
+
+.enhancedBrokerCarousel[data-hovered="true"] .carouselContainer {
+  transform: perspective(1000px) rotateX(calc(var(--mouse-y) * 0.02)) rotateY(calc(var(--mouse-x) * 0.02));
+}
+
+.enhancedBrokerCarousel[data-dragging="true"] .carouselContainer {
+  cursor: grabbing;
+}
+
+.enhancedBrokerCarousel[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.enhancedBrokerCarousel[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--duration-1000) var(--ease-out);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1280px) {
+  .carouselContainer {
+    height: 250px;
+  }
+  
+  .brokerLogo {
+    width: 180px;
+    height: 160px;
+  }
+  
+  .logoImage {
+    width: 100px;
+    height: 60px;
+  }
+  
+  .logoName {
+    font-size: var(--text-base);
+  }
+}
+
+@media (max-width: 1024px) {
+  .carouselTitle {
+    font-size: var(--text-3xl);
+  }
+  
+  .carouselSubtitle {
+    font-size: var(--text-base);
+  }
+  
+  .carouselContainer {
+    height: 200px;
+  }
+  
+  .brokerLogo {
+    width: 160px;
+    height: 140px;
+  }
+  
+  .logoImage {
+    width: 80px;
+    height: 50px;
+  }
+  
+  .logoName {
+    font-size: var(--text-sm);
+  }
+  
+  .tooltipTitle {
+    font-size: var(--text-base);
+  }
+  
+  .tooltipDescription {
+    font-size: var(--text-xs);
+  }
+}
+
+@media (max-width: 768px) {
+  .carouselTitle {
+    font-size: var(--text-2xl);
+  }
+  
+  .carouselSubtitle {
+    font-size: var(--text-sm);
+  }
+  
+  .carouselContainer {
+    height: 180px;
+  }
+  
+  .brokerLogo {
+    width: 140px;
+    height: 120px;
+  }
+  
+  .logoImage {
+    width: 60px;
+    height: 40px;
+  }
+  
+  .logoName {
+    font-size: var(--text-xs);
+  }
+  
+  .statusText {
+    font-size: var(--text-xs);
+  }
+  
+  .logoTooltip {
+    min-width: 200px;
+    padding: var(--space-3);
+  }
+  
+  .tooltipTitle {
+    font-size: var(--text-sm);
+  }
+  
+  .tooltipDescription {
+    font-size: var(--text-xs);
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .enhancedBrokerCarousel,
+  .brokerLogo,
+  .carouselTrack,
+  .logoImage,
+  .logoImg {
+    animation: none;
+    transition: none;
+  }
+  
+  .enhancedBrokerCarousel[data-hovered="true"] .carouselContainer {
+    transform: none;
+  }
+  
+  .brokerLogo:hover {
+    transform: var(--logo-transform) scale(1) translateZ(0);
+  }
+  
+  .statusIndicator {
+    animation: none;
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+.enhancedBrokerCarousel {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.carouselContainer {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.carouselTrack {
+  contain: layout style paint;
+  will-change: transform;
+}
+
+.brokerLogo {
+  contain: layout style paint;
+  will-change: transform, box-shadow;
+}
+
+/* ===== PRINT STYLES ===== */
+
+@media print {
+  .enhancedBrokerCarousel {
+    background: white;
+  }
+  
+  .brokerLogo {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+  
+  .logoTooltip {
+    display: none;
+  }
+  
+  .carouselControls {
+    display: none;
+  }
+}
