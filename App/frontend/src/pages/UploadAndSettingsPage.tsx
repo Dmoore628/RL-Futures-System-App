@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Step, FileData, FileValidationResult, ConfigurationForm as ConfigurationFormType } from '../types'
 import StepIndicator from '../components/StepIndicator'
 import FileUpload from '../components/FileUpload'
@@ -9,6 +10,7 @@ import ErrorBoundary from '../components/ErrorBoundary'
 import styles from './UploadAndSettingsPage.module.css'
 
 const UploadAndSettingsPage: React.FC = () => {
+  const navigate = useNavigate()
   const [currentStep, setCurrentStep] = useState(1)
   const [uploadedData, setUploadedData] = useState<FileData[]>([])
   const [validation, setValidation] = useState<FileValidationResult | null>(null)
@@ -81,6 +83,10 @@ const UploadAndSettingsPage: React.FC = () => {
     alert('Configuration saved successfully! Your futures trading system is ready to start training.')
   }
 
+  const handleBackToWelcome = () => {
+    navigate('/welcome')
+  }
+
   return (
     <div className={styles.container}>
       <StepIndicator steps={steps} />
@@ -115,7 +121,7 @@ const UploadAndSettingsPage: React.FC = () => {
             <ErrorBoundary>
               <ConfigurationForm
                 onSubmit={handleConfigurationSubmit}
-                onBack={() => {}} // No back button on first step
+                onBack={handleBackToWelcome}
               />
             </ErrorBoundary>
           )}
